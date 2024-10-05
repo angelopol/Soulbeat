@@ -11,19 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('playlists', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('full_name');
-            $table->text('biography')->fulltext();
+            $table->string('description');
             $table->string('photo');
-            $table->text('followed');    
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->tinyInteger('type');
-            $table->integer('subscribed');
-            $table->timestamp('email_verified_at')->nullable();
-            $table->rememberToken();
+            $table->text('posts')->toArray();
             $table->tinyInteger('status');
             $table->timestamps();
         });
@@ -34,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('playlists');
     }
 };
