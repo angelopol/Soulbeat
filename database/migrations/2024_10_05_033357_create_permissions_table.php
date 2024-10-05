@@ -14,16 +14,15 @@ return new class extends Migration
         Schema::create('permissions', function (Blueprint $table) {
             $table->id();
             $table->integer('user');
-            #revisar estos tipos de datos
             $table->tinyInteger('posts')->default(1);
             $table->tinyInteger('playlist')->default(1);
             $table->tinyInteger('chats')->default(1);
             $table->tinyInteger('payment')->default(1);
             $table->tinyInteger('users')->default(1);
             $table->tinyInteger('licenses')->default(1);
-            $table->tinyInteger('paid_methods')->default(1);
+            $table->tinyInteger('PaidMethods')->default(1);
             $table->tinyInteger('guides')->default(1);
-            $table->tinyInteger('q&a')->default(1);
+            $table->tinyInteger('QA')->default(1);
             $table->timestamps();
         });
     }

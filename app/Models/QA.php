@@ -8,6 +8,4 @@ use Illuminate\Database\Eloquent\Model;
 class QA extends Model
 {
     use HasFactory;
-
-    protected $table = 'q_a';
 }

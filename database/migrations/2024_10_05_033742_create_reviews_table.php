@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('body',500)->nullable();
             $table->integer('qualify')->default(1);
             $table->tinyInteger('type')->default(0);
-            #revisar campo
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });

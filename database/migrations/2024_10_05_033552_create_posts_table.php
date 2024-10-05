@@ -19,16 +19,15 @@ return new class extends Migration
             $table->string('photo')->nullable();
             $table->float('bpm')->nullable();
             $table->string('scale',500)->nullable();
-            $table->string('paid_methods',500)->nullable();
+            $table->string('PaidMethods',500)->nullable();
             $table->integer('cost')->default(0);
             $table->string('licenses',500);
             $table->longText('tags')->nullable();
-            $table->integer('reaction_1')->default(0);
-            $table->integer('reaction_2')->default(0);
-            $table->integer('reaction_3')->default(0);
-            $table->integer('reaction_4')->default(0);
-            $table->integer('reaction_5')->default(0);
-            #revisar tipo de dato
+            $table->integer('reaction1')->default(0);
+            $table->integer('reaction2')->default(0);
+            $table->integer('reaction3')->default(0);
+            $table->integer('reaction4')->default(0);
+            $table->integer('reaction5')->default(0);
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
