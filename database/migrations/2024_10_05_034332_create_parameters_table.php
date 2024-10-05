@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('parameters', function (Blueprint $table) {
             $table->id();
-            $table->integer('beat_duration');
+            $table->integer('beat_duration')->default(60);
             $table->timestamps();
         });
     }

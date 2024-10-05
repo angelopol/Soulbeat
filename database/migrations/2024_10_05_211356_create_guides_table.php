@@ -4,6 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+use function Laravel\Prompts\table;
+
 return new class extends Migration
 {
     /**
@@ -11,11 +13,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('messages', function (Blueprint $table) {
+        Schema::create('guides', function (Blueprint $table) {
             $table->id();
-            $table->integer('chat');
-            $table->integer('user');
-            $table->string('body',500);
+            $table->string('title',500);
+            $table->longText('summary')->nullable();
+            $table->string('file',500)->nullable();
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('messages');
+        Schema::dropIfExists('guides');
     }
 };

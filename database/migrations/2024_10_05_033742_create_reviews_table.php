@@ -15,11 +15,12 @@ return new class extends Migration
             $table->id();
             $table->integer('from');
             $table->integer('to');
-            $table->string('title');
-            $table->string('body');
-            $table->integer('qualify');
+            $table->string('title',500)->nullable();
+            $table->string('body',500)->nullable();
+            $table->integer('qualify')->default(1);
+            $table->tinyInteger('type')->default(0);
             #revisar campo
-            $table->tinyInteger('status');
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }

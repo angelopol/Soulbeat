@@ -15,11 +15,15 @@ return new class extends Migration
             $table->id();
             $table->integer('user');
             #revisar estos tipos de datos
-            $table->tinyInteger('posts');
-            $table->tinyInteger('playlist');
-            $table->tinyInteger('chats');
-            $table->tinyInteger('payment');
-            $table->tinyInteger('users');
+            $table->tinyInteger('posts')->default(1);
+            $table->tinyInteger('playlist')->default(1);
+            $table->tinyInteger('chats')->default(1);
+            $table->tinyInteger('payment')->default(1);
+            $table->tinyInteger('users')->default(1);
+            $table->tinyInteger('licenses')->default(1);
+            $table->tinyInteger('paid_methods')->default(1);
+            $table->tinyInteger('guides')->default(1);
+            $table->tinyInteger('q&a')->default(1);
             $table->timestamps();
         });
     }

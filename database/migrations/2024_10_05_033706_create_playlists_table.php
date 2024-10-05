@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('playlists', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('description');
-            $table->string('photo');
-            $table->text('posts')->toArray();
-            $table->tinyInteger('status');
+            $table->string('name',500);
+            $table->string('description',500)->nullable();
+            $table->string('photo',500)->nullable();
+            $table->longText('posts');
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }

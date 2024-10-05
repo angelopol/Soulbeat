@@ -13,23 +13,23 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('body')->fulltext();
-            $table->string('song');
-            $table->string('photo');
-            $table->float('bpm');
-            $table->string('scale');
-            $table->string('paid_methods')->toArray();
-            $table->integer('cost');
-            $table->string('licenses')->toArray();
-            $table->text('tags')->toArray();
-            $table->integer('reaction_1');
-            $table->integer('reaction_2');
-            $table->integer('reaction_3');
-            $table->integer('reaction_4');
-            $table->integer('reaction_5');
+            $table->string('title',500);
+            $table->longText('body')->nullable();
+            $table->string('song',500);
+            $table->string('photo')->nullable();
+            $table->float('bpm')->nullable();
+            $table->string('scale',500)->nullable();
+            $table->string('paid_methods',500)->nullable();
+            $table->integer('cost')->default(0);
+            $table->string('licenses',500);
+            $table->longText('tags')->nullable();
+            $table->integer('reaction_1')->default(0);
+            $table->integer('reaction_2')->default(0);
+            $table->integer('reaction_3')->default(0);
+            $table->integer('reaction_4')->default(0);
+            $table->integer('reaction_5')->default(0);
             #revisar tipo de dato
-            $table->tinyInteger('status');
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }
