@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
             progressBar.value = progress;
             progressBar.style.setProperty('--progress', `${progress}%`);
   
-           \
+           
             document.getElementById('inicio').textContent = formatTime(audio.currentTime);
             document.getElementById('final').textContent = formatTime(audio.duration);
           } else {

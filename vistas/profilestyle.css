@@ -1,0 +1,203 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #1b1b1b;
+}
+
+.header {
+    width: 95%;
+    height: 200px;
+    background-image: url('../front/images/persona4.jpg');
+    background-size: cover;
+    background-position: center;
+    border-end-start-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom: 5px solid rgb(161,0,161);
+
+}
+
+.flecha {
+    width: 10%;
+    height: 5%;
+    color: white;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+}
+
+
+
+.profile-picture {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-top: -75px; /* Subir la imagen para que se superponga con la cabecera */
+    border: 5px solid rgb(161,0,161);
+}
+
+.content {
+    width: 90%;
+    max-width: 800px;
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    
+
+}
+
+
+.content-row {
+    grid-column: 1 / 3;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 32px;
+    padding: 24px;
+}
+
+.text-box-post {
+     color: white;
+     min-width: 10%;
+     max-width: 40%;
+     
+}
+
+
+.text2{
+    color: white;
+    margin:16px;
+    text-align: center;
+}
+.post {
+   display: grid;
+   place-items: center;
+  
+}
+
+.post:last-child{
+    margin-bottom: 0px;
+}
+
+.fotobeat {
+   width: 10%;
+   border-radius: 50%;
+   object-fit: cover;
+
+}
+
+.title-perfil{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 8vh;
+    color: white;
+    font-size: xx-large;
+
+}
+
+.textofpost{
+    grid-column: 1/3;
+
+
+}
+
+
+.card {
+    grid-column: 1 / 3;
+    display: grid;
+    place-items: center
+    ;
+    background-color: #1b1b1b;
+    border-radius: 5px;
+    width: 90%;
+    height: auto;
+    margin: 16px;
+    padding: 16px 0px 24px 0px;
+}
+
+.fotoritmo{
+    width: 40%;
+    height: 90%;
+}
+
+.content-bar{
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Estilo de la barra de progreso */
+#progress-bar {
+    width: 100%;
+    height: 10px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: #ddd;
+    border-radius: 25px;
+    outline: none;
+  }
+  
+ 
+  
+  #progress-bar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: rgb(161, 0, 161);
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+    
+    transition: all 0.1s ease; /* Asegura un movimiento fluido */
+  }
+  
+  #progress-bar::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    background: rgb(161, 0, 161);
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+    transition: all 0.1s ease; /* Asegura un movimiento fluido */
+  }
+  
+
+  #inicio, #final{
+    color: white;
+  }
+
+  .play{
+    color: white;
+    width: auto;
+    height: auto;
+    font-size: 32px;
+  }
+
+  .content-botons{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 80%;
+    gap: 20px;
+  }
+
+  .boton-options{
+    background-color: rgb(161,0,161);
+    color: white;
+    border-radius: 10px;
+    border: none;
+    width: 25%;
+    text-align: center;
+    height: 100%;
+    padding: 16px 24px;
+  }
