@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('parameters', function (Blueprint $table) {
             $table->id();
-            $table->integer('beat_duration')->default(60);
+            $table->integer('BeatDuration')->default(60);
+            $table->integer('AdDayPrice')->default(5);
             $table->timestamps();
         });
     }

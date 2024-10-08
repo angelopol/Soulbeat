@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->integer('from');
             $table->integer('to');
-            $table->tinyInteger('accept_from')->nullable();
-            $table->tinyInteger('accept_to')->nullable();
+            $table->tinyInteger('AcceptFrom')->nullable();
+            $table->tinyInteger('AcceptTo')->nullable();
             $table->integer('time')->nullable();
             $table->timestamps();
         });

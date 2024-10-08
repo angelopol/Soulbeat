@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('from');
             $table->integer('to');
             $table->string('title',500)->nullable();
-            $table->string('body',500)->nullable();
+            $table->string('body',1000)->nullable();
             $table->integer('qualify')->default(1);
             $table->tinyInteger('type')->default(0);
             $table->tinyInteger('status')->default(1);

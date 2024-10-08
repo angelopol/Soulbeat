@@ -20,7 +20,7 @@ return new class extends Migration
             $table->float('bpm')->nullable();
             $table->string('scale',500)->nullable();
             $table->string('PaidMethods',500)->nullable();
-            $table->integer('cost')->default(0);
+            $table->string('cost')->default('0');
             $table->string('licenses',500);
             $table->longText('tags')->nullable();
             $table->integer('reaction1')->default(0);
