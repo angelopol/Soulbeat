@@ -375,7 +375,7 @@ body::-webkit-scrollbar-track {
         overflow-x: auto;
         min-height: 30vh;
         margin-top: 32px;
-        border-radius: 10px;
+        border-radius: 5px;
 }
     .cardesoul{
         display: flex;
@@ -414,13 +414,15 @@ body::-webkit-scrollbar-track {
 
     .content-followers{
         background-color: #1a1919bf;
-        border-radius: 15px;
-        width: 45vw;
-        height: 40vh;
-        margin-top: 2em;
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto;
+    border-radius: 5px;
+    width: 45vw;
+    height: 40vh;
+    margin-top: 2em;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    min-width: 55vw;
+    max-width: 55vw;
 
     }
 
@@ -515,7 +517,7 @@ body::-webkit-scrollbar-track {
     }
 
     .buynow{
-        width: 70%;
+        width: 13vw;
         height: 10%;
         color: white;
         background-color: rgb(188, 2, 188);
@@ -606,7 +608,7 @@ body::-webkit-scrollbar-track {
     }
 
     .pays:active{
-        background-color: aqua;
+        background-color: rgb(83,0,90);
     }
     .PAYED{
         width: 9vw;
