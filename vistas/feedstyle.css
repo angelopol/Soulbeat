@@ -39,7 +39,7 @@ body::-webkit-scrollbar-track {
     flex-direction: column;
     justify-content: space-between;
     position: fixed;
-    border-right:1px solid rgb(161,0,161);
+    
     
 } 
 
@@ -169,8 +169,9 @@ body::-webkit-scrollbar-track {
     grid-template-rows: auto auto auto;
     background-color: #1a1919bf;
     border-radius: 5px;
-    min-width: 60vw;
+    min-width: 55vw;
     min-height: 70vh;
+    max-width: 60vw;
     margin-top: 5vh;
     gap: 2em;
 }
@@ -232,7 +233,9 @@ body::-webkit-scrollbar-track {
     height: auto;
     margin: 16px;
     padding: 16px 0px 24px 0px;
+    
 }
+
 
 .fotoritmo{
     width: 40%;
@@ -368,7 +371,7 @@ body::-webkit-scrollbar-track {
         padding: 16px 32px;
         background-color: #1a1919bf;
         gap: 20px;
-        max-width: 60vw;
+        max-width: 50vw;
         overflow-x: auto;
         min-height: 30vh;
         margin-top: 32px;
