@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -56,5 +57,30 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    #Metodos del word
+    public function viewPost(){
+        return view('');
+    }
+
+    public function viewReviews(){
+        return view('');
+    }
+
+    public function viewFollowers(){
+        return view('');
+    }
+
+    public function viewFolloweds(){
+        return view('');
+    }
+
+    public function storeBiography(Request $request){
+
+    }
+
+    public function updateBiography(Request $request,User $user){
+
     }
 }
