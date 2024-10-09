@@ -39,7 +39,7 @@ body::-webkit-scrollbar-track {
     flex-direction: column;
     justify-content: space-between;
     position: fixed;
-    border-right:1px solid rgb(161,0,161);
+    
     
 } 
 
@@ -169,8 +169,9 @@ body::-webkit-scrollbar-track {
     grid-template-rows: auto auto auto;
     background-color: #1a1919bf;
     border-radius: 5px;
-    min-width: 60vw;
+    min-width: 55vw;
     min-height: 70vh;
+    max-width: 60vw;
     margin-top: 5vh;
     gap: 2em;
 }
@@ -232,7 +233,9 @@ body::-webkit-scrollbar-track {
     height: auto;
     margin: 16px;
     padding: 16px 0px 24px 0px;
+    
 }
+
 
 .fotoritmo{
     width: 40%;
@@ -368,11 +371,11 @@ body::-webkit-scrollbar-track {
         padding: 16px 32px;
         background-color: #1a1919bf;
         gap: 20px;
-        max-width: 60vw;
+        max-width: 50vw;
         overflow-x: auto;
         min-height: 30vh;
         margin-top: 32px;
-        border-radius: 10px;
+        border-radius: 5px;
 }
     .cardesoul{
         display: flex;
@@ -411,13 +414,15 @@ body::-webkit-scrollbar-track {
 
     .content-followers{
         background-color: #1a1919bf;
-        border-radius: 15px;
-        width: 45vw;
-        height: 40vh;
-        margin-top: 2em;
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto;
+    border-radius: 5px;
+    width: 45vw;
+    height: 40vh;
+    margin-top: 2em;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    min-width: 55vw;
+    max-width: 55vw;
 
     }
 
@@ -512,7 +517,7 @@ body::-webkit-scrollbar-track {
     }
 
     .buynow{
-        width: 70%;
+        width: 13vw;
         height: 10%;
         color: white;
         background-color: rgb(188, 2, 188);
@@ -603,7 +608,7 @@ body::-webkit-scrollbar-track {
     }
 
     .pays:active{
-        background-color: aqua;
+        background-color: rgb(83,0,90);
     }
     .PAYED{
         width: 9vw;
