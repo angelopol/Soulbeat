@@ -1,15 +1,8 @@
+@extends('layouts.base')
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ Vite::asset('resources/css/feedstyle.css') }}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <title>Soulbeat</title>
-</head>
-<body>
+@section('title') Home @php $css = "feedstyle" @endphp @endsection
+
+@section('content')
     <div class="wrapper">
     <aside class="left">
         <nav class="left-up">
@@ -251,6 +244,5 @@
 
    
 
-<script src="{{ Vite::asset('resources/js/feedscript.js') }}"></script>
-</body>
-</html>
+    <script src="{{ Vite::asset('resources/js/feedscript.js') }}"></script>
+@endsection

@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="{{ Vite::asset('resources/css/landing.css') }}">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-  <title>Logo SVG</title>
-</head>
-<body class="cambio">
+@extends('layouts.base')
+
+@section('title') Soulbeat @php $css = "landing" @endphp @endsection
+
+@section('content')
   <div class="wrapper cambio">
     <header class="header">
       <nav class="logo">
@@ -140,5 +134,4 @@
 
 
   <script src="{{ Vite::asset('resources/js/landing.js') }}"></script>
-</body>
-</html>
+@endsection
