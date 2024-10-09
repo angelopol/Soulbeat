@@ -251,6 +251,6 @@
 
    
 
-<script src="feedscript.js"></script>
+<script src="{{ Vite::asset('resources/js/feedscript.js') }}"></script>
 </body>
 </html>

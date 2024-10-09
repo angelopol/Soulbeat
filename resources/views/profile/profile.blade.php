@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="profilestyle.css">
+    <link rel="stylesheet" href="{{ Vite::asset('resources/css/profilestyle.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <title>@tysarkis</title>
@@ -47,7 +47,7 @@
     <div class="right">
         <div class="card-profile">
        
-        <img src="../front/images/tupi-perfil.jpeg" alt="Foto de Perfil" class="profile-picture">
+        <img src="{{ Vite::asset('resources/assets/images/tupi-perfil.jpeg') }}" alt="Foto de Perfil" class="profile-picture">
         <div class="profile-info">
            
             <span class="name">Tupac <i class="bi bi-patch-check-fill mora"></i></span>
@@ -62,7 +62,7 @@
                 <div class="content-all">
                     <div class="post" id="postcompleto">
                         <div class="content-row">
-                            <img src="../front/images/foto-tipo-landing.jpeg" alt="" class="fotobeat">
+                            <img src="{{ Vite::asset('resources/assets/images/foto-tipo-landing.jpeg') }}" alt="" class="fotobeat">
                             <span class="text-box-post">Perfil  <i class="bi bi-patch-check-fill check"></i></span>
                         </div>
                         <div class="textofpost">
@@ -70,7 +70,7 @@
                         </div>
                         <figure class="card">
                             <span class="name">Nombre</span>
-                            <img class="fotoritmo" src="../front/images/foto-thor-landing.jpeg" alt="">
+                            <img class="fotoritmo" src="{{ Vite::asset('resources/assets/images/foto-thor-landing.jpeg') }}" alt="">
                             <div class="content-bar">
                                 <div id="inicio">0:00</div>
                                 <input type="range" id="progress-bar" min="0" max="100" value="0">
@@ -78,7 +78,7 @@
                             </div>
                             <div class="info">
                             <span class="bpm">136 bpm</span>
-                            <span class="bi bi-play-fill play" data-audio-src = "../front/audios/Shook Ones, Pt  II (Instrumental).mp3"></span>
+                            <span class="bi bi-play-fill play" data-audio-src = "{{ Vite::asset('resources/assets/audios/Shook Ones, Pt  II (Instrumental).mp3') }}"></span>
                             <div><span class="precio">0.00</span> <span class="symbol precio">$</span></div>
                             </div>
                             <div class="content-botons">
@@ -93,7 +93,7 @@
                 <div class="content-all">
                     <div class="post" id="postcompleto">
                         <div class="content-row">
-                            <img src="../front/images/foto-tipo-landing.jpeg" alt="" class="fotobeat">
+                            <img src="{{ Vite::asset('resources/assets/images/foto-tipo-landing.jpeg') }}" alt="" class="fotobeat">
                             <span class="text-box-post">Perfil  <i class="bi bi-patch-check-fill check"></i></span>
                         </div>
                         <div class="textofpost">
@@ -101,7 +101,7 @@
                         </div>
                         <figure class="card">
                             <span class="name">Nombre</span>
-                            <img class="fotoritmo" src="../front/images/foto-thor-landing.jpeg" alt="">
+                            <img class="fotoritmo" src="{{ Vite::asset('resources/assets/images/foto-thor-landing.jpeg') }}" alt="">
                             <div class="content-bar">
                                 <div id="inicio">0:00</div>
                                 <input type="range" id="progress-bar" min="0" max="100" value="0">
@@ -109,7 +109,7 @@
                             </div>
                             <div class="info">
                             <span class="bpm">136 bpm</span>
-                            <span class="bi bi-play-fill play" data-audio-src = "../front/audios/Shook Ones, Pt  II (Instrumental).mp3"></span>
+                            <span class="bi bi-play-fill play" data-audio-src = "{{ Vite::asset('resources/assets/audios/Shook Ones, Pt  II (Instrumental).mp3') }}"></span>
                             <div><span class="precio">0.00</span> <span class="symbol precio">$</span></div>
                             </div>
                             <div class="content-botons">
@@ -134,28 +134,28 @@
                 <span class="text-spe"> <i class="bi bi-music-note-list no"></i>Playlists</span>
                 <div class="players">
                     <div class="element">
-                        <img class="img" src="../front/images/playlist1.jpeg" alt="" class="foto-playlist">
+                        <img class="img" src="{{ Vite::asset('resources/assets/images/playlist1.jpeg') }}" alt="" class="foto-playlist">
                         <div class="content-info-play">
                         <span class="name-play">Trippy triple shot</span>
                         <span class="descri">reggae,rock, <br>funk</span>
                         </div>
                     </div>
                     <div class="element">
-                        <img class="img" src="../front/images/playlis2.jpeg" alt="" class="foto-playlist">
+                        <img class="img" src="{{ Vite::asset('resources/assets/images/playlis2.jpeg') }}" alt="" class="foto-playlist">
                         <div class="content-info-play">
                         <span class="name-play">Heartbreak</span>
                         <span class="descri">pop,rap, hip-hop</span>
                         </div>
                     </div>
                     <div class="element">
-                        <img class="img" src="../front/images/playlis3.jpg" alt="" class="foto-playlist">
+                        <img class="img" src="{{ Vite::asset('resources/assets/images/playlis3.jpg') }}" alt="" class="foto-playlist">
                         <div class="content-info-play">
                         <span class="name-play">Override</span>
                         <span class="descri">reggaeton, pop,jazz</span>
                         </div>
                     </div>
                     <div class="element">
-                        <img class="img" src="../front/images/playlis4.jpeg" alt="" class="foto-playlist">
+                        <img class="img" src="{{ Vite::asset('resources/assets/images/playlis4.jpeg') }}" alt="" class="foto-playlist">
                         <div class="content-info-play">
                         <span class="name-play">First and Last time</span>
                         <span class="descri">heavy-metal, rock</span>
@@ -166,28 +166,28 @@
                 <span class="text-spe" id = "x"><i class="bi bi-chat-square-heart-fill"></i>Reviews</span>
                 <div class="content-reviews">
                     <div class="part">
-                        <img class="image" src="../front/images/tipa1.jpg" alt="" class="persona">
+                        <img class="image" src="{{ Vite::asset('resources/assets/images/tipa1.jpg') }}" alt="" class="persona">
                         <div class="otra">
                         <span class="name-play">Samantha nakovic</span>
                         <span class="review">OMG your music is so great!</span>
                         </div>
                     </div>
                     <div class="part">
-                        <img  class="image" src="../front/images/tipq2.jpeg" alt="" class="persona">
+                        <img  class="image" src="{{ Vite::asset('resources/assets/images/tipq2.jpeg') }}" alt="" class="persona">
                         <div class="otra">
                         <span class="name-play">Jeremy osborn</span>
                         <span class="review">i really enjoy your style of rap</span>
                         </div>
                     </div>
                     <div class="part">
-                        <img  class="image"src="../front/images/tipo3.jpg" alt="" class="persona">
+                        <img  class="image"src="{{ Vite::asset('resources/assets/images/tipo3.jpg') }}" alt="" class="persona">
                         <div class="otra">
                         <span class="name-play">Sony gomez</span>
                         <span class="review">i wanna make a feat with you man</span>
                         </div>
                     </div>
                     <div class="part">
-                        <img class="image" src="../front/images/tipa4.jpg" alt="" class="persona">
+                        <img class="image" src="{{ Vite::asset('resources/assets/images/tipa4.jpg') }}" alt="" class="persona">
                         <div class="otra">
                         <span class="name-play">michigan bricks</span>
                         <span class="review">i love you Tupac</span>
@@ -199,6 +199,6 @@
         </div>
         
     </div>
-    <script src="profilescript.js" ></script>
+    <script src="{{ Vite::asset('resources/js/profilescript.js') }}" ></script>
 </body>
 </html>
