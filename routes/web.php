@@ -65,16 +65,16 @@ Route::get('/search/users', [SearchController::class,"viewPosts"])->name('search
 
 #Profile routes
 Route::controller(ProfileController::class)->group(function () {
-    Route::get('/user/{user}','viewPosts')->name('post.view');
-    Route::get('/user/{user}/reviews','viewReviews')->name('reviews.view');
-    Route::get('/user/{user}/followers','viewFollowers')->name('followers.view');
-    Route::get('/user/{user}/followeds','viewFolloweds')->name('followeds.view');
-    Route::post('/user/{user}/biography','storeBiography')->name('biography.store');
-    Route::patch('/user/{user}/biography/update','updateBiography')->name('biography.update');
-    Route::delete('/user/{user}/biography/destroy','destroyBiography')->name('biography.destroy');
-    Route::post('/user/{user}/photo','storePhoto')->name('photo.store');
-    Route::patch('/user/{user}/photo/update','updatePhoto')->name('photo.update');
-    Route::delete('/user/{user}/photo/destroy','destroyPhoto')->name('photo.destroy');
+    Route::get('/user/{user}','viewPosts')->name('profile.post.view');
+    Route::get('/user/{user}/reviews','viewReviews')->name('profile.reviews.view');
+    Route::get('/user/{user}/followers','viewFollowers')->name('profile.followers.view');
+    Route::get('/user/{user}/followeds','viewFolloweds')->name('profile.followeds.view');
+    Route::post('/user/{user}/biography','storeBiography')->name('profile.biography.store');
+    Route::patch('/user/{user}/biography/update','updateBiography')->name('profile.biography.update');
+    Route::delete('/user/{user}/biography/destroy','destroyBiography')->name('profile.biography.destroy');
+    Route::post('/user/{user}/photo','storePhoto')->name('profile.photo.store');
+    Route::patch('/user/{user}/photo/update','updatePhoto')->name('profile.photo.update');
+    Route::delete('/user/{user}/photo/destroy','destroyPhoto')->name('profile.photo.destroy');
 });
 
 #playlists routes
@@ -88,8 +88,8 @@ Route::controller(PlaylistsController::class)->group(function(){
 
 #chats routes
 Route::controller(ChatsController::class)->group(function(){
-    Route::get('/chat/direct',"viewDirects")->name('directs.view');
-    Route::get('/chat/transaction',"viewTransaction")->name('transaction.view');
+    Route::get('/chat/direct',"viewDirects")->name('chat.directs.view');
+    Route::get('/chat/transaction',"viewTransaction")->name('chat.transaction.view');
     Route::get('/chat/{chat}',"showChat")->name('chat.show');
     Route::post('/chat/{chat}',"storeChat")->name('chat.store');
     Route::delete('/chat/{chat}/destroy',"destroyChat")->name('chat.destroy');
@@ -102,14 +102,14 @@ Route::controller(ChatsController::class)->group(function(){
 #settings routes
 Route::controller(SettingsController::class)->group(function(){
     Route::get('/settings',"viewSettings")->name('settings.view');
-    Route::get('/settings/global-parameters',"viewGlogalParameters")->name('global.parameters.view');
-    Route::get('/settings/support',"viewSupport")->name('support.view');
+    Route::get('/settings/global-parameters',"viewGlogalParameters")->name('settings.global.parameters.view');
+    Route::get('/settings/support',"viewSupport")->name('settings.support.view');
     Route::get('/settings/support/guides',"viewGuides")->name('setting.guides.view');
     Route::get('/settings/support/q&a',"viewQA")->name('setting.QA.view');
-    Route::get('/settings/ads',"viewAds")->name('ads.view');
-    Route::get('/settings/subscription',"viewSubscription")->name('subscription.view');
-    Route::post('/settings/subscription',"storeSubscription")->name('subscription.store');
-    Route::delete('/settings/subscription/destroy',"destroySubscription")->name('subscription.destroy');
+    Route::get('/settings/ads',"viewAds")->name('settings.ads.view');
+    Route::get('/settings/subscription',"viewSubscription")->name('settings.subscription.view');
+    Route::post('/settings/subscription',"storeSubscription")->name('settings.subscription.store');
+    Route::delete('/settings/subscription/destroy',"destroySubscription")->name('settings.subscription.destroy');
     Route::post('/settings/user/enable',"enableUser")->name('setting.user.enable');
     Route::post('/settings/user/disable',"disableUser")->name('setting.user.disable');
     Route::delete('/settings/user/destroy',"destroyUser")->name('setting.user.destroy');
