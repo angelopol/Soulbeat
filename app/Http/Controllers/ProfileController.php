@@ -60,8 +60,8 @@ class ProfileController extends Controller
     }
 
     #Metodos del word
-    public function viewPost(){
-        return view('');
+    public function viewPost(User $user){
+        return view('profile/profile')->with(compact('user'));
     }
 
     public function viewReviews(){

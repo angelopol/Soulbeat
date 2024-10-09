@@ -283,10 +283,18 @@ input {
 .primerparte {
     position: relative;
     width: 100vw;
-    height: 60vh;
+    height: 67vh;
 }
 
+.primerparte::before {
+    content: "";
+    position: absolute;
+    left: 4.5%;
+    width: 90%;
+    bottom: 0;
+    border-bottom: 1px solid rgb(161, 0, 161);
 
+}
 
 
 #cen {
@@ -548,7 +556,7 @@ input {
         }
 
         .primerparte {
-            height: fit-content;
+            height: 60vh;
             position: relative;
             width: 100vw;
             max-height: fit-content;
@@ -575,7 +583,7 @@ input {
         }
 
         .parrafomain {
-            padding-top: 1em;
+            padding-top: 3em;
            font-size: 24px;
             padding-left: 0vh;
             letter-spacing: 0em;
@@ -693,7 +701,7 @@ input {
 
         .tclick {
             width: 60vw;
-            height: 40vh;
+            height: 35vh;
             display: flex;
             justify-content: center;
             align-items: flex-end;
@@ -749,12 +757,11 @@ input {
         display: flex;
         flex-direction: column-reverse;
         align-items: center;
-        height: 44vh;
+        height: 38vh;
         list-style: none;
         gap: 2em;
         font-size: 18px;
         padding: 16px 32px;
-        padding-top: 3em;
     }
 
     .elemento.active {

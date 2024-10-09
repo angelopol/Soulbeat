@@ -7,6 +7,6 @@ use Illuminate\Http\Request;
 class FeedController extends Controller
 {
     public function view(){
-        return view('feed.view');
+        return view('feed.feed');
     }
 }
