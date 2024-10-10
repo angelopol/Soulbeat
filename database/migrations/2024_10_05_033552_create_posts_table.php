@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->integer('user');
             $table->string('title',500);
             $table->longText('body')->nullable();
             $table->string('song',500);

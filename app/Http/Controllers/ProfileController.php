@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Post;
+use App\Models\Review;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -60,27 +62,43 @@ class ProfileController extends Controller
     }
 
     #Metodos del word
-    public function viewPost(){
+    public function viewPost(int $user){
+        $posts = Post::where('user',$user)->get();
+        
+        return view('',['posts'=>$posts]);
+    }
+
+    public function viewReviews(int $user){
+        $reviews = Review::where('to',$user)->get();
+
+        return view('',['reviews'=>$reviews]);
+    }
+
+    public function viewFollowers(int $user){
+        #$followers = 
+
         return view('');
     }
 
-    public function viewReviews(){
-        return view('');
-    }
-
-    public function viewFollowers(){
-        return view('');
-    }
-
-    public function viewFolloweds(){
-        return view('');
-    }
-
-    public function storeBiography(Request $request){
-
+    public function viewFolloweds(int $user){
+        $followeds = User::where('id',$user)->pluck('followed');
+        
+        return view('',['followeds'=>$followeds]);
     }
 
     public function updateBiography(Request $request,User $user){
+        $user-> biography = $request->input('biography');
 
+        $user->save();
+
+        return to_route('');
+    }
+
+    public function updatePhoto(Request $request,User $user){
+        $user-> photo = $request->input('photo');
+
+        $user->save();
+
+        return to_route('');
     }
 }

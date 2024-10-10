@@ -42,6 +42,7 @@ Route::get('/home',[FeedController::class,"view"])->name('feed.view');
 Route::controller(PostController::class)->group(function(){
     Route::post('/post',"storePost")->name('post.store');
     Route::patch('/post/{post}/update', "updatePost")->name('post.update');
+    Route::patch('/post/{post}/reaction', "updateReaction")->name('post.update.reaction');
     Route::delete('/posts/{post}/archive', "archivePost")->name('post.archive');
     Route::delete('/posts/{post}/destroy', "destroyPost")->name('post.destroy');
 });
