@@ -13,18 +13,6 @@
                         'photo' => Vite::asset('resources/assets/images/foto-milo-landing.jpeg'),
                         'price' => '0.00', 'song' => Vite::asset('resources/assets/audios/Drake - Hold On Were Going Home (Instrumental).mp3')
                     ])
-                    @include('components.suggests.songs', [
-                        'photo' => Vite::asset('resources/assets/images/foto-loriz-landing.jpeg'),
-                        'price' => '0.00', 'song' => Vite::asset('resources/assets/audios/[Free] Tech House x Techno Type Beat - GROOVE _ Club Banger Instrumental 2022 _ Electronic Rap Beat.mp3')
-                    ])
-                    @include('components.suggests.songs', [
-                        'photo' => Vite::asset('resources/assets/images/foto-thor-landing.jpeg'),
-                        'price' => '0.00', 'song' => Vite::asset('resources/assets/audios/MILO J - M.A.I (KARAOKE - INSTRUMENTAL).mp3')
-                    ])
-                    @include('components.suggests.songs', [
-                        'photo' => Vite::asset('resources/assets/images/foto-tipo-landing.jpeg'),
-                        'price' => '0.00', 'song' => Vite::asset('resources/assets/audios/🍀instrumental reggae - uso libre - beat 2020🍀.mp3')
-                    ])
                 </div>
             </div>
             <div class="content-followers">
