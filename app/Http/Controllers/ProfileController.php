@@ -75,15 +75,21 @@ class ProfileController extends Controller
     }
 
     public function viewFollowers(int $user){
-        #$followers = 
+        $followers = User::where('followeds', 'LIKE', "%,$user,%")
+                         ->orWhere('followeds', 'LIKE', "$user,%")
+                         ->orWhere('followeds', 'LIKE', "%,$user")
+                         ->orWhere('followeds', '=', "$user")
+                         ->get();
 
-        return view('');
+        return view('', ['followers' => $followers]);
     }
 
-    public function viewFolloweds(int $user){
-        $followeds = User::where('id',$user)->pluck('followed');
-        
-        return view('',['followeds'=>$followeds]);
+    public function viewFolloweds(User $user){
+        $followedsArray = explode(',', $user->followeds);
+
+        $followeds = User::whereIn('id', $followedsArray)->get();
+
+        return view('', ['followeds' => $followeds]);
     }
 
     public function updateBiography(Request $request,User $user){
