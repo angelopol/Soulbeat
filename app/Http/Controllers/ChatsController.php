@@ -74,7 +74,7 @@ class ChatsController extends Controller
     }
 
     public function updateChatAccept(Request $request,Chat $chat){
-        if(isset($request->input('accept'))){
+        if($request->input('accept') != null){
             $chat->AcceptTo = 1;
         }else{
             $chat->AcceptFrom = 1;
