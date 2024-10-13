@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Post;
+use App\Models\Review;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -60,27 +62,49 @@ class ProfileController extends Controller
     }
 
     #Metodos del word
-    public function viewPosts(){
-        return view('profile/profile');
+    public function viewPost(int $user){
+        $posts = Post::where('user',$user)->get();
+        
+        return view('',['posts'=>$posts]);
     }
 
-    public function viewReviews(){
-        return view('');
+    public function viewReviews(int $user){
+        $reviews = Review::where('to',$user)->get();
+
+        return view('',['reviews'=>$reviews]);
     }
 
-    public function viewFollowers(){
-        return view('');
+    public function viewFollowers(int $user){
+        $followers = User::where('followeds', 'LIKE', "%,$user,%")
+                         ->orWhere('followeds', 'LIKE', "$user,%")
+                         ->orWhere('followeds', 'LIKE', "%,$user")
+                         ->orWhere('followeds', '=', "$user")
+                         ->get();
+
+        return view('', ['followers' => $followers]);
     }
 
-    public function viewFolloweds(){
-        return view('');
-    }
+    public function viewFolloweds(User $user){
+        $followedsArray = explode(',', $user->followeds);
 
-    public function storeBiography(Request $request){
+        $followeds = User::whereIn('id', $followedsArray)->get();
 
+        return view('', ['followeds' => $followeds]);
     }
 
     public function updateBiography(Request $request,User $user){
+        $user-> biography = $request->input('biography');
 
+        $user->save();
+
+        return to_route('');
+    }
+
+    public function updatePhoto(Request $request,User $user){
+        $user-> photo = $request->input('photo');
+
+        $user->save();
+
+        return to_route('');
     }
 }
