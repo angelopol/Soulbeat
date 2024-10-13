@@ -45,9 +45,7 @@ class PlaylistsController extends Controller
     }
 
     public function destroyPlaylist(Playlist $playlist){
-        $playlist->status = 0;
-
-        $playlist->save();
+        $playlist->update(['status' => 0]);
 
         return to_route('');
     }
