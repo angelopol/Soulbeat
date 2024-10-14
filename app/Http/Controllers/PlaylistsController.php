@@ -9,13 +9,13 @@ use Illuminate\Http\Request;
 class PlaylistsController extends Controller
 {
     public function viewPlaylists(int $user){
-        $playlists = Playlist::where('user',$user)->get();
+        $playlists = Playlist::where('user', $user)->get();
 
-        return view('profile.playlists.playlist',['playlists' => $playlists]);
+        return view('profile.playlists.showallplaylist',['playlists' => $playlists]);
     }
 
-    public function showPlaylist(Playlist $playlist){
-        return view('profile.playlists.playlist',['playlist' => $playlist]);
+    public function showPlaylist(/*Playlist $playlist*/){
+        return view('profile.playlists.playlist'/*,['playlist' => $playlist]*/);
     }
 
     public function storePlaylist(Request $request){

@@ -71,7 +71,7 @@ class ProfileController extends Controller
     public function viewReviews(int $user){
         $reviews = Review::where('to',$user)->get();
 
-        return view('',['reviews'=>$reviews]);
+        return view('profile.reviews.showreviews',['reviews'=>$reviews]);
     }
 
     public function viewFollowers(int $user){
