@@ -11,11 +11,11 @@ class PlaylistsController extends Controller
     public function viewPlaylists(int $user){
         $playlists = Playlist::where('user',$user)->get();
 
-        return view('',['playlists'=>$playlists]);
+        return view('profile.playlists.playlist',['playlists' => $playlists]);
     }
 
     public function showPlaylist(Playlist $playlist){
-        return view('',['playlist' => $playlist]);
+        return view('profile.playlists.playlist',['playlist' => $playlist]);
     }
 
     public function storePlaylist(Request $request){

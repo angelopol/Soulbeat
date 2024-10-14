@@ -62,10 +62,10 @@ class ProfileController extends Controller
     }
 
     #Metodos del word
-    public function viewPost(int $user){
+    public function viewPosts(int $user){
         $posts = Post::where('user',$user)->get();
         
-        return view('',['posts'=>$posts]);
+        return view('profile.profile',['posts'=>$posts]);
     }
 
     public function viewReviews(int $user){

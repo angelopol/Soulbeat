@@ -22,21 +22,6 @@ class PostController extends Controller
         ]);
 
         Post::create($validated);
-        
-        //$post = new Post();
-        //$post ->title = $request->input('title');
-        //$post ->body = $request->input('body');
-        //$post ->song = $request->input('song');
-        //$post ->photo = $request->input('photo');
-        //$post ->bpm = $request->input('bpm');
-        //$post ->scale = $request->input('scale');
-        //$post ->PaidMethods = $request->input('paid-methods');
-        //$post ->licenses = $request->input('licenses');
-        //$post ->tags = $request->input('tags');
-
-        //$post->save();
-
-        #session()->flash('status','Post created!');
 
         return to_route('');
     }
