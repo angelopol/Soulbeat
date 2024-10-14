@@ -1,0 +1,190 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto';
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.left{
+    width:25%;
+    height: 100vh;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: fixed;
+   
+    
+} 
+
+#logopapa{
+    width: 10vw;
+ }
+.left-up {
+    width: 25%;
+}
+
+.content-botones{
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: column;
+    
+    padding: 8px 16px;
+    gap: 20px;    
+}
+
+.search-box{
+    
+    width: 20vw;
+    height: 5vh;
+    border-radius: 20px;
+    box-shadow: 0px 0px 7px 0px rgb(161,0,161);
+    border: 1px solid rgb(161,0,161);
+    background-color: #303030;
+
+}
+
+.search-box::placeholder {
+    padding-left: 20px;
+}
+
+.search-box:focus {
+    outline: none;
+}
+
+.messages {
+    display: flex;
+    gap: 10px;
+    justify-content:center;
+    align-items: center;
+    border-radius: 20px;
+    width: 20vw;
+    height: 5vh;
+    background-color: transparent;
+    color: white;
+    transition: all 0.1s ease-in-out;
+}
+
+.messages:hover{
+    background-color: #303030;
+}
+.content-setting{
+    
+    display: flex;
+    gap: 15px;
+    justify-content:center;
+    align-items: center;
+    border-radius: 20px;
+    width: 20vw;
+    height: 5vh;
+   background-color: transparent;
+    color: white;
+    transition: all 0.1s ease-in-out;
+
+}
+
+
+.content-setting:hover{
+    background-color: #303030;
+}
+
+.left-down{
+    width: 25vw;
+
+}
+
+.content-perfil{
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: column;
+   
+    padding: 8px 16px;
+    gap: 20px; 
+
+}
+.perfil {
+    display: flex;
+    gap: 10px;
+    justify-content:center;
+    align-items: center;
+    border-radius: 20px;
+    width: 20vw;
+    height: 5vh;
+    margin-bottom: 5vh;
+    background-color:transparent;
+    color: white;
+    transition: all 0.1s ease-in-out;
+
+}
+
+.perfil:hover{
+    background-color: #303030;
+}
+
+.fotodeperfil {
+    width: 10%;
+    height: 50%;
+    border-radius: 50%;
+    background-color: aqua;
+    object-fit: cover;
+}
+.wrapper-of-chat{
+    margin-left: 27%;
+    background-color: #1b1b1b;
+    border-radius: 1em;
+    width: 70%;
+    margin-top: 1.5em;
+    min-height: 50vw;
+    padding-bottom: 2em;
+    max-width: 68vw;
+    position: relative;
+}
+
+.header{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 10%; 
+}
+
+.clase{
+    color:white;
+
+}
+
+.direct{
+    color: white;
+}
+
+.trans{
+    color: dimgray;
+}
+
+.slash{
+    color: rgb(161,0,161);
+    font-size: larger;
+}
+
+.search-containermesa{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+height: 1vh;
+background-color: aliceblue;
+border-radius: 1em;
+padding: 16px 8px;
+}
+
+.search-bar input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+}
+
