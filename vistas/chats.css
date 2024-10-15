@@ -137,7 +137,7 @@ body{
     border-radius: 1em;
     width: 70%;
     margin-top: 1.5em;
-    min-height: 50vw;
+    min-height:fit-content;
     padding-bottom: 2em;
     max-width: 68vw;
     position: relative;
@@ -175,16 +175,332 @@ body{
     align-items: center;
     
 height: 1vh;
-background-color: aliceblue;
+background: linear-gradient(45deg, rgb(80,0,90), rgb(161,0,161));
 border-radius: 1em;
 padding: 16px 8px;
+color: white;
 }
 
-.search-bar input {
+.search-barmesa input {
     flex: 1;
     padding: 10px;
     border: none;
     border-radius: 20px;
     outline: none;
+background: transparent;
+
+
 }
 
+.wrapper{
+    display: flex;
+    width: 100%;
+    height: 12vh;
+    align-items: center;
+    position: relative;
+    gap: 40px;
+}
+
+.new{
+    display: flex;
+    justify-content: center;
+    margin-left: 1em;
+    padding: 4px;
+    border-radius: 1em;
+    border: none;
+    height: 6vh;
+    width: 12vw;
+    gap: 5px;
+    align-items: center;
+    font: inherit;
+    color: white;
+    background: linear-gradient(45deg, rgb(161,0,161), rgb(80,0,90));
+}
+
+
+.name{
+    color: white;
+    font-size: x-large;
+    letter-spacing: 0.09rem;
+}
+
+.chatsandpersons{
+    display: flex;
+    width: 95%;
+    gap: 10px;
+}
+
+
+
+.persons {
+    width: 40vw;
+    height: 65vh;
+    border-radius: 1em;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow-y: scroll;
+    padding-left: 10px;
+
+}
+
+.people{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 4px 8px;
+    gap: 10px;
+    transition: all 0.2s ease-in-out;
+}
+
+.foto{
+    border-radius: 50%;
+    width: 50px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    
+}
+
+.nameofstatus{
+    color: dimgray;
+    display: flex;
+    padding: 0px 0px 0px 4px;
+
+}
+
+.wrapperchat{
+    display: flex;
+    justify-content: center;
+    
+}
+
+.chat-container{
+    border-radius: 8px;
+    border: 1px solid rgb(161, 0, 161);
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 48vw;
+    height: 65vh;
+    position: relative;
+}
+
+
+
+.fotochat{
+    width: 40px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.message .content{
+    padding: 8px;
+    max-width: 70%;
+    
+
+}
+
+.message {
+    border-radius:1em;
+    display: flex;
+    padding: 10px;
+    align-items: flex-end;
+}
+
+.messagesz {
+    overflow-y: auto; 
+    flex-grow: 1; 
+    margin-bottom: 10px; 
+    padding: 10px; 
+    width: 100%;
+    height: 100%;
+}
+
+
+/* Estilos para la barra de desplazamiento en navegadores WebKit (Chrome, Safari) */
+.chat-container::-webkit-scrollbar {
+    width: 4px; 
+   
+}
+
+.chat-container::-webkit-scrollbar-track {
+    background-color: transparent; 
+}
+
+.chat-container::-webkit-scrollbar-thumb {
+    background: rgba(105, 105, 105, 0.392); /* Color de la barra */
+    border-radius: 3em; /* Bordes redondeados */
+}
+
+/* Cambiar el color del 'thumb' al pasar el mouse */
+.chat-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.5); /* Color más oscuro al pasar el mouse */
+}
+
+.leftchat{
+   gap: 10px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.rightchat{
+
+    justify-content: flex-end;
+}
+
+.infochat{
+    display: flex;
+    gap: 10px;
+    color: dimgray;
+    font-size: small;
+    justify-content: flex-end;
+}
+
+.text, .textrest{
+    background-color: aliceblue;
+    border-radius: 1em;
+    padding: 8px;
+    position: relative;
+}
+
+.text::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: -4px;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-right-color: aliceblue;
+    border-left: 0;
+    margin: 0px;
+    transform: rotate(340deg);
+
+}
+
+.textrest{
+    background-color: rgb(90,0,90);
+    border-radius: 1em;
+    padding: 8px;
+    color: white;
+    position: relative;
+}
+.namechat{
+    color: white;
+}
+
+.time{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 20px ;
+    color: dimgray;
+}
+
+.textrest::before {
+    
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        right: -4px;
+        width: 0;
+        height: 0;
+        border: 10px solid transparent;
+        border-right-color: rgb(90,0,90);
+        border-left: 0;
+        margin: 0px;
+        transform: rotate(210deg);
+
+}
+
+.typear{
+    display: flex;
+    background-color:rgb(90,0,90);
+    border-radius: 1em;
+    position: sticky;
+    width: 90%;
+    height: 10%;
+    align-items: center;
+    bottom: 0;
+    margin: 0px 0px 12px 14px;
+    padding: 0px 16px 0px 16px;
+    justify-content: space-between;
+    z-index: 1;
+}
+
+.typear input{
+    outline: none;
+    background-color: transparent;
+    border: none;
+    width: 70%;
+    color: white;
+    font: inherit;
+}
+
+.typear input::placeholder{
+    font: inherit;
+}
+
+.send{
+    border-radius: 50%;
+    color: white;
+    background-color: black;
+    border: none;
+    width:3vw;
+    height: 5vh;
+    text-align: center;
+}
+
+.plus{
+    border: none;
+    color: white;
+    font: bold;
+    width: 3vw;
+    height: 5vh;
+    text-align: center;
+    background-color: #1b1b1b;
+    font-size: larger;
+    background-color: transparent;
+}
+
+.typear div{
+
+    display: flex;
+    align-items: center;
+ 
+
+}
+
+.m{
+    display: none;
+}
+.persons::-webkit-scrollbar {
+    width: 4px; 
+   
+}
+
+.persons::-webkit-scrollbar-track {
+    background-color: transparent; 
+}
+
+.persons::-webkit-scrollbar-thumb {
+    background: rgba(105, 105, 105, 0.392); /* Color de la barra */
+    border-radius: 3em; /* Bordes redondeados */
+}
+
+/* Cambiar el color del 'thumb' al pasar el mouse */
+.persons::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.5); /* Color más oscuro al pasar el mouse */
+}
+
+.people:hover{background-color: #303030;
+border-radius: 1em;}
+
+.mora{
+    color: rgb(161, 0, 161);
+}
+
+.nameofcard{
+    display: flex;
+    gap: 5px;
+}
