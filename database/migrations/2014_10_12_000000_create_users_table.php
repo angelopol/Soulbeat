@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('UserName',500)->unique();
             $table->string('name',500);
             $table->string('FullName',500);
-            $table->longText('biography');
-            $table->string('photo',500);
+            $table->longText('biography')->nullable();
+            $table->string('photo',500)->nullable();
             $table->longText('followed')->nullable();    
             $table->string('email',500)->unique();
             $table->string('password',500);
