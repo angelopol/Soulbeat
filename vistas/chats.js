@@ -47,7 +47,7 @@ trans.addEventListener('click', () => {
     if (isClicked) {
         trans.style.color = 'white';
         mes.style.color = 'dimgray';
-        plus.style.display = 'block';
+       
         nameofstatus.innerHTML = 'Transactions';
     }
 });
@@ -58,7 +58,24 @@ mes.addEventListener('click', () => {
     if (isClicked) {
         mes.style.color = 'white';
         trans.style.color = 'dimgray';
-        plus.style.display = 'none';
+        
         nameofstatus.innerHTML = 'Direct messages';
     }
 });
+document.querySelector('.plus').addEventListener('click', function() {
+    document.querySelector('.dropdown-content').classList.toggle('show');
+});
+
+window.onclick = function(event) {
+    if (!event.target.matches('.plus')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        for (var i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+    }
+}
+
+
