@@ -196,11 +196,11 @@ background: transparent;
 
 .wrapper{
     display: flex;
-    width: 98%;
+    width: 95%;
     height: 12vh;
     align-items: center;
     position: relative;
-    gap: 40px;
+    gap: 0.5em;
     justify-content: space-between;
 }
 
@@ -228,6 +228,8 @@ background: transparent;
     color: white;
     font-size: x-large;
     letter-spacing: 0.09rem;
+    margin-left: 15px;
+    text-align: left;
 }
 
 .chatsandpersons{
