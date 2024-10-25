@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class ChatsController extends Controller
 {
     public function viewDirects(){
-        $user = Auth::user();
+        /*$user = Auth::user();
 
         $id = $user->id;
 
@@ -19,7 +19,8 @@ class ChatsController extends Controller
              ->whereNull('AcceptTo')
              ->get();
 
-        return view('',['chats'=>$chats]);
+        return view('',['chats'=>$chats]);*/
+        return view('chats.chats');
     }
 
     public function viewTransactions(){

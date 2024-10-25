@@ -88,15 +88,15 @@ Route::controller(PlaylistsController::class)->group(function(){
 
 #chats routes
 Route::controller(ChatsController::class)->group(function(){
-    Route::get('/chat/direct',"viewDirects")->name('chat.directs.view');
-    Route::get('/chat/transaction',"viewTransaction")->name('chat.transaction.view');
-    Route::get('/chat/{chat}',"showChat")->name('chat.show');
-    Route::post('/chat/{chat}',"storeChat")->name('chat.store');
-    Route::delete('/chat/{chat}/destroy',"destroyChat")->name('chat.destroy');
-    Route::patch('/chat/{chat}/time',"updateChatTime")->name('chat.time.update');
-    Route::patch('/chat/{chat}/accept',"updateChatAccept")->name('chat.accept.update');
-    Route::post('/chat/{chat}/message',"storeMessage")->name('message.store');
-    Route::delete('/chat/{chat}/message/{message}/update',"destroyMessage")->name('message.destroy');
+    Route::get('/chats',"viewDirects")->name('chat.directs.view');
+    Route::get('/chats/transaction',"viewTransaction")->name('chat.transaction.view');
+    Route::get('/chats/{chat}',"showChat")->name('chat.show');
+    Route::post('/chats/{chat}',"storeChat")->name('chat.store');
+    Route::delete('/chats/{chat}/destroy',"destroyChat")->name('chat.destroy');
+    Route::patch('/chats/{chat}/time',"updateChatTime")->name('chat.time.update');
+    Route::patch('/chats/{chat}/accept',"updateChatAccept")->name('chat.accept.update');
+    Route::post('/chats/{chat}/message',"storeMessage")->name('message.store');
+    Route::delete('/chats/{chat}/message/{message}/update',"destroyMessage")->name('message.destroy');
 });
 
 #settings routes
