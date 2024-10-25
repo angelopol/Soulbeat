@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="chats.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <title>Document</title>
+    <title>Messages</title>
 </head>
 <body>
     <aside class="left">
@@ -45,84 +45,96 @@
 
     <div class="wrapper-of-chat">
         <header class="header">
-            <nav class="infomesa" >
-                <span class="clase">Messages</span>
-            </nav>
+          
             <nav class="basecambio">
                 <span class="direct">Direct messages</span>
                 <span class="slash">|</span>
                 <span class="trans">Transactions</span>
             </nav>
-            <nav class="search-containermesa">
-                <div class="search-barmesa">
-                    <i class="bi bi-search"></i>
-                    <input type="text" class="" placeholder="Buscar...">
-            </nav>
+            
         </header>
         <section class="all-messages">
             <div class="wrapper">
-                <button class="new"><i class="bi bi-pencil"></i>New Message</button>
                 <span class="name">Chat with tysarkis</span>
+                <button class="new"><i class="bi bi-hourglass-bottom"> </i>Extender chat</button>
+                <button class="new"><i class=" bi bi-bag-x"></i>cancelar Compra/venta</button>
+
+                <button class="new"><i class=" bi bi-bag-check"></i>Aceptar Compra/venta</button>
             </div>
             <div class="chatsandpersons">
             <aside class="persons">
                 <span class="nameofstatus">Direct messages</span>
                 <div class="people">
-                    <img src="" alt="" class="foto">
-                    <span class="nameofcard">Enrique Gonzalez</span>
+                    <img src="../front/images/perfil1.jpeg" alt="" class="foto">
+                    <span class="nameofcard">Enrique Gonzalez<i class="bi bi-patch-check-fill mora"></i></span>
                 </div>
                 <div class="people">
-                    <img src="" alt="" class="foto">
-                    <span class="nameofcard">angelo polgrossi</span>
+                    <img src="../front/images/perfil2.jpeg" alt="" class="foto">
+                    <span class="nameofcard">angelo polgrossi<i class="bi bi-patch-check-fill mora"></i></span>
                 </div>
                 <div class="people">
-                    <img src="" alt="" class="foto">
+                    <img src="../front/images/perfil3.jpeg" alt="" class="foto">
                     <span class="nameofcard">sony gomez</span>
                 </div>
                 <div class="people">
-                    <img src="" alt="" class="foto">
-                    <span class="nameofcard">samuel molina</span>
+                    <img src="../front/images/perfil4.jpeg" alt="" class="foto">
+                    <span class="nameofcard">samuel molina<i class="bi bi-patch-check-fill mora"></i></span>
                 </div>
                 <div class="people">
-                    <img src="" alt="" class="foto">
+                    <img src="../front/images/perfil5.jpeg" alt="" class="foto">
                     <span class="nameofcard">jose farrauto</span>
                 </div>
                 <div class="people">
-                    <img src="" alt="" class="foto">
+                    <img src="../front/images/perfil6.jpeg" alt="" class="foto">
+                    <span class="nameofcard">peter parker</span>
+                </div>
+                <div class="people">
+                    <img src="../front/images/perfil5.jpeg" alt="" class="foto">
+                    <span class="nameofcard">jose farrauto</span>
+                </div>
+                <div class="people">
+                    <img src="../front/images/perfil6.jpeg" alt="" class="foto">
+                    <span class="nameofcard">peter parker<i class="bi bi-patch-check-fill mora"></i></span>
+                </div>
+                <div class="people">
+                    <img src="../front/images/perfil5.jpeg" alt="" class="foto">
+                    <span class="nameofcard">jose farrauto</span>
+                </div>
+                <div class="people">
+                    <img src="../front/images/perfil6.jpeg" alt="" class="foto">
                     <span class="nameofcard">peter parker</span>
                 </div>
             </aside>
+            <div class="wrapperchat">
                 <div class="chat-container">
-                    <div class="message left">
-                        <img src="persona1.jpg" alt="Persona 1">
-                        <div class="content">
-                            <div class="namechat">Persona 1</div>
-                            <div class="text">Hola, ¿cómo estás?</div>
-                            <div class="time">10:00 AM</div>
+                    <div class="messagesz"> <!-- Contenedor de mensajes -->
+                        <div class="message leftchat">
+                            <img class="fotochat" src="../front/images/perfil1.jpeg" alt="Persona 1">
+                            <div class="content">
+                                <div class="text">Hola, ¿cómo estás?</div>
+                                <div class="infochat">
+                                    <div class="namechat">Noah mussiala</div>
+                                    <div class="time">10:00 AM</div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="message right">
-                        <div class="content">
-                            <div class="namechat">Persona 2</div>
-                            <div class="text">como estas nada vale PAGUE MALDITO DESGRACIADO PAGUE DEME LOS RIALES TODOS SABEMOS QUE USTED DEBE ESA PLATA USTE SABE QUE LA DEBE SE HACE EL LOCO Y NO QUIERE PAGAR</div>
-                            <div class="time">10:02 AM</div>
-                        </div>
-                        <img src="persona2.jpg" alt="Persona 2">
-                    </div>
-                    <div class="message left typing">
-                        <img src="persona1.jpg" alt="Persona 1">
-                        <div class="content">
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
+                        <div class="message rightchat">
+                            <div class="content">
+                                <div class="textrest">como estas nada vale PAGUE MALDITO DESGRACIADO PAGUE DEME LOS RIALES TODOS SABEMOS QUE USTED DEBE ESA PLATA USTE SABE QUE LA DEBE SE HACE EL LOCO Y NO QUIERE PAGAR</div>
+                                <div class="time">10:02 AM</div>
+                            </div>
                         </div>
                     </div>
                     <div class="typear">
-                        <input type="text" name="" id="" placeholder="Message tysarkis">
-                        <button class="send">Send</button>
+                        <input type="text" placeholder="Message tysarkis">
+                        <div>
+                        
+                            <button class="send"><i class="bi bi-send"></i></button>
+                        </div>
                     </div>
                 </div>
             </div>
+            
         </section>
 
     </div>
