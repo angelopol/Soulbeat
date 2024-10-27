@@ -174,7 +174,7 @@
         <div class="wrapper-company">
             <div class="contenedores form">
                 <span class="lic">Licenses</span>
-                <form id="license-form">
+                <form id="license-form" class="miformula">
                     <div>
                         <label for="license-name">Nombre de la Licencia</label>
                         <input type="text" id="license-name" name="license-name" required>
@@ -185,25 +185,14 @@
                         <textarea id="license-description" name="license-description" required></textarea>
                     </div>
                     
-                    <div>
-                        <label for="license-type">Tipo de Licencia</label>
-                        <select id="license-type" name="license-type" required>
-                            <option value="comercial">Comercial</option>
-                            <option value="no-comercial">No Comercial</option>
-                            <option value="exclusiva">Exclusiva</option>
-                            <option value="no-exclusiva">No Exclusiva</option>
-                        </select>
-                    </div>
+                    
                     
                     <div>
-                        <label for="license-duration">Duración de la Licencia</label>
-                        <input type="text" id="license-duration" name="license-duration" placeholder="Ej. 1 año, Perpetua" required>
+                        <label for="license-duration">Post</label>
+                        <input type="text" id="license-duration" name="license-duration" placeholder="" required>
                     </div>
                 
-                    <div>
-                        <label for="license-price">Precio de la Licencia</label>
-                        <input type="number" id="license-price" name="license-price" required>
-                    </div>
+                  
                     
                     <button type="submit">Crear Licencia</button>
                 </form>
@@ -214,34 +203,96 @@
 
             <div class="contenedores paymethods">
                 <span class="pago">Paid methods</span>
-                <form id="payment-form">
+                <form id="payment-form" class="miformula">
                     <div>
                         <label for="cardholder-name">Nombre del Titular</label>
-                        <input type="text" id="cardholder-name" name="cardholder-name" required>
+                        <input type="text" id="cardholder-name1" name="cardholder-name" required>
                     </div>
                     
                     <div>
-                        <label for="card-number">Número de Tarjeta</label>
-                        <input type="text" id="card-number" name="card-number" required>
+                        <label for="license-description">Descripción de la Licencia</label>
+                        <textarea id="license-description" name="license-description" required></textarea>
                     </div>
                     
                     <div>
-                        <label for="expiration-date">Fecha de Expiración</label>
-                        <input type="text" id="expiration-date" name="expiration-date" placeholder="MM/AA" required>
+                        <button class="est toggle-button">Activo</button>
                     </div>
-                    
-                    <div>
-                        <label for="cvv">CVV</label>
-                        <input type="text" id="cvv" name="cvv" required>
-                    </div>
+                
                     
                     <button type="submit">Guardar Método de Pago</button>
-                    <button class="see met">Ver Metodos</button>
                 </form>
+                <button class="see met">Ver Metodos</button>
+            </div>
+
+            <div class="contenedores paymethods">
+                <span class="pago">Company user</span>
+                <form id="payment-form" class="miformula">
+                    <div>
+                        <label for="cardholder-name">Username</label>
+                        <input type="text" id="cardholder-name3" name="cardholder-name" required>
+                    </div>
+                    
+                    <div>
+                        <label for="license-description">Name</label>
+                        <textarea id="license-description" name="license-description" required></textarea>
+                    </div>
+                    
+                    
+                    <div>
+                        <button class="est toggle-button">Activo</button>
+                    </div>
                 
+                    
+                    <button type="submit">Guardar</button>
+                </form>
+                <button class="see met">Ver guardados</button>
+            </div>
+            
+            <div class="contenedores paymethods">
+                <span class="pago">Guides</span>
+                <form id="guides-form" class="miformula guia">
+                    <div>
+                        <label for="cardholder-name">title</label>
+                        <input type="text" id="cardholder-name2" name="cardholder-name" required>
+                    </div>
+                    
+                    <div>
+                        <label for="license-description">Summary</label>
+                        <textarea id="license-description" name="license-description" required></textarea>
+                    </div>
+                    <div>
+                        <label for="cardholder-name">File</label>
+                        <input type="text" id="cardholder-name4" name="cardholder-name" required>
+                    </div>
+                    <div>
+                        <button class="est toggle-button">Activo</button>
+                    </div>
+                
+                    
+                    <button type="submit">Guardar</button>
+                </form>
+                <button class="see met">Ver guias</button>
+            </div>
 
-
-
+            
+            <div class="contenedores paymethods">
+                <span class="pago">Guides</span>
+                <form id="guides-form" class="miformula guia">
+                    <div>
+                        <label for="cardholder-name">Question</label>
+                        <input type="text" id="cardholder-name2" name="cardholder-name" required>
+                    </div>
+                    
+                    <div>
+                        <label for="license-description">answer</label>
+                        <textarea id="license-description" name="license-description" required></textarea>
+                    </div>
+                    <div>
+                        <button class="est toggle-button">Activo</button>
+                    </div>
+                    <button type="submit" id="itemg">Guardar</button>
+                </form>
+                <button class="see met">Ver Q&A</button>
             </div>
         </div>
 

@@ -1,0 +1,214 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto';
+    background-color: black;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 80vw;
+    max-height: 90vh; /* Ajusta la altura máxima según tus necesidades */
+    border-radius: 1em;
+    background-color: #1b1b1b;
+    overflow-y: auto; /* Permite el desplazamiento */
+    margin-top: 10px; /* Añade espacio arriba para el header fijo */
+}
+
+.header {
+    width: 95%;
+    height: 10%;
+    border-bottom: 1px solid #505050;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    margin: 1em 1em 0em 1em;
+    padding-bottom: 1em;
+    
+    top: 0;
+    background-color: #1b1b1b; /* Mantén el fondo del header */
+    z-index: 10; /* Asegura que el header esté sobre las cartas */
+}
+
+.title {
+    font-size: x-large;
+    color: white;
+    display: flex;
+}
+
+.clases {
+    width: 32vw;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 5px;
+}
+
+.barrita {
+    color: rgb(161,0,161);
+    font-size: larger;
+}
+
+#element1, #element2, #element3, #element4 {
+    color: dimgray;
+    cursor: pointer;
+}
+
+.saver {
+    background: linear-gradient(45deg, rgb(161,0,161), rgb(90,0,90));
+    border: none;
+    border-radius: 1em;
+    padding: 12px;
+    color: white;
+    font: inherit;
+}
+
+.card {
+    width: 80%;
+    margin-top: 1.5em;
+    background-color: black;
+    border: 2px solid rgb(161,0,161);
+    border-radius: 1em;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 8vh;
+    transition: background-color 0.3s ease;
+}
+
+.tarjeta {
+    width: 90%;
+    height: 8vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer; /* Añadido */
+}
+
+.tarjeta > div {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.content-tarjet {
+    width: 90%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.card:hover {
+    background-color: #381630;
+}
+
+.seccion {
+    color: dimgray;
+}
+
+form {
+    width: 95%;
+    margin-bottom: 1em;
+    place-items: center;
+    gap: 12px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+button {
+    cursor: pointer;
+}
+
+form > div > input {
+    background-color: #1b1b1b;
+    border: 2px solid white;
+    border-radius: 1em;
+    color: white;
+    padding: 8px;
+}
+
+form > div > input::placeholder {
+    outline: none;
+    border: none;
+    color: white;
+    font: inherit;
+}
+
+form > div > textarea {
+    background-color: #1b1b1b;
+    border: 2px solid white;
+    border-radius: 1em;
+    color: white;
+    padding: 8px;
+    resize: none;
+    overflow-y: scroll;
+    scrollbar-width: none; /* Para Firefox */
+    -ms-overflow-style: none;  /* Para Internet Explorer y Edge */
+}
+
+textarea::-webkit-scrollbar {
+    display: none;  /* Para Chrome, Safari y Opera */
+}
+
+#eli {
+    background-color: #1b1b1b;
+    border: 2px solid red;
+    color: red;
+    padding: 8px;
+    width: 12vw;
+    border-radius: 1em;
+    grid-row: 3/4;
+    grid-column: 1/2;
+}
+
+#eli:hover, #modi:hover {
+    background-color: #303030;
+}
+
+#modi {
+    background-color: #1b1b1b;
+    border: 2px solid rgb(161,0,161);
+    color: rgb(161,0,161);
+    width: 12vw;
+    border-radius: 1em;
+    padding: 8px;
+    grid-row: 3/4;
+    grid-column: 2/3;
+}
+
+.arrow {
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.arrow.down {
+    transform: rotate(90deg);
+}
+
+.content-cards{
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    min-height: fit-content;
+    padding-bottom: 2em;
+    align-items: center;
+}
+
+.wrapper::-webkit-scrollbar {
+    width: 10px; /* Ancho de la barra de scroll */
+}
+
+.wrapper::-webkit-scrollbar-track {
+    background: #1b1b1b; /* Color de fondo del track */
+    border-radius: 10px; /* Bordes redondeados del track */
+}

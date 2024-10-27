@@ -24,7 +24,11 @@ const card = document.querySelector('.card')
 const li = document.querySelectorAll('.pichi')
 let estasuscrito = true;
 const tit = document.querySelector('.title');
+const divusuario = document.getElementById('user');
+const divcompany = document.querySelector(".wrapper-company");
 
+divusuario.style.display = 'flex';
+divcompany.style.display = 'none';
 
 suscri.addEventListener('click', () => {
     if (estasuscrito) {
@@ -57,14 +61,14 @@ const espa  = document.getElementById('es');
 const ing = document.getElementById('en');
 
 let result = document.querySelector('.result');
-const divusuario = document.getElementById('user');
+
 
 espa.addEventListener('click',() =>{
-    result.innerHTML = "idioma español"
+    result.innerHTML = "idioma español";
 })
 
 ing.addEventListener('click',() =>{
-    result.innerHTML = "English lenguage"
+    result.innerHTML = "English lenguage";
 })
 
 
@@ -73,6 +77,7 @@ company.addEventListener('click', ()=>{
     user.style.color = 'dimgray';
     tit.innerHTML = 'Settings of company';
     divusuario.style.display = 'none';
+    divcompany.style.display = 'flex';
 
 
 })
@@ -82,6 +87,7 @@ user.addEventListener('click', ()=>{
     tit.innerHTML = 'Settings';
     company.style.color = 'dimgray';
     divusuario.style.display = 'flex';
+    divcompany.style.display = 'none';
 });
 
 const togglePasswordBtn = document.getElementById('toggle-password');
@@ -94,6 +100,31 @@ togglePasswordBtn.addEventListener('click', () => {
         passwordInput.type = 'password';
     }
 });
+
+const toggleButtons = document.querySelectorAll(".toggle-button");
+
+toggleButtons.forEach((toggleButton) => {
+    toggleButton.addEventListener("click", (event) => {
+        event.stopPropagation();
+        console.log('Toggle button clicked'); // Evita que el evento se propague
+        
+        if (toggleButton.innerText === "Activo") {
+            toggleButton.innerText = "Desactivado";
+            toggleButton.classList.add("inactive");
+        } else {
+            toggleButton.innerText = "Activo";
+            toggleButton.classList.remove("inactive");
+        }
+    });
+});
+
+
+document.querySelectorAll('.miformula').forEach((eje) => {
+    eje.addEventListener('submit', (event) => {
+        event.preventDefault(); // Evita que se envíe el formulario
+    });
+});
+
 
 
 
@@ -148,7 +179,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     confirmPasswordBtn2.addEventListener('click', () => {
-        // Lógica para cerrar la cuenta
+        
+        
         modal2.style.display = 'none';
     });
 
@@ -160,4 +192,6 @@ document.addEventListener('DOMContentLoaded', () => {
             modal2.style.display = 'none';
         }
     });
+    
 });
+

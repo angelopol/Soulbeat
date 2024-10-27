@@ -679,10 +679,12 @@ select {
 
 #license-form{
     display: grid;
-    grid-template-columns: repeat(3, 16vw);
+    grid-template-columns: repeat(2, 16vw);
     grid-template-rows: repeat(2, 10vh);
     gap: 10px;
-    width: 70%;
+    width: 50%;
+    padding-left: 2vw;
+    place-items: center;
 }
 
 .lic{
@@ -694,6 +696,7 @@ select {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
 }
 
 .form{
@@ -756,7 +759,7 @@ form > div > select{
 }
 
 .met{
-    padding: 0px;}
+    padding: 16px;}
 
 .pago{
     color: white;
@@ -764,7 +767,9 @@ form > div > select{
 }
 
 .paymethods{
-    width: 100%;
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
     height: 20vh;
 
 }
@@ -772,13 +777,41 @@ form > div > select{
 #payment-form{
     display: grid;
     place-items: center;
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(2,16vw);
     grid-template-rows: auto auto;
     gap: 10px;
 }
 
+.est{
+    padding: 16px;
+    background-color: #151515;
+    border: 2px solid white;
+    color: white;
+    border-radius: 1em;
 
+}
 
+#guides-form{
+    display: grid;
+    place-items: center;
+    grid-template-columns: repeat(3, 15vw);
+    grid-template-rows: auto;
+    gap: 10px;
+    width: auto;
+}
+
+.guia > div {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    /* width: 0vw; */
+    height: 8vh;
+}
+
+#itemg{
+    grid-column: 2/3;
+}
 
 
 

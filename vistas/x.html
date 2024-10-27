@@ -1,87 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarjeta Expandible</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .card-header {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            height: 100vh;
-            background-color: #f7f7f7;
         }
-        .chat-container {
-            width: 400px;
-            max-width: 100%;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
+
+        .card-header h2 {
+            margin: 0;
+            font-size: 18px;
         }
-        .message {
-            display: flex;
-            padding: 10px;
-            align-items: flex-end;
+
+        .card-header p {
+            color: grey;
+            margin: 0;
         }
-        .message img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin-right: 10px;
+
+        .card-content {
+            display: none;
+            margin-top: 20px;
         }
-        .message .content {
-            max-width: 70%;
-            background: #ececec;
-            padding: 10px;
-            border-radius: 10px;
-            position: relative;
+
+        .card-content input, .card-content button {
+            display: block;
+            margin: 10px 0;
         }
-        .message .content .name {
-            font-weight: bold;
+
+        .card:hover {
+            background-color: #f0f0f0;
         }
-        .message .content .text {
-            margin: 5px 0;
+
+        .arrow {
+            transition: transform 0.3s ease;
         }
-        .message .content .time {
-            font-size: 0.8em;
-            color: #999;
-            text-align: right;
-        }
-        .message.left .content {
-            background: #d1f5d3;
-        }
-        .message.left {
-            justify-content: flex-start;
-        }
-        .message.right {
-            justify-content: flex-end;
-        }
-        .message.right .content {
-            background: #e0e0ff;
-            text-align: left;
+
+        .arrow.down {
+            transform: rotate(90deg);
         }
     </style>
 </head>
 <body>
-    <div class="chat-container">
-        <div class="message left">
-            <img src="persona1.jpg" alt="Persona 1">
-            <div class="content">
-                <div class="namechat">Persona 1</div>
-                <div class="text">Hola, ¿cómo estás?</div>
-                <div class="time">10:00 AM</div>
-            </div>
+    <div class="card" onclick="toggleCard(this)">
+        <div class="card-header">
+            <h2>Título</h2>
+            <p>Texto en gris</p>
+            <span class="arrow">&#9654;</span>
         </div>
-        <div class="message right">
-            <div class="content">
-                <div class="namechat">Persona 2</div>
-                <div class="text">¡Bien, gracias! ¿Y tú?</div>
-                <div class="time">10:02 AM</div>
-            </div>
-            <img src="persona2.jpg" alt="Persona 2">
+        <div class="card-content">
+            <input type="text" placeholder="Campo de texto">
+            <button>Modificar</button>
+            <button>Eliminar</button>
         </div>
     </div>
+
+    <script>
+        function toggleCard(card) {
+            const content = card.querySelector('.card-content');
+            const arrow = card.querySelector('.arrow');
+            
+            if (content.style.display === "none" || !content.style.display) {
+                content.style.display = "block";
+                arrow.classList.add('down');
+            } else {
+                content.style.display = "none";
+                arrow.classList.remove('down');
+            }
+        }
+    </script>
 </body>
 </html>
