@@ -65,10 +65,10 @@ toggleButtons.forEach((toggleButton) => {
 document.querySelectorAll('form').forEach(form => {
     form.addEventListener('submit', (event) => {
         event.preventDefault();
-        // Aquí puedes manejar el envío del formulario vía AJAX/fetch
+         
         const formData = new FormData(event.target);
         fetch(event.target.action, {
-            method: 'POST',
+            method: 'POST',                           //aqui hubo una clara mano de chat gpt ya que yo dezconozco eta vaina
             body: formData
         }).then(response => response.json()).then(data => {
             console.log('Formulario enviado:', data);
