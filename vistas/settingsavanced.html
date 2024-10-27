@@ -9,11 +9,11 @@
     <title>Settings avanced</title>
 </head>
 <body>
-    <div class="wrapper">
+    <div class="wrapper" id="container">
         <header class="header">
             <Span class="title"><i class="bi bi-arrow-left"></i>Settings</Span>
             <div class="clases">
-                <span class="class">Licences</span>
+                <span class="class" id="element0">Licences</span>
                 <span class="barrita">|</span>
                 <span class="class" id="element1">Paid Methods</span>
                 <span class="barrita">|</span>
@@ -23,174 +23,436 @@
                 <span class="barrita">|</span>
                 <span class="class" id="element4">Q&A</span>
             </div>
-            <button class="saver"> Save Changes</button>
+            <button class="saver">Save Changes</button>
         </header>
-        <div class="content-cards">
-            <div class="card">
-                <div class="tarjeta"  onclick="toggleCard(this)"">
-                    <div>
-                        <span class="nombre">Nombre del registro</span>
-                        <span class="seccion">Licenses</span>
+        <div class="contenedor-variable" id="cambiable">
+            <div class="content-cards">
+                <div class="card">
+                    <div class="tarjeta"  onclick="toggleCard(this)"">
+                        <div>
+                            <span class="nombre">Nombre del registro</span>
+                            <span class="seccion">Licenses</span>
+                        </div>
+                        <span class="bi bi-caret-down-fill arrow""></span>
                     </div>
-                    <span class="bi bi-caret-down-fill arrow""></span>
+                    <div class="content-tarjet">
+                        <form id="license-form" class="miformula">
+                            <div>
+                                <label for="license-name">Nombre de la Licencia</label>
+                                <input type="text" id="license-name" name="license-name" required>
+                            </div>
+                            <div>
+                                <label for="license-description">Descripción de la Licencia</label>
+                                <textarea id="license-description" name="license-description" required></textarea>
+                            </div>
+                            <div>
+                                <label for="license-duration">Post</label>
+                                <input type="text" id="license-duration" name="license-duration" placeholder="" required>
+                            </div>
+                            <button type="submit" id="modi">Modificar</button>
+                            <button type="submit" id="eli">Eliminar</button>
+                        </form>
+                    </div>
                 </div>
-                <div class="content-tarjet">
-                    <form id="license-form" class="miformula">
-                        <div>
-                            <label for="license-name">Nombre de la Licencia</label>
-                            <input type="text" id="license-name" name="license-name" required>
-                        </div>
-                        <div>
-                            <label for="license-description">Descripción de la Licencia</label>
-                            <textarea id="license-description" name="license-description" required></textarea>
-                        </div>
-                        <div>
-                            <label for="license-duration">Post</label>
-                            <input type="text" id="license-duration" name="license-duration" placeholder="" required>
-                        </div>
-                        <button type="submit" id="modi">Modificar</button>
-                        <button type="submit" id="eli">Eliminar</button>
-                    </form>
-                </div>
-            </div>
 
-            <div class="card">
-                <div class="tarjeta"  onclick="toggleCard(this)"">
-                    <div>
-                        <span class="nombre">Nombre del registro</span>
-                        <span class="seccion">Licenses</span>
+                <div class="card">
+                    <div class="tarjeta"  onclick="toggleCard(this)"">
+                        <div>
+                            <span class="nombre">Nombre del registro</span>
+                            <span class="seccion">Licenses</span>
+                        </div>
+                        <span class="bi bi-caret-down-fill arrow""></span>
                     </div>
-                    <span class="bi bi-caret-down-fill arrow""></span>
+                    <div class="content-tarjet">
+                        <form id="license-form" class="miformula">
+                            <div>
+                                <label for="license-name">Nombre de la Licencia</label>
+                                <input type="text" id="license-name" name="license-name" required>
+                            </div>
+                            <div>
+                                <label for="license-description">Descripción de la Licencia</label>
+                                <textarea id="license-description" name="license-description" required></textarea>
+                            </div>
+                            <div>
+                                <label for="license-duration">Post</label>
+                                <input type="text" id="license-duration" name="license-duration" placeholder="" required>
+                            </div>
+                            <button type="submit" id="modi">Modificar</button>
+                            <button type="submit" id="eli">Eliminar</button>
+                        </form>
+                    </div>
                 </div>
-                <div class="content-tarjet">
-                    <form id="license-form" class="miformula">
-                        <div>
-                            <label for="license-name">Nombre de la Licencia</label>
-                            <input type="text" id="license-name" name="license-name" required>
-                        </div>
-                        <div>
-                            <label for="license-description">Descripción de la Licencia</label>
-                            <textarea id="license-description" name="license-description" required></textarea>
-                        </div>
-                        <div>
-                            <label for="license-duration">Post</label>
-                            <input type="text" id="license-duration" name="license-duration" placeholder="" required>
-                        </div>
-                        <button type="submit" id="modi">Modificar</button>
-                        <button type="submit" id="eli">Eliminar</button>
-                    </form>
-                </div>
-            </div>
 
-            <div class="card">
-                <div class="tarjeta"  onclick="toggleCard(this)"">
-                    <div>
-                        <span class="nombre">Nombre del registro</span>
-                        <span class="seccion">Licenses</span>
+                <div class="card">
+                    <div class="tarjeta"  onclick="toggleCard(this)"">
+                        <div>
+                            <span class="nombre">Nombre del registro</span>
+                            <span class="seccion">Licenses</span>
+                        </div>
+                        <span class="bi bi-caret-down-fill arrow""></span>
                     </div>
-                    <span class="bi bi-caret-down-fill arrow""></span>
-                </div>
-                <div class="content-tarjet">
-                    <form id="license-form" class="miformula">
-                        <div>
-                            <label for="license-name">Nombre de la Licencia</label>
-                            <input type="text" id="license-name" name="license-name" required>
-                        </div>
-                        <div>
-                            <label for="license-description">Descripción de la Licencia</label>
-                            <textarea id="license-description" name="license-description" required></textarea>
-                        </div>
-                        <div>
-                            <label for="license-duration">Post</label>
-                            <input type="text" id="license-duration" name="license-duration" placeholder="" required>
-                        </div>
-                        <button type="submit" id="modi">Modificar</button>
-                        <button type="submit" id="eli">Eliminar</button>
-                    </form>
-                </div>
-            </div>
-            
-            <div class="card">
-                <div class="tarjeta"  onclick="toggleCard(this)"">
-                    <div>
-                        <span class="nombre">Nombre del registro</span>
-                        <span class="seccion">Licenses</span>
+                    <div class="content-tarjet">
+                        <form id="license-form" class="miformula">
+                            <div>
+                                <label for="license-name">Nombre de la Licencia</label>
+                                <input type="text" id="license-name" name="license-name" required>
+                            </div>
+                            <div>
+                                <label for="license-description">Descripción de la Licencia</label>
+                                <textarea id="license-description" name="license-description" required></textarea>
+                            </div>
+                            <div>
+                                <label for="license-duration">Post</label>
+                                <input type="text" id="license-duration" name="license-duration" placeholder="" required>
+                            </div>
+                            <button type="submit" id="modi">Modificar</button>
+                            <button type="submit" id="eli">Eliminar</button>
+                        </form>
                     </div>
-                    <span class="bi bi-caret-down-fill arrow""></span>
                 </div>
-                <div class="content-tarjet">
-                    <form id="license-form" class="miformula">
+                
+                <div class="card">
+                    <div class="tarjeta"  onclick="toggleCard(this)"">
                         <div>
-                            <label for="license-name">Nombre de la Licencia</label>
-                            <input type="text" id="license-name" name="license-name" required>
+                            <span class="nombre">Nombre del registro</span>
+                            <span class="seccion">Licenses</span>
                         </div>
-                        <div>
-                            <label for="license-description">Descripción de la Licencia</label>
-                            <textarea id="license-description" name="license-description" required></textarea>
-                        </div>
-                        <div>
-                            <label for="license-duration">Post</label>
-                            <input type="text" id="license-duration" name="license-duration" placeholder="" required>
-                        </div>
-                        <button type="submit" id="modi">Modificar</button>
-                        <button type="submit" id="eli">Eliminar</button>
-                    </form>
+                        <span class="bi bi-caret-down-fill arrow""></span>
+                    </div>
+                    <div class="content-tarjet">
+                        <form id="license-form" class="miformula">
+                            <div>
+                                <label for="license-name">Nombre de la Licencia</label>
+                                <input type="text" id="license-name" name="license-name" required>
+                            </div>
+                            <div>
+                                <label for="license-description">Descripción de la Licencia</label>
+                                <textarea id="license-description" name="license-description" required></textarea>
+                            </div>
+                            <div>
+                                <label for="license-duration">Post</label>
+                                <input type="text" id="license-duration" name="license-duration" placeholder="" required>
+                            </div>
+                            <button type="submit" id="modi">Modificar</button>
+                            <button type="submit" id="eli">Eliminar</button>
+                        </form>
+                    </div>
                 </div>
-            </div>
 
-            <div class="card">
-                <div class="tarjeta"  onclick="toggleCard(this)"">
-                    <div>
-                        <span class="nombre">Nombre del registro</span>
-                        <span class="seccion">Licenses</span>
+                <div class="card">
+                    <div class="tarjeta"  onclick="toggleCard(this)"">
+                        <div>
+                            <span class="nombre">Nombre del registro</span>
+                            <span class="seccion">Licenses</span>
+                        </div>
+                        <span class="bi bi-caret-down-fill arrow""></span>
                     </div>
-                    <span class="bi bi-caret-down-fill arrow""></span>
+                    <div class="content-tarjet">
+                        <form id="license-form" class="miformula">
+                            <div>
+                                <label for="license-name">Nombre de la Licencia</label>
+                                <input type="text" id="license-name" name="license-name" required>
+                            </div>
+                            <div>
+                                <label for="license-description">Descripción de la Licencia</label>
+                                <textarea id="license-description" name="license-description" required></textarea>
+                            </div>
+                            <div>
+                                <label for="license-duration">Post</label>
+                                <input type="text" id="license-duration" name="license-duration" placeholder="" required>
+                            </div>
+                            <button type="submit" id="modi">Modificar</button>
+                            <button type="submit" id="eli">Eliminar</button>
+                        </form>
+                    </div>
                 </div>
-                <div class="content-tarjet">
-                    <form id="license-form" class="miformula">
+                
+                <div class="card">
+                    <div class="tarjeta"  onclick="toggleCard(this)"">
                         <div>
-                            <label for="license-name">Nombre de la Licencia</label>
-                            <input type="text" id="license-name" name="license-name" required>
+                            <span class="nombre">Nombre del registro</span>
+                            <span class="seccion">Licenses</span>
                         </div>
-                        <div>
-                            <label for="license-description">Descripción de la Licencia</label>
-                            <textarea id="license-description" name="license-description" required></textarea>
-                        </div>
-                        <div>
-                            <label for="license-duration">Post</label>
-                            <input type="text" id="license-duration" name="license-duration" placeholder="" required>
-                        </div>
-                        <button type="submit" id="modi">Modificar</button>
-                        <button type="submit" id="eli">Eliminar</button>
-                    </form>
+                        <span class="bi bi-caret-down-fill arrow""></span>
+                    </div>
+                    <div class="content-tarjet">
+                        <form id="license-form" class="miformula">
+                            <div>
+                                <label for="license-name">Nombre de la Licencia</label>
+                                <input type="text" id="license-name" name="license-name" required>
+                            </div>
+                            <div>
+                                <label for="license-description">Descripción de la Licencia</label>
+                                <textarea id="license-description" name="license-description" required></textarea>
+                            </div>
+                            <div>
+                                <label for="license-duration">Post</label>
+                                <input type="text" id="license-duration" name="license-duration" placeholder="" required>
+                            </div>
+                            <button type="submit" id="modi">Modificar</button>
+                            <button type="submit" id="eli">Eliminar</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-            
-            <div class="card">
-                <div class="tarjeta"  onclick="toggleCard(this)"">
-                    <div>
-                        <span class="nombre">Nombre del registro</span>
-                        <span class="seccion">Licenses</span>
+        </div>
+        <div class="contenedor-variable" id="divdepaid">
+            <div class="content-cards">
+                <div class="card">
+                    <div class="tarjeta"  onclick="toggleCard(this)"">
+                        <div>
+                            <span class="nombre">Nombre del registro</span>
+                            <span class="seccion">Paid Methods</span>
+                        </div>
+                        <span class="bi bi-caret-down-fill arrow""></span>
                     </div>
-                    <span class="bi bi-caret-down-fill arrow""></span>
+                    <div class="content-tarjet">
+                        <form id="license-form" class="miformula">
+                            <div>
+                                <label for="license-name">Nombre del Titular</label>
+                                <input type="text" id="license-name" name="license-name" required>
+                            </div>
+                            <div>
+                                <label for="license-description">Descripción</label>
+                                <textarea id="license-description" name="license-description" required></textarea>
+                            </div>
+                            <div>
+                                <button class="est toggle-button">Activo</button>
+                            </div>
+                            <button type="submit" id="modi">Modificar</button>
+                            <button type="submit" id="eli">Eliminar</button>
+                        </form>
+                    </div>
                 </div>
-                <div class="content-tarjet">
-                    <form id="license-form" class="miformula">
+                <div class="card">
+                    <div class="tarjeta"  onclick="toggleCard(this)"">
                         <div>
-                            <label for="license-name">Nombre de la Licencia</label>
-                            <input type="text" id="license-name" name="license-name" required>
+                            <span class="nombre">Nombre del registro</span>
+                            <span class="seccion">Licenses</span>
                         </div>
+                        <span class="bi bi-caret-down-fill arrow""></span>
+                    </div>
+                    <div class="content-tarjet">
+                        <form id="license-form" class="miformula">
+                            <div>
+                                <label for="license-name">Nombre de la Licencia</label>
+                                <input type="text" id="license-name" name="license-name" required>
+                            </div>
+                            <div>
+                                <label for="license-description">Descripción de la Licencia</label>
+                                <textarea id="license-description" name="license-description" required></textarea>
+                            </div>
+                            <div>
+                                <button class="est toggle-button">Activo</button>
+                            </div>
+                            <button type="submit" id="modi">Modificar</button>
+                            <button type="submit" id="eli">Eliminar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="contenedor-variable" id="divdecomuser">
+            <div class="content-cards">
+                <div class="card">
+                    <div class="tarjeta"  onclick="toggleCard(this)"">
                         <div>
-                            <label for="license-description">Descripción de la Licencia</label>
-                            <textarea id="license-description" name="license-description" required></textarea>
+                            <span class="nombre">Nombre del registro</span>
+                            <span class="seccion">Licenses</span>
                         </div>
+                        <span class="bi bi-caret-down-fill arrow""></span>
+                    </div>
+                    <div class="content-tarjet">
+                        <form id="license-form" class="miformula">
+                            <div>
+                                <label for="license-name">Nombre de la Licencia</label>
+                                <input type="text" id="license-name" name="license-name" required>
+                            </div>
+                            <div>
+                                <label for="license-description">Descripción de la Licencia</label>
+                                <textarea id="license-description" name="license-description" required></textarea>
+                            </div>
+                            <div>
+                                <label for="license-duration">Post</label>
+                                <input type="text" id="license-duration" name="license-duration" placeholder="" required>
+                            </div>
+                            <button type="submit" id="modi">Modificar</button>
+                            <button type="submit" id="eli">Eliminar</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="tarjeta"  onclick="toggleCard(this)"">
                         <div>
-                            <label for="license-duration">Post</label>
-                            <input type="text" id="license-duration" name="license-duration" placeholder="" required>
+                            <span class="nombre">Nombre del registro</span>
+                            <span class="seccion">Company user</span>
                         </div>
-                        <button type="submit" id="modi">Modificar</button>
-                        <button type="submit" id="eli">Eliminar</button>
-                    </form>
+                        <span class="bi bi-caret-down-fill arrow""></span>
+                    </div>
+                    <div class="content-tarjet">
+                        <form id="license-form" class="miformula">
+                            <div>
+                                <label for="license-name">Username</label>
+                                <input type="text" id="license-name" name="license-name" required>
+                            </div>
+                            <div>
+                                <label for="license-description">Name</label>
+                                <textarea id="license-description" name="license-description" required></textarea>
+                            </div>
+                            <div>
+                                <button class="est toggle-button">Activo</button>
+                            </div>
+                            <button type="submit" id="modi">Modificar</button>
+                            <button type="submit" id="eli">Eliminar</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="tarjeta"  onclick="toggleCard(this)"">
+                        <div>
+                            <span class="nombre">Nombre del registro</span>
+                            <span class="seccion">Licenses</span>
+                        </div>
+                        <span class="bi bi-caret-down-fill arrow""></span>
+                    </div>
+                    <div class="content-tarjet">
+                        <form id="license-form" class="miformula">
+                            <div>
+                                <label for="license-name">Nombre de la Licencia</label>
+                                <input type="text" id="license-name" name="license-name" required>
+                            </div>
+                            <div>
+                                <label for="license-description">Descripción de la Licencia</label>
+                                <textarea id="license-description" name="license-description" required></textarea>
+                            </div>
+                            <div>
+                                <label for="license-duration">Post</label>
+                                <input type="text" id="license-duration" name="license-duration" placeholder="" required>
+                            </div>
+                            <button type="submit" id="modi">Modificar</button>
+                            <button type="submit" id="eli">Eliminar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="contenedor-variable" id="divguides">
+            <div class="content-cards">
+                <div class="card">
+                    <div class="tarjeta"  onclick="toggleCard(this)"">
+                        <div>
+                            <span class="nombre">Nombre del registro</span>
+                            <span class="seccion">Guides</span>
+                        </div>
+                        <span class="bi bi-caret-down-fill arrow""></span>
+                    </div>
+                    <div class="content-tarjet">
+                        <form id="license-form" class="miformula">
+                            <div>
+                                <label for="cardholder-name">title</label>
+                                <input type="text" id="cardholder-name2" name="cardholder-name" required>
+                            </div>
+                            
+                            <div>
+                                <label for="license-description">Summary</label>
+                                <textarea id="license-description" name="license-description" required></textarea>
+                            </div>
+                            <div>
+                                <label for="cardholder-name">File</label>
+                                <input type="text" id="cardholder-name4" name="cardholder-name" required>
+                            </div>
+                            <div>
+                                <button class="est toggle-button">Activo</button>
+                            </div>
+                            <button type="submit" id="modi">Modificar</button>
+                            <button type="submit" id="eli">Eliminar</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="tarjeta"  onclick="toggleCard(this)"">
+                        <div>
+                            <span class="nombre">Nombre del registro</span>
+                            <span class="seccion">Licenses</span>
+                        </div>
+                        <span class="bi bi-caret-down-fill arrow""></span>
+                    </div>
+                    <div class="content-tarjet">
+                        <form id="license-form" class="miformula">
+                            <div>
+                                <label for="license-name">Nombre de la Licencia</label>
+                                <input type="text" id="license-name" name="license-name" required>
+                            </div>
+                            <div>
+                                <label for="license-description">Descripción de la Licencia</label>
+                                <textarea id="license-description" name="license-description" required></textarea>
+                            </div>
+                            <div>
+                                <label for="license-duration">Post</label>
+                                <input type="text" id="license-duration" name="license-duration" placeholder="" required>
+                            </div>
+                            <button type="submit" id="modi">Modificar</button>
+                            <button type="submit" id="eli">Eliminar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="contenedor-variable" id="divdeqa">
+            <div class="content-cards">
+                <div class="card">
+                    <div class="tarjeta"  onclick="toggleCard(this)"">
+                        <div>
+                            <span class="nombre">Nombre del registro</span>
+                            <span class="seccion">Q&A</span>
+                        </div>
+                        <span class="bi bi-caret-down-fill arrow""></span>
+                    </div>
+                    <div class="content-tarjet">
+                        <form id="license-form" class="miformula">
+                            <div>
+                                <label for="cardholder-name">Question</label>
+                                <input type="text" id="cardholder-name2" name="cardholder-name" required>
+                            </div>
+                            
+                            <div>
+                                <label for="license-description">answer</label>
+                                <textarea id="license-description" name="license-description" required></textarea>
+                            </div>
+                            <div>
+                                <button class="est toggle-button">Activo</button>
+                            </div>
+                            <button type="submit" id="modi">Modificar</button>
+                            <button type="submit" id="eli">Eliminar</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="tarjeta"  onclick="toggleCard(this)"">
+                        <div>
+                            <span class="nombre">Nombre del registro</span>
+                            <span class="seccion">Licenses</span>
+                        </div>
+                        <span class="bi bi-caret-down-fill arrow""></span>
+                    </div>
+                    <div class="content-tarjet">
+                        <form id="license-form" class="miformula">
+                            <div>
+                                <label for="license-name">Nombre de la Licencia</label>
+                                <input type="text" id="license-name" name="license-name" required>
+                            </div>
+                            <div>
+                                <label for="license-description">Descripción de la Licencia</label>
+                                <textarea id="license-description" name="license-description" required></textarea>
+                            </div>
+                            <div>
+                                <label for="license-duration">Post</label>
+                                <input type="text" id="license-duration" name="license-duration" placeholder="" required>
+                            </div>
+                            <button type="submit" id="modi">Modificar</button>
+                            <button type="submit" id="eli">Eliminar</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

@@ -15,12 +15,27 @@ body {
     align-items: center;
     flex-direction: column;
     width: 80vw;
-    max-height: 90vh; /* Ajusta la altura máxima según tus necesidades */
+    max-height: 90vh; 
     border-radius: 1em;
     background-color: #1b1b1b;
-    overflow-y: auto; /* Permite el desplazamiento */
-    margin-top: 10px; /* Añade espacio arriba para el header fijo */
+    overflow-y: auto; 
+    margin-top: 10px; 
+    transition: all 0.3s ease-in-out;
 }
+
+#container{
+    height: auto;
+}
+
+.est{
+    padding: 16px;
+    background-color: #151515;
+    border: 2px solid white;
+    color: white;
+    border-radius: 1em;
+
+}
+
 
 .header {
     width: 95%;
@@ -69,6 +84,12 @@ body {
     padding: 12px;
     color: white;
     font: inherit;
+}
+
+.contenedor-variable{
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .card {
@@ -127,6 +148,12 @@ form {
 
 button {
     cursor: pointer;
+}
+
+form>div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 form > div > input {
