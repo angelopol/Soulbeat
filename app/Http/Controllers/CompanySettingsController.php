@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class CompanySettingsController extends Controller
 {
     public function viewSettings(){
-        return view('');
+        return view('settings.company.settingsavanced');
     }
 
     public function viewPayment(){

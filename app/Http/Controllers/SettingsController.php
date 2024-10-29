@@ -9,7 +9,7 @@ use App\Models\User;
 class SettingsController extends Controller
 {
     public function viewSettings(){
-        return view('');
+        return view('settings.user.settings');
     }
 
     public function viewGlobalParameters(){
