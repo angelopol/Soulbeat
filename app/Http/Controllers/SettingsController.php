@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class SettingsController extends Controller
 {
@@ -32,29 +33,47 @@ class SettingsController extends Controller
     }
 
     public function viewSubscription(){
-        return view('');
+        $user = Auth::user();
+        return view('',['user'=>$user]);
     }
 
     public function storeSubscription(Request $request){
-        $validated = $request->validate([
+        $id = Auth::id();
+        $user = User::findOrFail($id);
+        $user->update(['subscribed' => 1]); 
 
-        ]);
-        Auth::user();
+        return to_route('');
     }
 
     public function destroySubscription(){
+        $id = Auth::id();
+        $user = User::findOrFail($id);
+        $user->update(['subscribed' => 0]); 
 
+        return to_route('');
     }
 
     public function enableUser(){
+        $id = Auth::id();
+        $user = User::findOrFail($id);
+        $user->update(['status' => 2]); 
 
+        return to_route('');
     }
 
     public function disableUser(){
+        $id = Auth::id();
+        $user = User::findOrFail($id);
+        $user->update(['status' => 1]); 
 
+        return to_route('');
     }
 
     public function destroyUser(){
+        $id = Auth::id();
+        $user = User::findOrFail($id);
+        $user->update(['status' => 0]); 
 
+        return to_route('');
     }
 }
