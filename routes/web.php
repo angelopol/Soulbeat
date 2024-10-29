@@ -124,6 +124,7 @@ Route::controller(LicensesController::class)->group(function(){
     Route::post('/settings-company/licenses',"storeLicenses")->name('licenses.store');
     Route::patch('/settings-company/licenses/{license}/update',"updateLicenses")->name('licenses.update');
     Route::delete('/settings-company/licenses/{license}/destroy',"destroyLicenses")->name('licenses.destroy');
+    Route::patch('/settings-company/licenses/{license}/update/{post}',"updatePost")->name('licensesPost.update');
 });
 
 #PaidMethods routes

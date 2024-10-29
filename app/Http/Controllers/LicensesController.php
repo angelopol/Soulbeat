@@ -33,6 +33,12 @@ class LicensesController extends Controller
         return to_route('');
     }
 
+    public function updatePost(License $license,int $post){
+        $license->update(['post'=>$post]);
+
+        return to_route('');
+    }
+
     public function destroyLicenses(License $license){
         $license->update(['status'=>0]);
 
