@@ -91,6 +91,8 @@ class ProfileController extends Controller
         
         if (!in_array($user, $followedsArray)) {
             $followedsArray[] = $user;
+        }else{
+            $followedsArray = array_diff($followedsArray, [$user]);
         }
 
         $userLogged->followeds = implode(',', $followedsArray);
