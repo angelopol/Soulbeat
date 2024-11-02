@@ -84,6 +84,21 @@ class ProfileController extends Controller
         return view('', ['followers' => $followers]);
     }
 
+    public function updateFolloweds(string $user){
+        $userLogged = Auth::user();
+
+        $followedsArray = explode(',', $userLogged->followeds);
+        
+        if (!in_array($user, $followedsArray)) {
+            $followedsArray[] = $user;
+        }
+
+        $userLogged->followeds = implode(',', $followedsArray);
+        $userLogged->save();
+
+        return to_route('');
+    }
+
     public function viewFolloweds(User $user){
         $followedsArray = explode(',', $user->followeds);
 
