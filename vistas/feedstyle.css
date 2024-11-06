@@ -1009,7 +1009,8 @@ body::-webkit-scrollbar-track {
         align-items: center;
         flex-direction: column;
         padding: 16px;
-
+        border: 2px solid white;
+        border-radius: 1em;
 
     }
 
