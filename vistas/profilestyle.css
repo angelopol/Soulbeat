@@ -969,4 +969,124 @@ justify-content: space-between;
 .chao:hover{
 transform: scale(1.5);
 }
+.followersss {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid white;
+    border-radius: 1em;
+    background-color: #1b1b1b;
+    z-index: 999;
+    position: fixed; 
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    padding: 1em; 
+}
 
+.cartadeseguidores {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50vw;
+    max-width: 500px; 
+    margin: 0 auto; 
+    
+    padding: 1em; 
+}
+
+.follows{
+    display: none;
+
+}
+
+.text14{
+    font-size: x-large;
+    font: inherit;
+    color: white;
+    display: flex;
+    gap: 5px;
+    margin-bottom: 1em;
+}
+
+.seguidores{
+    display: flex;
+    align-items: center;
+    justify-content:center;
+   
+    gap: 20px;
+    color: white;
+    width: 40vw;
+}
+
+.cartaentera{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+   
+}
+
+.namess{
+    width: 12vw;
+    text-align: center;
+}
+.picture{
+    aspect-ratio: 1/1;
+    width: 5vw;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+}
+
+
+.follows {
+    display: none; /* Ocultar por defecto */
+    justify-content: center;
+    align-items: center;
+    border: 2px solid white;
+    border-radius: 1em;
+    background-color: #1b1b1b;
+    z-index: 999;
+    position: fixed; 
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    padding: 1em; 
+    overflow-y: auto;
+}
+
+.cartadeseguidores {}
+
+.text14 {
+    font-size: x-large;
+    font: inherit;
+    color: white;
+    display: flex;
+    gap: 5px;
+    margin-bottom: 1em;
+}
+
+.seguidores {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    gap: 20px;
+    color: white;
+    width: 40vw;
+}
+
+.cartaentera {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 40vw;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    max-height: 40vh;
+}
+
+.namess {
+    width: 12vw;
+}
