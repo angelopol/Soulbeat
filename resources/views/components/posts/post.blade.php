@@ -21,9 +21,9 @@
         <span class="name">{{ $SongName }}</span>
         <img class="fotoritmo" src="{{ $SongPhoto }}" alt="">
         <div class="content-bar">
-            <div id="inicio">0:00</div>
-            <input type="range" id="progress-bar" min="0" max="100" value="0">
-            <div id="final">0:00</div>
+            <div class="inicio">0:00</div>
+            <input type="range" class="progress-bar" min="0" max="100" value="0">
+            <div class="final">0:00</div>
         </div>
         <div class="info">
             <span class="bpm">{{ $bpm }} BPM</span>

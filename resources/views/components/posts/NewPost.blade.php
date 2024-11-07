@@ -1,3 +1,4 @@
+<div id="blacki"></div>
 <div class="cofnew">
     <div class="carta-contenedora">
         <div class="header-carta">

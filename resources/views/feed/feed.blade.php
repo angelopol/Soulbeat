@@ -38,17 +38,11 @@
                         'price' => '5.00', 'AuthorName' => 'Pepe', 'scale' => 'C Major', 'duration' => '5:00'
                     ])
                 </div>
-                <div class="new-postss">
-                    <button class="new-post">
-                        <span class="bi bi-plus-lg giro"></span>
-                    </button>
-                </div>
+                @include('components.buttons.NewPost')
             </main>
         </section>
 
         <div id="overlay"></div>
-        <div id="blacki"></div>
-
         @include('components.posts.NewPost')
     </div>
     <script src="{{ Vite::asset('resources/js/feedscript.js') }}"></script>
