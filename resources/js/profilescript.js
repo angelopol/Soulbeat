@@ -275,6 +275,16 @@ function openModal() {
   document.querySelector('.chao').addEventListener('click', closeModal);
   
   document.querySelector('.new-post').addEventListener('click', openModal);
+  document.querySelector('.new-post').addEventListener('click', (event) => {
+      event.stopPropagation();
+      openModal();
+  });
+  document.querySelectorAll('.new-post *').forEach(child => {
+      child.addEventListener('click', (event) => {
+          event.stopPropagation();
+          openModal();
+      });
+  });
   
   document.getElementById('blacki').addEventListener('click', closeModal);
   

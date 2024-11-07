@@ -436,7 +436,6 @@ body::-webkit-scrollbar-track {
     color: white;
     border-radius: 10px;
     border: none;
-    width: 25%;
     text-align: center;
     height: 100%;
     padding: 16px 24px;
