@@ -25,16 +25,31 @@
                 <div class="content-all">
                     @include('components.posts.post', [
                         'UserPhoto' => Vite::asset('resources/assets/images/foto-tipo-landing.jpeg'),
-                        'UserName' => 'Perfil', 'text' => 'Lorem ipsim acqu a] fjsibfhrmmmau marina dbo nskxicnrem.sc',
+                        'UserName' => 'Juan', 'text' => 'Lorem ipsim acqu a] fjsibfhrmmmau marina dbo nskxicnrem.sc',
                         'SongName' => 'Nombre', 'SongPhoto' => Vite::asset('resources/assets/images/foto-thor-landing.jpeg'),
                         'bpm' => '136', 'song' => Vite::asset('resources/assets/audios/Shook Ones, Pt  II (Instrumental).mp3'),
                         'price' => '0.00', 'AuthorName' => 'Author', 'scale' => 'C Major', 'duration' => '3:00'
                     ])
+                    @include('components.posts.post', [
+                        'UserPhoto' => Vite::asset('resources/assets/images/foto-tipo-landing.jpeg'),
+                        'UserName' => 'Pepe', 'text' => 'Lorem ipsim acqu a] fjsibfhrmmmau marina dbo nskxicnrem.sc',
+                        'SongName' => 'Nombre', 'SongPhoto' => Vite::asset('resources/assets/images/foto-thor-landing.jpeg'),
+                        'bpm' => '136', 'song' => Vite::asset('resources/assets/audios/Shook Ones, Pt  II (Instrumental).mp3'),
+                        'price' => '5.00', 'AuthorName' => 'Pepe', 'scale' => 'C Major', 'duration' => '5:00'
+                    ])
+                </div>
+                <div class="new-postss">
+                    <button class="new-post">
+                        <span class="bi bi-plus-lg giro"></span>
+                    </button>
                 </div>
             </main>
         </section>
 
         <div id="overlay"></div>
+        <div id="blacki"></div>
+
+        @include('components.posts.NewPost')
     </div>
     <script src="{{ Vite::asset('resources/js/feedscript.js') }}"></script>
 @endsection

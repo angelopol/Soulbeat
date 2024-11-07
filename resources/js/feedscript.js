@@ -1,6 +1,6 @@
 const botontocado = document.querySelectorAll('.abrirmodal');
-const modal = document.getElementById('ventana');
-const cerrar = document.querySelector('.cerrar');
+const modals = document.querySelectorAll('.container-modal');
+const cerrarbuttons = document.querySelectorAll('.cerrar');
 const metodos = document.querySelectorAll('.pays');
 
 const newpost = document.querySelector('.new-postss');
@@ -9,16 +9,23 @@ const modalpost = document.querySelector('.cofnew');
 
 botontocado.forEach(button => {
     button.addEventListener('click', () => {
-        modal.style.display = 'block';
-        document.getElementById('overlay').style.display = 'block';
+        const modalId = button.getAttribute('modal');
+        const targetModal = document.getElementById(modalId);
+        if (targetModal) {
+            targetModal.style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
     });
 });
 
 
-cerrar.addEventListener('click',()=>{
-    document.getElementById('overlay').style.display = 'none';
-    modal.style.display='none';
-
+cerrarbuttons.forEach(cerrar => {
+    cerrar.addEventListener('click',()=>{
+        document.getElementById('overlay').style.display = 'none';
+        modals.forEach(modal => {
+            modal.style.display='none';
+        });
+    });
 });
 
 
@@ -37,6 +44,16 @@ function closeModal() {
 document.querySelector('.chao').addEventListener('click', closeModal);
 
 document.querySelector('.new-post').addEventListener('click', openModal);
+document.querySelector('.new-post').addEventListener('click', (event) => {
+    event.stopPropagation();
+    openModal();
+});
+document.querySelectorAll('.new-post *').forEach(child => {
+    child.addEventListener('click', (event) => {
+        event.stopPropagation();
+        openModal();
+    });
+});
 
 document.getElementById('blacki').addEventListener('click', closeModal);
 

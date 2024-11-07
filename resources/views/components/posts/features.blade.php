@@ -1,4 +1,4 @@
-<div class="container-modal" id="ventana">
+<div class="container-modal" id="{{$id}}">
     <div class="infomodal">
         <span class="duration">Duracion completa: <br> {{ $duration }}</span>
         <span class="autor">{{ $AuthorName }}</span>
