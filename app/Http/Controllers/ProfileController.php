@@ -84,7 +84,7 @@ class ProfileController extends Controller
         return view('', ['followers' => $followers]);
     }
 
-    public function updateFolloweds(string $user){
+    public function updateFolloweds($user){
         $userLogged = Auth::user();
 
         $followedsArray = explode(',', $userLogged->followeds);
@@ -98,7 +98,7 @@ class ProfileController extends Controller
         $userLogged->followeds = implode(',', $followedsArray);
         $userLogged->save();
 
-        return to_route('');
+        return to_route('post.view',$user);
     }
 
     public function viewFolloweds(User $user){
@@ -114,7 +114,7 @@ class ProfileController extends Controller
 
         $user->save();
 
-        return to_route('');
+        return to_route('post.view',$user);
     }
 
     public function updatePhoto(Request $request,User $user){
@@ -122,6 +122,6 @@ class ProfileController extends Controller
 
         $user->save();
 
-        return to_route('');
+        return to_route('post.view',$user);
     }
 }

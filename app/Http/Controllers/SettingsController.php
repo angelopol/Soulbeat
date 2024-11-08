@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ad;
+use App\Models\Guide;
+use App\Models\Parameter;
+use App\Models\QA;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -13,7 +17,9 @@ class SettingsController extends Controller
     }
 
     public function viewGlobalParameters(){
-        return view('');
+        $paremeters = Parameter::all();
+
+        return view('',['parameters'=>$paremeters]);
     }
 
     public function viewSupport(){
@@ -21,15 +27,18 @@ class SettingsController extends Controller
     }
 
     public function viewGuides(){
-        return view('');
+        $guides = Guide::where('status',1)->get();
+        return view('',['guides'=>$guides]);
     }
 
     public function viewQA(){
-        return view('');
+        $qa = QA::where('status',1)->get();
+        return view('',['qa'=>$qa]);
     }
 
     public function viewAds(){
-        return view('');
+        $ads = Ad::where('status',1)->get();
+        return view('',['ads'=>$ads]);
     }
 
     public function viewSubscription(){
@@ -42,7 +51,7 @@ class SettingsController extends Controller
         $user = User::findOrFail($id);
         $user->update(['subscribed' => 1]); 
 
-        return to_route('');
+        return to_route('subscription.view');
     }
 
     public function destroySubscription(){
@@ -50,7 +59,7 @@ class SettingsController extends Controller
         $user = User::findOrFail($id);
         $user->update(['subscribed' => 0]); 
 
-        return to_route('');
+        return to_route('subscription.view');
     }
 
     public function enableUser(){
@@ -58,7 +67,7 @@ class SettingsController extends Controller
         $user = User::findOrFail($id);
         $user->update(['status' => 2]); 
 
-        return to_route('');
+        return to_route('login');
     }
 
     public function disableUser(){
@@ -66,7 +75,7 @@ class SettingsController extends Controller
         $user = User::findOrFail($id);
         $user->update(['status' => 1]); 
 
-        return to_route('');
+        return to_route('login');
     }
 
     public function destroyUser(){
@@ -74,6 +83,6 @@ class SettingsController extends Controller
         $user = User::findOrFail($id);
         $user->update(['status' => 0]); 
 
-        return to_route('');
+        return to_route('login');
     }
 }

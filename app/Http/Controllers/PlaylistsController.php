@@ -18,7 +18,8 @@ class PlaylistsController extends Controller
         return view('',['playlist' => $playlist]);
     }
 
-    public function storePlaylist(Request $request){
+    public function storePlaylist(Request $request,User $user){
+        $id = $user-> id;
         $validated = $request->validate([
             'name' => ['string','required','max:255'],
             'description' => ['string','nullable'],
@@ -26,12 +27,14 @@ class PlaylistsController extends Controller
             'posts' => ['string']
         ]);
 
-        Playlist::create($validated);
+        $data = array_merge(['user'=>$id],$validated);
 
-        return to_route('');
+        Playlist::create($data);
+
+        return to_route('playlist.view',['user'=>$user->id]);
     }
 
-    public  function updatePlaylist(Request $request,Playlist $playlist){
+    public  function updatePlaylist(Request $request,User $user,Playlist $playlist){
         $validated = $request->validate([
             'name' => ['string','required','max:255'],
             'description' => ['string','nullable'],
@@ -41,12 +44,12 @@ class PlaylistsController extends Controller
 
         $playlist->update($validated);
 
-        return to_route('');
+        return to_route('playlist.show',['user'=>$user->id,'playlist'=>$playlist->id]);
     }
 
-    public function destroyPlaylist(Playlist $playlist){
+    public function destroyPlaylist(User $user,Playlist $playlist){
         $playlist->update(['status' => 0]);
 
-        return to_route('');
+        return to_route('playlist.view',['user'=>$user->id]);
     }
 }
