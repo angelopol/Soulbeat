@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\License;
 
 return new class extends Migration
 {
@@ -19,6 +20,11 @@ return new class extends Migration
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
+
+        License::create([
+            'name' => 'Uso general',
+            'feature' => 'De uso general~gratuita'
+        ]);
     }
 
     /**

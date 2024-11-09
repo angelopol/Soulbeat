@@ -72,9 +72,15 @@
                 <span class="">Are you registered? <a class="cambio" id="regreso" >Click here</a></span>
             </div>
             <div class="forg">
+                {{$errors}}
                 <span class="es"><i class="bi bi-arrow-left flechi" ></i>Come back</span>
                 <p class="parra">To reset your password, please enter the email associated with your account and follow the instructions sent to your inbox. Check your spam folder if you don’t see the email.</p>
-                <input type="email" placeholder="example@gmail.com" class="importa">
+                <form method="POST" action="{{ route('password.email') }}">
+                    @csrf
+                    <input type="email" name="email" placeholder="example@gmail.com" class="importa" required autofocus>
+                    <br><br>
+                    <button type="submit" class="sig">Send email</button>
+                </form>
             </div>
         </div>
         

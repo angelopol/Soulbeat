@@ -11,17 +11,31 @@ class PostController extends Controller
         $validated = $request->validate([
             'title' => ['string','required','max:255'],
             'body' => ['string','nullable'],
-            'song' => ['string','required'],
-            'photo' => ['string','nullable'],
+            'song' => ['required'],
+            'photo' => ['nullable'],
             'bpm' => ['numeric','nullable'],
             'scale' => ['string','nullable'],
-            'paid-methods' => ['string','nullable'],
-            #'cost' => ['string'],
+            'paid-methods[]' => ['string','nullable'],
+            'cost' => ['string'],
             'licenses' => ['string','required'],
             'tags' => ['string','nullable'],
         ]);
 
-        Post::create($validated);
+        $paid_methods = "";
+        foreach($validated['paid-methods[]'] as $paid_method) $paid_methods += $paid_method + "~";  
+
+        Post::create([
+            'title' => $validated['title'],
+            'body' => $validated['body'],
+            'bpm' => $validated['bpm'],
+            'scale' => $validated['scale'],
+            'paid_methods' => $paid_methods,
+            'cost' => $validated['cost'],
+            'licenses' => $validated['licenses'],
+            'tags' => $validated['tags'],
+            'photo' => ,
+            'song' => 
+        ]);
 
         return to_route('');
     }
