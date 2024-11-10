@@ -73,6 +73,7 @@ Route::controller(ProfileController::class)->group(function () {
     Route::get('/user/{user}/reviews','viewReviews')->name('profile.reviews.view');
     Route::get('/user/{user}/followers','viewFollowers')->name('profile.followers.view');
     Route::get('/user/{user}/followeds','viewFolloweds')->name('profile.followeds.view');
+    Route::patch('/user/{user}/followeds/update','updateFolloweds')->name('followeds.update');
     Route::post('/user/{user}/biography','storeBiography')->name('profile.biography.store');
     Route::patch('/user/{user}/biography/update','updateBiography')->name('profile.biography.update');
     Route::delete('/user/{user}/biography/destroy','destroyBiography')->name('profile.biography.destroy');
@@ -133,6 +134,7 @@ Route::controller(LicensesController::class)->group(function(){
     Route::post('/settings-company/licenses',"storeLicenses")->name('licenses.store');
     Route::patch('/settings-company/licenses/{license}/update',"updateLicenses")->name('licenses.update');
     Route::delete('/settings-company/licenses/{license}/destroy',"destroyLicenses")->name('licenses.destroy');
+    Route::patch('/settings-company/licenses/{license}/update/{post}',"updatePost")->name('licensesPost.update');
 });
 
 #PaidMethods routes

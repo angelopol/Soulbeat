@@ -14,7 +14,7 @@ class ChatsController extends Controller
 
         $id = $user->id;
 
-        $chats = Chat::where('from', $id) // replace $id with the actual ID
+        $chats = Chat::where('from', $id) 
              ->whereNull('AcceptFrom')
              ->whereNull('AcceptTo')
              ->get();
@@ -28,7 +28,7 @@ class ChatsController extends Controller
 
         $id = $user->id;
 
-        $chats = Chat::where('from', $id) // replace $id with the actual ID
+        $chats = Chat::where('from', $id) 
              ->whereNotNull('AcceptFrom')
              ->whereNotNull('AcceptTo')
              ->get();
