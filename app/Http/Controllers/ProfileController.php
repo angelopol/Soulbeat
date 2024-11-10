@@ -67,7 +67,7 @@ class ProfileController extends Controller
             ->join('users', 'posts.user', '=', 'users.id')->select('posts.*', 'users.photo as UserPhoto', 'users.UserName',
                 'users.name as PersonName', 'users.FullName as PersonFullName', 'users.subscribed', 
                 DB::raw('IF(posts.user = '.auth()->user()->id.', "True", "False") as ThisUser'))
-            ->orderBy('created_at', 'desc')->limit(1);
+            ->orderBy('created_at', 'desc')->limit(5);
 
         if($ids != null) {
             $posts = $posts->whereNotIn('posts.id', $ids);

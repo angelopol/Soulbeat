@@ -102,10 +102,12 @@ async function PostElement(post) {
     postElement.id = 'postcompleto';
     postElement.innerHTML = `
         <div class="content-row">
-            ${post.UserPhoto !== null ? `<img src="${post.UserPhoto}" alt="" class="fotobeat">` : ''}
-            <span class="text-box-post">${post.UserName}
-                ${post.subscribed ? '<i class="bi bi-patch-check-fill check"></i>' : ''}
-            </span>
+            <a href="/user/${post.UserName}" style="all: unset">
+                ${post.UserPhoto !== null ? `<img src="${post.UserPhoto}" alt="" class="fotobeat">` : ''}
+                <span class="text-box-post">${post.UserName}
+                    ${post.subscribed ? '<i class="bi bi-patch-check-fill check"></i>' : ''}
+                </span>
+            </a>
             ${post.ThisUser == "True" ? '<div><span class="bi bi-three-dots"><ul class="dropdown"><li><form action="/posts/archive/'+post.id+'" method="POST"><button type="submit" style="all: unset">Archive</button></form></li><li><form action="/posts/destroy/'+post.id+'" method="POST"><button type="submit" style="all: unset">Delete</button></form></li><li>Add to playlist</li></ul></span></div>' : ''}
         </div>
         <div class="textofpost">

@@ -32,8 +32,12 @@
     <nav class="left-down">
         <div class="content-perfil">
         <div class="perfil">
-            <img  class ="fotodeperfil" src="" alt="">
-            <span class="text-perfil">Perfil</span>
+            <a href="{{ route('profile.post.view', auth()->user()) }}" style="all: unset">
+                @if(auth()->user()->photo)
+                    <img  class ="fotodeperfil" src="{{ Storage::url(auth()->user()->photo) }}" alt="">
+                @endif
+                <span class="text-perfil">Perfil</span>
+            </a>
         </div>
     </div>
     </nav>

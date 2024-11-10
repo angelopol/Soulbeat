@@ -1,11 +1,13 @@
 <div class="post" id="postcompleto">
     <div class="content-row">
-        @if($UserPhoto != "/storage/")
-            <img src="{{ $UserPhoto }}" alt="" class="fotobeat">
-        @endif
-        <span class="text-box-post">{{ $UserName }}
-            @if(isset($verify) && $verify)<i class="bi bi-patch-check-fill check"></i>@endif
-        </span>
+        <a href="{{ route('profile.post.view', $UserName) }}" style="all: unset">
+            @if($UserPhoto != "/storage/")
+                <img src="{{ $UserPhoto }}" alt="" class="fotobeat">
+            @endif
+            <span class="text-box-post">{{ $UserName }}
+                @if(isset($verify) && $verify)<i class="bi bi-patch-check-fill check"></i>@endif
+            </span>
+        </a>
         @if(auth()->user()->id == $UserId)
             <div>
                 <span class="bi bi-three-dots">
