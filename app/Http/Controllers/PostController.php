@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rules\File;
+use Illuminate\Support\Facades\DB;
+
+use function Laravel\Prompts\error;
 
 class PostController extends Controller
 {
@@ -11,33 +16,44 @@ class PostController extends Controller
         $validated = $request->validate([
             'title' => ['string','required','max:255'],
             'body' => ['string','nullable'],
-            'song' => ['required'],
-            'photo' => ['nullable'],
+            'song' => ['required', File::types(['mp3', 'wav', 'ogg'])],
+            'photo' => ['nullable', File::types(['jpg', 'png', 'jpeg'])],
             'bpm' => ['numeric','nullable'],
             'scale' => ['string','nullable'],
-            'paid-methods[]' => ['string','nullable'],
+            'paid-methods' => ['nullable'],
             'cost' => ['string'],
             'licenses' => ['string','required'],
             'tags' => ['string','nullable'],
         ]);
 
-        $paid_methods = "";
-        foreach($validated['paid-methods[]'] as $paid_method) $paid_methods += $paid_method + "~";  
+        $paid_methods = "~";
+        foreach($validated['paid-methods'] as $paid_method) $paid_methods .= $paid_method . "~";
+        $tags = "~";
+        foreach(explode(' ', $validated['tags']) as $tag) $tags .= $tag . "~";
 
-        Post::create([
+        $post = Post::create([
+            'user' => auth()->user()->id,
             'title' => $validated['title'],
             'body' => $validated['body'],
             'bpm' => $validated['bpm'],
             'scale' => $validated['scale'],
-            'paid_methods' => $paid_methods,
+            'PaidMethods' => $paid_methods,
             'cost' => $validated['cost'],
             'licenses' => $validated['licenses'],
-            'tags' => $validated['tags'],
-            'photo' => ,
-            'song' => 
+            'tags' => $tags
         ]);
+        if(isset($validated['photo'])){
+            $post->photo = $validated['photo']->storeAs('public/photos', $post->id.'.'.$validated['photo']->getClientOriginalExtension());
+        }
+        $post->song = $validated['song']->storeAs('public/songs', $post->id.'.'.$validated['song']->getClientOriginalExtension());
+        $post->save();
 
-        return to_route('');
+        return back();
+    }
+
+    public function DownloadSong(Post $post){
+        if($post->cost != 0 OR $post->status != 1) return error(404);
+        return Storage::download($post->song, $post->title.'.'.pathinfo($post->song, PATHINFO_EXTENSION));
     }
 
     public function updatePost(Request $request,Post $post){
@@ -60,36 +76,58 @@ class PostController extends Controller
     }
 
     public function archivePost(Post $post){
-        $post -> status = 2;
+        if ($post->user != auth()->user()->id) return error(404);
+
+        $post->status = 2;
 
         $post->save();
 
-        return to_route('');
+        return back();
     }
 
     public function destroyPost(Post $post){
+        if ($post->user != auth()->user()->id) return error(404);
+
         $post -> status = 0;
 
         $post->save();
 
-        return to_route('');
+        return back();
     }
 
-    public function updateReaction(Request $request,Post $post){
+    public function updateReaction(Request $request, Post $post,int $reaction){
         #validar los 5 inputs de las reacciones, el que no sea null es el que va sumar
-        if(isset($request['reaction1'])){
+        if($reaction == 1){
             $post -> reaction1 +=1;
-        }elseif (isset($request['reaction2'])) {
+        }elseif ($reaction == 2) {
             $post -> reaction2 +=1;
-        }elseif (isset($request['reaction3'])) {
+        }elseif ($reaction == 3) {
             $post -> reaction3 +=1;
-        }elseif (isset($request['reaction4'])) {
+        }elseif ($reaction == 4) {
             $post -> reaction4 +=1;
         }else{
             $post -> reaction5 +=1;
         }
         $post->save();
 
-        return to_route('');
+        return True;
+    }
+
+    public static function GetPosts($limit = 1){
+        $posts = Post::where('posts.status', 1)->whereDoesntHave('ads')
+            ->join('users', 'posts.user', '=', 'users.id')->select('posts.*', 'users.photo as UserPhoto', 'users.UserName',
+                'users.name as PersonName', 'users.FullName as PersonFullName', 'users.subscribed', 
+                DB::raw('IF(posts.user = '.auth()->user()->id.', "True", "False") as ThisUser'))
+            ->orderBy(DB::raw('reaction1 + reaction2 + reaction3 + reaction4 + reaction5'), 'desc')
+            ->limit($limit)->get();
+        return $posts;
+    }
+
+    public function IndexPosts(){
+        return self::GetPosts(5);
+    }
+
+    public function ShowPost(Post $post){
+        return [Storage::url($post->song), Storage::url($post->photo)];
     }
 }

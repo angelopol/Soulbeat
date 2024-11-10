@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('user');
             $table->string('title',500);
             $table->longText('body')->nullable();
-            $table->string('song',500);
+            $table->string('song',500)->nullable();
             $table->string('photo')->nullable();
             $table->float('bpm')->nullable();
             $table->string('scale',500)->nullable();

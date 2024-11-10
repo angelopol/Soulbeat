@@ -1,6 +1,7 @@
 <div id="blacki"></div>
 <div class="cofnew">
-    <form action="{{route('post.store')}}" method="POST" class="carta-contenedora">
+    <form action="{{route('post.store')}}" method="POST" class="carta-contenedora" enctype="multipart/form-data">
+        {{ $errors }}
         <div class="header-carta">
             <span class="bi bi-arrow-left chao" ></span>
             <span>Lets see your beat!</span>
@@ -45,7 +46,7 @@
             </select>
         </div>
         <div class="fotodelpost">
-            <input type="file" name="photo" id="imageInput" accept="image/*" style="display: none;" multiple>
+            <input type="file" name="photo" id="imageInput" accept="image/*" style="display: none;">
             <label for="imageInput" class="label-upload">
                 <i class="bi bi-camera"></i><span>Cargar Imagen</span>
             </label>

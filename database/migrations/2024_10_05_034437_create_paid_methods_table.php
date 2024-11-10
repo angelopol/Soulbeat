@@ -22,7 +22,7 @@ return new class extends Migration
 
         PaidMethod::create([
             'name' => 'Divisas',
-            'feature' => 'Divisas en fisico'
+            'description' => 'Divisas en fisico'
         ]);
     }
 

@@ -52,11 +52,14 @@ Route::get('/home',[FeedController::class,"view"])->name('feed.view');
 
 #Rutas Post
 Route::controller(PostController::class)->group(function(){
-    Route::post('/post',"storePost")->name('post.store');
-    Route::patch('/post/{post}/update', "updatePost")->name('post.update');
-    Route::patch('/post/{post}/reaction', "updateReaction")->name('post.update.reaction');
-    Route::delete('/posts/{post}/archive', "archivePost")->name('post.archive');
-    Route::delete('/posts/{post}/destroy', "destroyPost")->name('post.destroy');
+    Route::get('/posts',"IndexPosts")->name('post.index');
+    Route::post('/posts',"storePost")->name('post.store');
+    Route::get('/posts/{post}',"ShowPost")->name('post.show');
+    Route::post('/posts/download/{post}', "DownloadSong")->name('post.download');
+    Route::patch('/posts/{post}/update', "updatePost")->name('post.update');
+    Route::post('/posts/reaction/{post}/{reaction}', "updateReaction")->name('post.update.reaction');
+    Route::post('/posts/archive/{post}', "archivePost")->name('post.archive');
+    Route::post('/posts/destroy/{post}', "destroyPost")->name('post.destroy');
 });
 
 #Search routes

@@ -138,7 +138,6 @@ body {
 .header {
     width: 70%;
     height: 200px;
-    background-image: url('../front/images/persona4.jpg');
     background-size: cover;
     background-position: center;
     border-end-start-radius: 15px;

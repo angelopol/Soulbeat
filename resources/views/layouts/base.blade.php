@@ -10,5 +10,6 @@
 </head>
 <body>
     @yield('content')
+    <script src="{{ Vite::asset('resources/js/NewPosts.js') }}"></script>
 </body>
 </html>
