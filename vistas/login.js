@@ -30,3 +30,8 @@ flechi.addEventListener('click', ()=> {
     login.style.display = 'flex';
     signin.style.display = 'none';
 })
+
+
+document.querySelector('.bi-pencil').addEventListener(()=>{
+    
+})

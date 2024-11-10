@@ -195,3 +195,34 @@ document.addEventListener('DOMContentLoaded', () => {
     
 });
 
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const pencilButton = document.querySelector('.bi-pencil');
+
+    // Verificar que el botón existe antes de añadir el eventListener
+    if (pencilButton) {
+      pencilButton.addEventListener('click', () => {
+        document.querySelectorAll('.delete-btn').forEach(deleteButton => {
+          deleteButton.style.display = deleteButton.style.display === 'none' ? 'block' : 'none';
+        });
+      });
+
+      document.querySelectorAll('.delete-btn').forEach(deleteButton => {
+        deleteButton.addEventListener('click', () => {
+          const anuncio = deleteButton.closest('.anuncio');
+          if (anuncio) {
+            anuncio.remove();
+          } else {
+            console.error('El componente de anuncio no se encontró.');
+          }
+        });
+      });
+    } else {
+      console.error('El botón .bi-pencil no se encontró en el DOM.');
+    }
+  });
+
+
+
+
+
