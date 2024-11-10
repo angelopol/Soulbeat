@@ -12,6 +12,11 @@
                     <div class="seguidores">
                         <img class="picture" src="{{$follower[0]}}" alt="">
                         <span class="namess">{{$follower[1]}}</span>
+                        @if(!isset($unfollow))
+                            <button class="button-follow">Follow</button>
+                        @else
+                            <button class="button-unfollow">Unfollow</button>
+                        @endif
                     </div>
                 @endforeach
             </div>

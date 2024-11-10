@@ -120,10 +120,10 @@ document.addEventListener('click', function(event) {
       button.addEventListener('click', function() {
         if (this.classList.contains('button-unfollow')) {
           this.classList.remove('button-unfollow');
-          this.textContent = 'Seguir';
+          this.textContent = 'Follow';
         } else {
           this.classList.add('button-unfollow');
-          this.textContent = 'Dejar de seguir';
+          this.textContent = 'Unfollow';
         }
       });
     });
@@ -139,11 +139,11 @@ document.addEventListener('click', function(event) {
       if (isFollowing) {
         button.classList.remove('button-follow');
         button.classList.add('button-unfollow');
-        button.textContent = 'Dejar de Seguir';
+        button.textContent = 'Unfollow';
       } else {
         button.classList.remove('button-unfollow');
         button.classList.add('button-follow');
-        button.textContent = 'Seguir';
+        button.textContent = 'Follow';
       }
     }
   
@@ -156,7 +156,3 @@ document.addEventListener('click', function(event) {
       });
     });
   });
-  
-  
-
-

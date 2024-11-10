@@ -16,7 +16,10 @@
                         @if($user->subscribed == 1)<i class="bi bi-patch-check-fill mora"></i>@endif
                     </span>
                 </div>
-            </div> 
+            </div>
+            @if($user->id != auth()->user()->id)
+                <button class="button-follow padding-bottom">Seguir</button>
+            @endif
             <div class="container">
                 <div class="content">
                     <div class="item1 followers items">

@@ -252,13 +252,17 @@ body {
     justify-content: center;
     align-items: center;
     margin-top: 0.5em;
-    padding: 16px;
+    padding-bottom: 16px;
     font-size: x-large;
 }
 
 .profile-info p {
     color: dimgray;
 
+}
+
+.padding-bottom{
+    margin-bottom: 1.5em !important;
 }
 
 .content {
@@ -1334,7 +1338,6 @@ transform: scale(1.5);
 .profile-photo{
     display: flex;
     flex-direction: column;
-    padding-left: 2em;
     align-items: center;
 }
 
