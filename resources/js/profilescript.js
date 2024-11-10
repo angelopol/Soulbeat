@@ -2,6 +2,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const contador = document.getElementById('contador');
     let seguidores = document.getElementById('CountFollowers').innerText;
     let velocidad = Math.floor(seguidores / 100);
+    if (velocidad < 1) {
+        velocidad = 1;
+    }
 
     const actualizarContador = () => {
         let conteoActual = parseInt(contador.innerText);
@@ -22,6 +25,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const contador = document.getElementById('contadorfollow');
     let seguidores = document.getElementById('CountFollowed').innerText;
     let velocidad = Math.floor(seguidores / 100);
+    if (velocidad < 1) {
+        velocidad = 1;
+    }
 
     const actualizarContador = () => {
         let conteoActual = parseInt(contador.innerText);
@@ -152,6 +158,13 @@ document.addEventListener('click', function(event) {
     
     followButtons.forEach(button => {
       button.addEventListener('click', function() {
+        let UserName = this.getAttribute('UserName');
+        fetch("/user/followeds/update/"+UserName, {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        });
         toggleFollow(this);
       });
     });

@@ -73,7 +73,7 @@ Route::controller(ProfileController::class)->group(function () {
     Route::get('/user/{user}/reviews','viewReviews')->name('profile.reviews.view');
     Route::get('/user/{user}/followers','viewFollowers')->name('profile.followers.view');
     Route::get('/user/{user}/followeds','viewFolloweds')->name('profile.followeds.view');
-    Route::patch('/user/{user}/followeds/update','updateFolloweds')->name('followeds.update');
+    Route::post('/user/followeds/update/{user}','updateFolloweds')->name('followeds.update');
     Route::post('/user/{user}/biography','storeBiography')->name('profile.biography.store');
     Route::patch('/user/{user}/biography/update','updateBiography')->name('profile.biography.update');
     Route::delete('/user/{user}/biography/destroy','destroyBiography')->name('profile.biography.destroy');

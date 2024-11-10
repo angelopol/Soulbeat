@@ -5,5 +5,5 @@
             @if(isset($verify))<i class="bi bi-patch-check-fill check"></i>@endif
         </span>
     </span>
-    <button class="botonseguir">Seguir</button>
+    <button class="botonseguir" UserName="{{ $name }}">Follow</button>
 </div>

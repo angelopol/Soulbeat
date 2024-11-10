@@ -18,7 +18,7 @@
                 </div>
             </div>
             @if($user->id != auth()->user()->id)
-                <button class="button-follow padding-bottom">Seguir</button>
+                <button class="button-follow padding-bottom" UserName="{{ $user->UserName }}">Seguir</button>
             @endif
             <div class="container">
                 <div class="content">
@@ -79,18 +79,8 @@
 
     <div id="overlay"></div>
     @include('components.posts.NewPost')
-    @php
-        $FollowersShow = [];
-        foreach ($followers as $key => $follower) {
-            $FollowersShow[] = [Storage::url($follower->photo), $follower->UserName];
-        }
-        $FollowedShow = [];
-        foreach ($followed as $key => $follow) {
-            $FollowedShow[] = [Storage::url($follow->photo), $follow->UserName];
-        }
-    @endphp
-    @include('components.profile.followers', ['followers' => $FollowersShow])
-    @include('components.profile.followed', ['followed' => $FollowedShow])
+    @include('components.profile.followers', ['followers' => $followers])
+    @include('components.profile.followed', ['followed' => $followed])
 
     <script src="{{ Vite::asset('resources/js/profilescript.js') }}" defer></script>
     <script src="{{ Vite::asset('resources/js/CreatePost.js') }}" defer></script>

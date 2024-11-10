@@ -116,21 +116,20 @@ class ProfileController extends Controller
         return view('', ['followers' => $followers]);
     }
 
-    public function updateFolloweds($user){
-        $userLogged = Auth::user();
-
-        $followedsArray = explode(',', $userLogged->followeds);
+    public function updateFolloweds(User $user){
+        if($user->id == Auth::user()->id) return false;
         
-        if (!in_array($user, $followedsArray)) {
-            $followedsArray[] = $user;
-        }else{
-            $followedsArray = array_diff($followedsArray, [$user]);
+        $followed = "";
+        if(str_contains(Auth::user()->followed, '~'.$user->id.'~') != false){
+            $followed = str_replace($user->id.'~', '', Auth::user()->followed);
+        } else {
+            if(Auth::user()->followed == null OR Auth::user()->followed == "") $followed = '~';
+            $followed .= Auth::user()->followed.$user->id.'~';
         }
+        Auth::user()->followed = $followed;
+        Auth::user()->save();
 
-        $userLogged->followeds = implode(',', $followedsArray);
-        $userLogged->save();
-
-        return to_route('post.view',$user);
+        return true;
     }
 
     public function viewFolloweds(User $user){

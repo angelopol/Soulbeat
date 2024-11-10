@@ -10,12 +10,14 @@
             <div class="cartaentera">
                 @foreach ($followers as $follower)
                     <div class="seguidores">
-                        <img class="picture" src="{{$follower[0]}}" alt="">
-                        <span class="namess">{{$follower[1]}}</span>
-                        @if(!isset($unfollow))
-                            <button class="button-follow">Follow</button>
-                        @else
-                            <button class="button-unfollow">Unfollow</button>
+                        <img class="picture" src="{{Storage::url($follower->photo)}}" alt="">
+                        <span class="namess">{{$follower->UserName}}</span>
+                        @if($follower->id != auth()->user()->id)
+                            @if(!isset($unfollow))
+                                <button class="button-follow" UserName="{{ $follower->UserName }}">Follow</button>
+                            @else
+                                <button class="button-unfollow" UserName="{{ $follower->UserName }}">Unfollow</button>
+                            @endif
                         @endif
                     </div>
                 @endforeach
