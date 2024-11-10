@@ -80,8 +80,18 @@ class ProfileController extends Controller
     #Metodos del word
     public function viewPosts(User $user){
         $posts = self::GetPosts($user);
+
+        $followers = DB::table('users')->where('followed', 'LIKE', '%~'.$user->id.'~%')->get();
+
+        $followed = [];
+        foreach (explode('~', $user->followed) as $follow) {
+            if ($follow != '' AND $follow != '~') {
+                $user = User::where('id', preg_replace('/\D/', '', $follow))->where('status', 1)->first();
+                if ($user != null) $followed[] = $user;
+            }
+        }
         
-        return view('profile.profile', ['posts'=>$posts]);
+        return view('profile.profile', ['posts'=>$posts, 'user'=>$user, 'followers'=>$followers, 'followed'=>$followed]);
     }
 
     public function viewReviews(User $user){

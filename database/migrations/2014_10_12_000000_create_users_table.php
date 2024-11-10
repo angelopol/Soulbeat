@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('FullName',500);
             $table->longText('biography')->nullable();
             $table->string('photo',500)->nullable();
-            $table->longText('followed')->nullable();    
+            $table->longText('followed')->default('~');    
             $table->string('email',500)->unique();
             $table->string('password',500);
             $table->tinyInteger('type')->default(0);

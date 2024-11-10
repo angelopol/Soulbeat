@@ -718,11 +718,18 @@ min-width: 8rem;
     font-size: 30px;
   }
   
-  .rating input:checked ~ label,
   .rating label:hover,
   .rating label:hover ~ label {
     color: yellow;
     transition: color 0.3s;
+  }
+
+  .YellowColor {
+    color: yellow !important;
+  }
+
+  .WhiteColor {
+    color: #ccc !important;
   }
   
 

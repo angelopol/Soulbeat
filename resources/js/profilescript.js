@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const contador = document.getElementById('contador');
-    let seguidores = 1239;
+    let seguidores = document.getElementById('CountFollowers').innerText;
     let velocidad = Math.floor(seguidores / 100);
 
     const actualizarContador = () => {
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
     const contador = document.getElementById('contadorfollow');
-    let seguidores = 384;
+    let seguidores = document.getElementById('CountFollowed').innerText;
     let velocidad = Math.floor(seguidores / 100);
 
     const actualizarContador = () => {

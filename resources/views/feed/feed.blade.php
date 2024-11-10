@@ -30,7 +30,7 @@
             <main class="main">
                 <div class="content-all" id="posts">
                     @php $PostsIds = ''; @endphp
-                    @foreach ($posts as $post)
+                    @forelse ($posts as $post)
                         @include('components.posts.post', [
                             'UserPhoto' => Storage::url($post->UserPhoto), 'id' => $post->id, 'UserId' => $post->user,
                             'UserName' => $post->UserName, 'text' => $post->body, 'verify' => $post->subscribed == 1,
@@ -39,7 +39,9 @@
                             'price' => $post->cost, 'AuthorName' => $post->PersonName.' '.$post->PersonFullName, 'scale' => $post->scale, 'duration' => '3:00'
                         ])
                         @php $PostsIds .= $post->id.','; @endphp
-                    @endforeach
+                    @empty
+                        <span class="text">No posts yet</span>
+                    @endforelse
                     <span id="PostsCount" hidden>{{ $PostsIds }}</span>
                 </div>
                 @include('components.buttons.NewPost')
