@@ -8,18 +8,24 @@
                
             </div>
             <div class="messages">
-                <i class="bi @if(request()->routeIs('feed.*')) bi-house-fill @else bi-house @endif"></i>
-                <span class="tex-feed">Inicio</span>
+                <a href="{{ route('feed.view') }}" style="all: unset">
+                    <i class="bi @if(request()->routeIs('feed.*')) bi-house-fill @else bi-house @endif"></i>
+                    <span class="tex-feed">Inicio</span>
+                </a>
             </div>
 
             <!--chat-->
             <div class="messages">
-                <i class="bi @if(request()->routeIs('chat.*')) bi-chat-heart-fill @else bi-chat-heart @endif"></i>
-                <span class="text-message">Messages</span>
+                <a href="{{ route('chat.directs.view') }}" style="all: unset">
+                    <i class="bi @if(request()->routeIs('chat.*')) bi-chat-heart-fill @else bi-chat-heart @endif"></i>
+                    <span class="text-message">Messages</span>
+                </a>
             </div>
             <div class="content-setting">
-                <i class="bi @if(request()->routeIs('settings.*')) bi-gear-wide-connected-fill @else bi-gear-wide-connected @endif"></i>
-                <span class="text-setting">Settings</span>
+                <a href="{{ route('settings.view') }}" style="all: unset">
+                    <i class="bi @if(request()->routeIs('settings.*')) bi-gear-wide-connected-fill @else bi-gear-wide-connected @endif"></i>
+                    <span class="text-setting">Settings</span>
+                </a>
             </div>
         </div>
     </nav>
