@@ -51,19 +51,21 @@
                     <div class="item4 playlist items">
                         <span class="text-spe"> <i class="bi bi-music-note-list no"></i>Playlists</span>
                         <div class="players">
-                            @include('components.profile.playlist', [
-                                'photo' => Vite::asset('resources/assets/images/playlist1.jpeg'),
-                                'name' => 'Trippy triple shot', 'description' => 'reggae,rock, funk'
-                            ])
+                            @foreach ($playlists as $playlist)
+                                @include('components.profile.playlist', [
+                                    'photo' => Storage::url($playlist->photo), 'name' => $playlist->name, 'description' => $playlist->description
+                                ])
+                            @endforeach
                         </div>
                     </div>
                     <div class="item5 reviews items">
                         <span class="text-spe" id = "x"><i class="bi bi-chat-square-heart-fill"></i>Reviews</span>
                         <div class="content-reviews">
-                            @include('components.profile.review', [
-                                'photo' => Vite::asset('resources/assets/images/tipq2.jpeg'), 'qualify' => 3,
-                                'FromName' => 'Jeremy osborn', 'title' => 'i really enjoy your style of rap'
-                            ])
+                            @foreach ($reviews as $review)
+                                @include('components.profile.review', [
+                                    'qualify' => $review->qualify, 'FromName' => $review->PersonName.' '.$review->PersonFullName
+                                ])
+                            @endforeach
                         </div>
                     </div>
                 </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Playlist;
 use App\Models\Post;
 use App\Models\Review;
 use App\Models\User;
@@ -90,8 +91,13 @@ class ProfileController extends Controller
                 if ($user != null) $followed[] = $user;
             }
         }
+
+        $reviews = Review::join('users', 'reviews.to', '=', 'users.id')->where('reviews.to', $user->id)->where('reviews.status', '=', 1)
+            ->select('reviews.*', 'users.name as PersonName', 'users.FullName as PersonFullName')->get();
+
+        $playlists = Playlist::where('user', $user->id)->where('status', 1)->get();
         
-        return view('profile.profile', ['posts'=>$posts, 'user'=>$user, 'followers'=>$followers, 'followed'=>$followed]);
+        return view('profile.profile', ['posts'=>$posts, 'user'=>$user, 'followers'=>$followers, 'followed'=>$followed, 'reviews'=>$reviews, 'playlists'=>$playlists]);
     }
 
     public function viewReviews(User $user){
