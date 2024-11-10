@@ -69,6 +69,7 @@ Route::get('/search/users', [SearchController::class,"viewPosts"])->name('search
 #Profile routes
 Route::controller(ProfileController::class)->group(function () {
     Route::get('/user/{user}','viewPosts')->name('profile.post.view');
+    Route::get('/user/{user}/posts','GetPosts')->name('profile.post.get');
     Route::get('/user/{user}/reviews','viewReviews')->name('profile.reviews.view');
     Route::get('/user/{user}/followers','viewFollowers')->name('profile.followers.view');
     Route::get('/user/{user}/followeds','viewFolloweds')->name('profile.followeds.view');

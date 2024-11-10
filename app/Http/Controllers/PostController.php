@@ -113,17 +113,31 @@ class PostController extends Controller
         return True;
     }
 
-    public static function GetPosts($limit = 1){
+    public static function GetPosts($limit = 5, $ids = null){
         $posts = Post::where('posts.status', 1)->whereDoesntHave('ads')
             ->join('users', 'posts.user', '=', 'users.id')->select('posts.*', 'users.photo as UserPhoto', 'users.UserName',
                 'users.name as PersonName', 'users.FullName as PersonFullName', 'users.subscribed', 
                 DB::raw('IF(posts.user = '.auth()->user()->id.', "True", "False") as ThisUser'))
             ->orderBy(DB::raw('reaction1 + reaction2 + reaction3 + reaction4 + reaction5'), 'desc')
-            ->limit($limit)->get();
+            ->limit($limit);
+        
+        $ad = Post::join('ads', 'posts.id', '=', 'ads.post')->join('users', 'posts.user', '=', 'users.id')
+            ->select('posts.*', 'users.photo as UserPhoto', 'users.UserName', 'users.name as PersonName', 'users.FullName as PersonFullName', 'users.subscribed', 
+                DB::raw('IF(posts.user = '.auth()->user()->id.', "True", "False") as ThisUser'));
+
+        if($ids != null) {
+            $posts = $posts->whereNotIn('posts.id', $ids);
+            $ad = $ad->whereNotIn('post', $ids);
+        }
+        $posts = $posts->get();
+        $ad = $ad->first();
+
+        if ($ad) $posts->prepend($ad);
         return $posts;
     }
 
-    public function IndexPosts(){
+    public function IndexPosts(Request $request){
+        if($request->has('ids')) return self::GetPosts(5, explode(',', $request->ids));
         return self::GetPosts(5);
     }
 

@@ -27,6 +27,7 @@ export default defineConfig({
                 'resources/js/settings.js',
                 'resources/js/settingsavanced.js',
                 'resources/js/showallplaylist.js',
+                'resources/js/CreatePost.js',
             ],
             refresh: true,
         }),

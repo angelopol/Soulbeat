@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
@@ -61,14 +62,29 @@ class ProfileController extends Controller
         return Redirect::to('/');
     }
 
-    #Metodos del word
-    public function viewPosts(int $user){
-        $posts = Post::where('user',$user)->get();
+    public function GetPosts(User $user, $ids = null){
+        $posts = Post::where('posts.status', 1)->where('posts.user', $user->id)
+            ->join('users', 'posts.user', '=', 'users.id')->select('posts.*', 'users.photo as UserPhoto', 'users.UserName',
+                'users.name as PersonName', 'users.FullName as PersonFullName', 'users.subscribed', 
+                DB::raw('IF(posts.user = '.auth()->user()->id.', "True", "False") as ThisUser'))
+            ->orderBy('created_at', 'desc')->limit(1);
+
+        if($ids != null) {
+            $posts = $posts->whereNotIn('posts.id', $ids);
+        }
+        $posts = $posts->get();
         
-        return view('profile.profile',['posts'=>$posts]);
+        return $posts;
     }
 
-    public function viewReviews(int $user){
+    #Metodos del word
+    public function viewPosts(User $user){
+        $posts = self::GetPosts($user);
+        
+        return view('profile.profile', ['posts'=>$posts]);
+    }
+
+    public function viewReviews(User $user){
         $reviews = Review::where('to',$user)->get();
 
         return view('profile.reviews.showreviews',['reviews'=>$reviews]);

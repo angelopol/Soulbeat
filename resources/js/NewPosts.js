@@ -1,30 +1,37 @@
 var searching = false;
 
 window.addEventListener('scroll', async () => {
+    const postsContainer = document.getElementById('posts');
+    if (!postsContainer) return;
     if ((window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 10) && !searching) {
         searching = true;
         
         try {
-            const response = await fetch('/posts');
+            const postsCount = document.getElementById('PostsCount').innerText;
+            let fetchUrl = '/posts?ids=' + postsCount;
+
+            // Check if the current path starts with /user/
+            if (window.location.pathname.startsWith('/user/')) {
+                fetchUrl = window.location.pathname + '?ids=' + postsCount;
+                console.log('fetchUrl:', fetchUrl);
+            }
+
+            const response = await fetch('/posts?ids=' + postsCount);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
             const posts = await response.json();
             
-            const postsContainer = document.getElementById('posts');
             posts.forEach(async post => {
-                const postsCount = document.getElementById('PostsCount').innerText.split(',');
-                if (!postsCount.includes(post.id.toString())) {
-                    const postElement = await PostElement(post);
-                    if (postElement != null) {
-                        document.getElementById('posts').appendChild(postElement);
-                        postsContainer.appendChild(postElement);
-                        postsContainer.appendChild(features(post));
-                
-                        // Update PostsCount to include the new post ID
-                        document.getElementById('PostsCount').innerText += `,${post.id}`;
-                        initializeEventListeners();
-                    }
+                const postElement = await PostElement(post);
+                if (postElement != null) {
+                    document.getElementById('posts').appendChild(postElement);
+                    postsContainer.appendChild(postElement);
+                    postsContainer.appendChild(features(post));
+            
+                    // Update PostsCount to include the new post ID
+                    document.getElementById('PostsCount').innerText += `,${post.id}`;
+                    initializeEventListeners();
                 }
             });
         } catch (error) {
@@ -382,6 +389,17 @@ function initializeEventListeners() {
             });
             elementsWithListeners.add(container);
         }
+    });
+
+    const FeaturesModals = document.querySelectorAll('.container-modal');
+    FeaturesModals.forEach(modal => {
+        if (!elementsWithListeners.has(modal)) {
+            if (modal.parentNode) {
+                modal.parentNode.removeChild(modal);
+            }
+            document.body.appendChild(modal);
+        }
+        elementsWithListeners.add(modal);
     });
 }
 

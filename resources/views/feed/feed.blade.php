@@ -50,4 +50,6 @@
         @include('components.posts.NewPost')
     </div>
     <script src="{{ Vite::asset('resources/js/feedscript.js') }}" defer></script>
+    <script src="{{ Vite::asset('resources/js/CreatePost.js') }}" defer></script>
+    <script src="{{ Vite::asset('resources/js/NewPosts.js') }}"></script>
 @endsection

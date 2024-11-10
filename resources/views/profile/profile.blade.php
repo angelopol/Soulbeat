@@ -20,14 +20,21 @@
                         <span class="numelo " id="contador">0</span>
                     </div>
 
-                    <div class="item3 post-index items">
-                        @include('components.posts.post', [
-                            'UserPhoto' => Vite::asset('resources/assets/images/foto-tipo-landing.jpeg'),
-                            'UserName' => 'Perfil', 'text' => 'Lorem ipsim acqu a] fjsibfhrmmmau marina dbo nskxicnrem.sc',
-                            'SongName' => 'Nombre', 'SongPhoto' => Vite::asset('resources/assets/images/foto-thor-landing.jpeg'),
-                            'bpm' => '136', 'song' => Vite::asset('resources/assets/audios/Shook Ones, Pt  II (Instrumental).mp3'),
-                            'price' => '0.00', 'AuthorName' => 'Author', 'scale' => 'C Major', 'duration' => '3:00'
-                        ])
+                    <div class="item3 post-index items" id="posts">
+                        @php $PostsIds = ''; @endphp
+                        @forelse ($posts as $post)
+                            @include('components.posts.post', [
+                                'UserPhoto' => Storage::url($post->UserPhoto), 'id' => $post->id, 'UserId' => $post->user,
+                                'UserName' => $post->UserName, 'text' => $post->body, 'verify' => $post->subscribed == 1,
+                                'SongName' => $post->title, 'SongPhoto' => Storage::url($post->photo),
+                                'bpm' => $post->bpm, 'song' => Storage::url($post->song),
+                                'price' => $post->cost, 'AuthorName' => $post->PersonName.' '.$post->PersonFullName, 'scale' => $post->scale, 'duration' => '3:00'
+                            ])
+                            @php $PostsIds .= $post->id.','; @endphp
+                        @empty
+                            <span class="text">No posts yet</span>
+                        @endforelse
+                        <span id="PostsCount" hidden>{{ $PostsIds }}</span>
                     </div>
 
                     <div class="item2 followed items">
@@ -74,5 +81,7 @@
         ]
     ])
 
-    <script src="{{ Vite::asset('resources/js/profilescript.js') }}" ></script>
+    <script src="{{ Vite::asset('resources/js/profilescript.js') }}" defer></script>
+    <script src="{{ Vite::asset('resources/js/CreatePost.js') }}" defer></script>
+    <script src="{{ Vite::asset('resources/js/NewPosts.js') }}"></script>
 @endsection
