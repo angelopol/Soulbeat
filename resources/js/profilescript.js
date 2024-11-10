@@ -113,3 +113,50 @@ document.addEventListener('click', function(event) {
         cierraseguidos();
     }
 });
+
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.button-follow').forEach(button => {
+      button.addEventListener('click', function() {
+        if (this.classList.contains('button-unfollow')) {
+          this.classList.remove('button-unfollow');
+          this.textContent = 'Seguir';
+        } else {
+          this.classList.add('button-unfollow');
+          this.textContent = 'Dejar de seguir';
+        }
+      });
+    });
+  });
+
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Función común para manejar el cambio de estado de seguir/dejar de seguir
+    function toggleFollow(button) {
+      // Verificar el estado actual y alternar
+      const isFollowing = button.classList.contains('button-follow');
+  
+      if (isFollowing) {
+        button.classList.remove('button-follow');
+        button.classList.add('button-unfollow');
+        button.textContent = 'Dejar de Seguir';
+      } else {
+        button.classList.remove('button-unfollow');
+        button.classList.add('button-follow');
+        button.textContent = 'Seguir';
+      }
+    }
+  
+    // Seleccionar todos los botones de seguir/dejar de seguir en los modales
+    const followButtons = document.querySelectorAll('.button-unfollow, .button-follow');
+    
+    followButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        toggleFollow(this);
+      });
+    });
+  });
+  
+  
+
+
