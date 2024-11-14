@@ -10,7 +10,7 @@
         <nav class="all-playlists">
             <div class="content">
                 @foreach ($playlists as $playlist)
-                    <a href="{{route('playlist.show', [$user, $playlist->id])}}" style="all: unset">
+                    <a href="{{route('playlist.show', [$user, $playlist])}}" style="all: unset">
                         @include('components.profile.playlist_reduced', [
                             'photo' => Storage::url($playlist->photo),
                             'name' => $playlist->name, 'description' => $playlist->description,

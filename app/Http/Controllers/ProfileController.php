@@ -82,7 +82,7 @@ class ProfileController extends Controller
     public function viewPosts(User $user){
         $posts = self::GetPosts($user);
 
-        $followers = DB::table('users')->where('followed', 'LIKE', '%~'.$user->id.'~%')->get();
+        $followers = User::where('followed', 'LIKE', '%~'.$user->id.'~%')->get();
 
         $followed = [];
         foreach (explode('~', $user->followed) as $follow) {

@@ -1,6 +1,6 @@
 @extends('layouts.base')
 
-@section('title') Profile @php $css = "profilestyle" @endphp @endsection
+@section('title') {{$user->UserName}} @php $css = "profilestyle" @endphp @endsection
 
 @section('content')
     @include('components.NavBar.aside')

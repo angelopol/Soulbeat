@@ -85,7 +85,7 @@ Route::controller(ProfileController::class)->group(function () {
 #playlists routes
 Route::controller(PlaylistsController::class)->group(function(){
     Route::get('/user/{user}/playlists',"viewPlaylists")->name('playlist.view');
-    Route::get('/user/{user}/playlists/{playlist}',"showPlaylist")->name('playlist.show');
+    Route::get('/user/playlists/{user}/{playlist}',"showPlaylist")->name('playlist.show');
     Route::post('/user/{user}/playlists',"storePlaylist")->name('playlist.store');
     Route::patch('/user/{user}/playlists/{playlist}/update',"updatePlaylist")->name('playlist.update');
     Route::delete('/user/{user}/playlists/{playlist}/destroy',"destroyPlaylist")->name('playlist.destroy');

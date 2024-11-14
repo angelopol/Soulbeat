@@ -1,6 +1,6 @@
 @extends('layouts.base')
 
-@section('title') Playlist @php $css = "playlist" @endphp @endsection
+@section('title') {{$playlist->name}} @php $css = "playlist" @endphp @endsection
 
 @section('content')
     @include('components.NavBar.aside')
@@ -9,10 +9,10 @@
         <section class="main-playlist">
             <nav class="up-playlist">
                 <div class="flex">
-                    <img class="foto-playlist" src="{{ Vite::asset('resources/assets/images/playlist1.jpeg') }}" alt="">
+                    <img class="foto-playlist" src="{{ Storage::url($playlist->photo) }}" alt="">
                     <div class="info-playlist">
-                    <h1 class="title-playlist">Trippy triple shot</h1>
-                    <span class="caracteristic"> una playlist gustosa</span>
+                    <h1 class="title-playlist">{{$playlist->name}}</h1>
+                    <span class="caracteristic">{{$playlist->description}}</span>
                     </div>
                 </div>
                 <div>
@@ -22,13 +22,16 @@
         </section>
     
         <section class="show-songs">
-
-            @include('components.posts.post_reduced', [
-                'photo' => Vite::asset('resources/assets/images/playlis3.jpg'),
-                'name' => 'Trippy triple shot', 'description' => 'reggae,rock, funk',
-                'song' => Vite::asset('resources/assets/audios/Shook Ones, Pt  II (Instrumental).mp3')
-            ])
-            
+            @foreach (explode('~', $playlist->posts) as $post)
+                @if(is_numeric($post))
+                    @php $post = App\Models\Post::find($post); @endphp
+                    @include('components.posts.post_reduced', [
+                        'photo' => Storage::url($post->photo),
+                        'name' => $post->name, 'description' => $post->description,
+                        'song' => Storage::url($post->song)
+                    ])
+                @endif
+            @endforeach
         </section>
     </div>
  
