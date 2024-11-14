@@ -8,30 +8,33 @@ use Illuminate\Http\Request;
 
 class PlaylistsController extends Controller
 {
-    public function viewPlaylists(int $user){
-        $playlists = Playlist::where('user', $user)->get();
+    public function viewPlaylists(User $user){
+        $playlists = Playlist::where('user', $user->id)->where('status', '=', 1)->get();
 
-        return view('profile.playlists.showallplaylist',['playlists' => $playlists]);
+        return view('profile.playlists.showallplaylist', ['playlists' => $playlists, 'user' => $user]);
     }
 
-    public function showPlaylist(/*Playlist $playlist*/){
-        return view('profile.playlists.playlist'/*,['playlist' => $playlist]*/);
+    public function showPlaylist(String $playlist){
+        return view('profile.playlists.playlist',['playlist' => Playlist::find($playlist)]);
     }
 
     public function storePlaylist(Request $request,User $user){
-        $id = $user-> id;
         $validated = $request->validate([
             'name' => ['string','required','max:255'],
             'description' => ['string','nullable'],
-            'photo' => ['string','nullable'],
-            'posts' => ['string']
+            'photo' => ['nullable']
         ]);
 
-        $data = array_merge(['user'=>$id],$validated);
+        $data = array_merge(['user'=>$user->id],$validated);
 
-        Playlist::create($data);
+        $playlist = Playlist::create($data);
 
-        return to_route('playlist.view',['user'=>$user->id]);
+        if(isset($validated['photo'])){
+            $playlist->photo = $validated['photo']->storeAs('public/PlaylistPhotos', $playlist->id.'.'.$validated['photo']->getClientOriginalExtension());
+            $playlist->save();
+        }
+
+        return to_route('playlist.view',['user'=>$user]);
     }
 
     public  function updatePlaylist(Request $request,User $user,Playlist $playlist){

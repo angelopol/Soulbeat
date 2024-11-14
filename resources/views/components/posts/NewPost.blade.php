@@ -48,15 +48,15 @@
         <div class="fotodelpost">
             <input type="file" name="photo" id="imageInput" accept="image/*" style="display: none;">
             <label for="imageInput" class="label-upload">
-                <i class="bi bi-camera"></i><span>Cargar Imagen</span>
+                <i class="bi bi-camera"></i><span>Upload photo</span>
             </label>
             <div class="image-preview" id="imagePreview">
-                <span>No hay imagen seleccionada</span>
+                <span>Nothing photo selected</span>
             </div>
         </div>
         <div>
             <button type="submit" class="publi">
-                <span>Publicar</span>
+                <span>Publish</span>
                 <div class="top"></div>
                 <div class="lefti"></div>
                 <div class="bottom"></div>

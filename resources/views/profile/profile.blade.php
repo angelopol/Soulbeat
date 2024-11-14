@@ -52,24 +52,30 @@
                     </div>
                     
                     <div class="item4 playlist items">
-                        <span class="text-spe"> <i class="bi bi-music-note-list no"></i>Playlists</span>
+                        <a href="{{ route('playlist.view', $user) }}" style="all: unset">
+                            <span class="text-spe"> <i class="bi bi-music-note-list no"></i>Playlists</span>
+                        </a>
                         <div class="players">
                             @foreach ($playlists as $playlist)
-                                @include('components.profile.playlist', [
-                                    'photo' => Storage::url($playlist->photo), 'name' => $playlist->name, 'description' => $playlist->description
-                                ])
+                                <a href="{{ route('playlist.show', [$user, $playlist]) }}" style="all: unset">
+                                    @include('components.profile.playlist', [
+                                        'photo' => Storage::url($playlist->photo), 'name' => $playlist->name, 'description' => $playlist->description
+                                    ])
+                                </a>
                             @endforeach
                         </div>
                     </div>
                     <div class="item5 reviews items">
-                        <span class="text-spe" id = "x"><i class="bi bi-chat-square-heart-fill"></i>Reviews</span>
-                        <div class="content-reviews">
-                            @foreach ($reviews as $review)
-                                @include('components.profile.review', [
-                                    'qualify' => $review->qualify, 'FromName' => $review->PersonName.' '.$review->PersonFullName
-                                ])
-                            @endforeach
-                        </div>
+                        <a href="{{ route('profile.reviews.view', $user) }}" style="all: unset">
+                            <span class="text-spe" id = "x"><i class="bi bi-chat-square-heart-fill"></i>Reviews</span>
+                            <div class="content-reviews">
+                                @foreach ($reviews as $review)
+                                    @include('components.profile.review', [
+                                        'qualify' => $review->qualify, 'FromName' => $review->PersonName.' '.$review->PersonFullName
+                                    ])
+                                @endforeach
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>

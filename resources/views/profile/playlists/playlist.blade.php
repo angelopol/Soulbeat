@@ -8,10 +8,15 @@
     <div class="wrapper-of-playlist">
         <section class="main-playlist">
             <nav class="up-playlist">
-                <img class="foto-playlist" src="{{ Vite::asset('resources/assets/images/playlist1.jpeg') }}" alt="">
-                <div class="info-playlist">
-                <h1 class="title-playlist">Trippy triple shot</h1>
-                <span class="caracteristic"> una playlist gustosa</span>
+                <div class="flex">
+                    <img class="foto-playlist" src="{{ Vite::asset('resources/assets/images/playlist1.jpeg') }}" alt="">
+                    <div class="info-playlist">
+                    <h1 class="title-playlist">Trippy triple shot</h1>
+                    <span class="caracteristic"> una playlist gustosa</span>
+                    </div>
+                </div>
+                <div>
+                    <i class="bi bi-pencil"></i>
                 </div>
             </nav>
         </section>

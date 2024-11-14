@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name',500);
             $table->string('description',500)->nullable();
             $table->string('photo',500)->nullable();
-            $table->longText('posts');
+            $table->longText('posts')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
