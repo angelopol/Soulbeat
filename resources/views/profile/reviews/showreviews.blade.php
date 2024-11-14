@@ -9,10 +9,12 @@
         @include('components.NavBar.profile')
         <nav class="all-reviews">
             <div class="content">
-                @include('components.profile.review_full', [
-                    'photo' => Vite::asset('resources/assets/images/tipa1.jpg'),
-                    'name' => 'Jeremy osborn', 'body' => 'i really enjoy your style of rap slfhdsl jghlkj dfghdf ljghsdfj j hdfjhglsdjgh fdslg'
-                ])
+                @foreach ($reviews as $review)
+                    @include('components.profile.review_full', [
+                        'photo' => Storage::url($review->UserPhoto), 'title' => $review->title, 'qualify' => $review->qualify,
+                        'name' => $review->PersonName.' '.$review->PersonFullName, 'body' => $review->body
+                    ])
+                @endforeach
             </div>
         </nav>
     </div>

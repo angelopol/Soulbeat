@@ -101,7 +101,8 @@ class ProfileController extends Controller
     }
 
     public function viewReviews(User $user){
-        $reviews = Review::where('to',$user)->where('status', '=', 1)->get();
+        $reviews = Review::join('users', 'reviews.to', '=', 'users.id')->where('reviews.to', $user->id)->where('reviews.status', '=', 1)
+            ->select('reviews.*', 'users.photo as UserPhoto', 'users.name as PersonName', 'users.FullName as PersonFullName')->get();
 
         return view('profile.reviews.showreviews',['reviews'=>$reviews, 'user'=>$user]);
     }
