@@ -37,10 +37,10 @@
                     <span class="u">User</span>
                     <div class="user-settings">
                         <span  class="item" style="color:white; font: inherit;">Change whatever you want</span>
-                        <input class="item" type="text" id="username" placeholder="Usuario Anterior" />
-                        <input class="item" type="email" id="email" placeholder="Email Anterior" />
+                        <input class="item" type="text" id="username" placeholder="User" />
+                        <input class="item" type="email" id="email" placeholder="Email" />
                         <div class="con item">
-                            <input type="password" id="password" placeholder="Contraseña" />
+                            <input type="password" id="password" placeholder="Password" />
                             <button class="ie" id="toggle-password"><i class="bi bi-eye"></i></button>
                         </div>
                     </div>
@@ -62,21 +62,38 @@
                     <span class="suscri">Suscripciones</span>
                 </nav>
                 <nav>
-                    <div class="card">
-                        <span ><i class="bi bi-patch-check-fill mora"></i></span>
-                        <ul class="caracteristic-card">
-                            <li class="pichi">Mayor visibilidad </li>
-                            <li class="pichi">confianza y seguridad para compradores</li>
-                            <li class="pichi">y acceso prioritario a nuevas herramientas.</li>
-                        </ul>
-                        <button class="boton-card">Subscribirte</button>
-                    </div>
+                    @if(auth()->user()->subscribed == 1)
+                        <div class="card" style="background: linear-gradient(45deg,  #d90ff4, rgb(255,143,238), rgb(255,220,255), rgb(202, 128, 255), #99bdff, #80acff)">
+                            <span ><i class="bi bi-patch-check-fill mora" style="color: rgb(161,0,161)"></i></span>
+                            <ul class="caracteristic-card">
+                                <li class="pichi" style="color: rgb(161,0,161)">Mayor visibilidad </li>
+                                <li class="pichi" style="color: rgb(161,0,161)">confianza y seguridad para compradores</li>
+                                <li class="pichi" style="color: rgb(161,0,161)">y acceso prioritario a nuevas herramientas.</li>
+                            </ul>
+                            <button class="boton-card" style="font-size: medium; background-color: #151515; color: #fff; border: none;">Unsubscribe</button>
+                        </div>
+                    @else
+                        <div class="card">
+                            <span ><i class="bi bi-patch-check-fill mora"></i></span>
+                            <ul class="caracteristic-card">
+                                <li class="pichi">Mayor visibilidad </li>
+                                <li class="pichi">confianza y seguridad para compradores</li>
+                                <li class="pichi">y acceso prioritario a nuevas herramientas.</li>
+                            </ul>
+                            <button class="boton-card">Subscribirte</button>
+                        </div>
+                    @endif
                 </nav>
             </div>
 
             <div class="contenedores-ads">
-                <nav>
-                    <span class="ads">Ads</span>
+                <nav class="superiori">
+                    <nav>
+                        <span class="ads">Ads</span>
+                    </nav>
+                    <nav>
+                        <i class="bi bi-pencil"></i>
+                    </nav>
                 </nav>
                 <div class="anuncio"> <!--componente de anuncio-->
                     <nav>
@@ -91,6 +108,7 @@
                     <nav>
                         <span class="time">19/10/24<span>
                     </nav>
+                    <button class="delete-btn" style="display: none;">&#x2212;</button>
                 </div>
             </div>
 
@@ -104,7 +122,7 @@
                     <button class="qa">Q & A</button>
                 </nav>
                 <nav>
-                    <button class="guides"> Guides</button>
+                    <button class="guides">Guides</button>
                 </nav>
             </div>
             

@@ -56,6 +56,7 @@ Route::controller(PostController::class)->group(function(){
     Route::post('/posts',"storePost")->name('post.store');
     Route::get('/posts/{post}',"ShowPost")->name('post.show');
     Route::post('/posts/download/{post}', "DownloadSong")->name('post.download');
+    Route::patch('/posts/{post}/announce', "AnnouncePost")->name('post.announce');
     Route::patch('/posts/{post}/update', "updatePost")->name('post.update');
     Route::post('/posts/reaction/{post}/{reaction}', "updateReaction")->name('post.update.reaction');
     Route::post('/posts/archive/{post}', "archivePost")->name('post.archive');
@@ -114,7 +115,7 @@ Route::controller(SettingsController::class)->group(function(){
     Route::get('/settings/ads',"viewAds")->name('settings.ads.view');
     Route::get('/settings/subscription',"viewSubscription")->name('settings.subscription.view');
     Route::post('/settings/subscription',"storeSubscription")->name('settings.subscription.store');
-    Route::delete('/settings/subscription/destroy',"destroySubscription")->name('settings.subscription.destroy');
+    Route::post('/settings/subscription/destroy',"destroySubscription")->name('settings.subscription.destroy');
     Route::post('/settings/user/enable',"enableUser")->name('setting.user.enable');
     Route::post('/settings/user/disable',"disableUser")->name('setting.user.disable');
     Route::delete('/settings/user/destroy',"destroyUser")->name('setting.user.destroy');

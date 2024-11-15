@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules\File;
 use Illuminate\Support\Facades\DB;
+use App\Models\Ad;
 
 use function Laravel\Prompts\error;
 
@@ -91,6 +92,24 @@ class PostController extends Controller
         $post -> status = 0;
 
         $post->save();
+
+        return back();
+    }
+
+    public function AnnouncePost(Request $request, Post $post){
+        $validated = $request->validate([
+            'EndTime' => ['required']
+        ]);
+
+        $ad = Ad::where('post', $post->id)->where('status', 1)->first();
+        if(isset($ad)){
+            return back();
+        }
+
+        Ad::create([
+            'post' => $post->id,
+            'EndTime' => $validated['EndTime']
+        ]);
 
         return back();
     }

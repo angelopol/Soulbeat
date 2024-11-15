@@ -25,14 +25,12 @@ const li = document.querySelectorAll('.pichi')
 let estasuscrito = true;
 const tit = document.querySelector('.title');
 const divusuario = document.getElementById('user');
-const divcompany = document.querySelector(".wrapper-company");
 
 divusuario.style.display = 'flex';
-divcompany.style.display = 'none';
 
 suscri.addEventListener('click', () => {
     if (estasuscrito) {
-        suscri.innerHTML = "Cancelar Suscripción ";
+        suscri.innerHTML = "Unsubscribe";
         suscri.style.fontSize = 'medium';
         suscri.style.backgroundColor = '#151515';
         suscri.style.color = '#fff';
@@ -41,6 +39,12 @@ suscri.addEventListener('click', () => {
         check.style.color = 'rgb(161,0,161)';
         li.forEach((ele) => {
             ele.style.color = 'rgb(161,0,161)';
+        });
+        fetch("/settings/subscription/destroy", {
+            method: "POST",
+            headers: {
+              "Content-type": "application/json; charset=UTF-8"
+            }
         });
     } else {
         suscri.innerHTML = "Suscribirse";
@@ -52,6 +56,12 @@ suscri.addEventListener('click', () => {
         check.style.color = '';
         li.forEach((ele) => {
             ele.style.color = '';
+        });
+        fetch("/settings/subscription", {
+            method: "POST",
+            headers: {
+              "Content-type": "application/json; charset=UTF-8"
+            }
         });
     }
     estasuscrito = !estasuscrito;
@@ -70,25 +80,6 @@ espa.addEventListener('click',() =>{
 ing.addEventListener('click',() =>{
     result.innerHTML = "English lenguage";
 })
-
-
-company.addEventListener('click', ()=>{
-    company.style.color = '#fff';
-    user.style.color = 'dimgray';
-    tit.innerHTML = 'Settings of company';
-    divusuario.style.display = 'none';
-    divcompany.style.display = 'flex';
-
-
-})
-
-user.addEventListener('click', ()=>{
-    user.style.color = '#fff';
-    tit.innerHTML = 'Settings';
-    company.style.color = 'dimgray';
-    divusuario.style.display = 'flex';
-    divcompany.style.display = 'none';
-});
 
 const togglePasswordBtn = document.getElementById('toggle-password');
 const passwordInput = document.getElementById('password'); // Asegúrate de tener esta línea

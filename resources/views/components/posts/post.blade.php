@@ -24,6 +24,12 @@
                                 <button type="submit" style="all: unset">Delete</button>
                             </form>
                         </li>
+                        <li>
+                            <form action="{{ route('post.announce', $id) }}" method="POST">
+                                @csrf @method('PATCH')
+                                <button type="submit" style="all: unset">Announce</button>
+                            </form>
+                        </li>
                         <li>Add to playlist</li>
                     </ul>
                 </span>
