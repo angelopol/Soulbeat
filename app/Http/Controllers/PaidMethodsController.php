@@ -9,7 +9,7 @@ class PaidMethodsController extends Controller
 {
     public function __construct() 
     {  
-        $this->middleware(['auth']);
+        $this->middleware(['auth', 'company']);
     }
     
     public function viewPaidMethods(){
@@ -31,19 +31,25 @@ class PaidMethodsController extends Controller
 
     public function updatePaidMethods(Request $request,PaidMethod $paid_method){
         $validated = $request->validate([
-            'name'=>['required','string'],
+            'name'=>['nullable','string'],
             'description'=>['string','nullable'],
         ]);
 
-        $paid_method->update($validated);
+        if(isset($validated['name'])){
+            $paid_method->name = $validated['name'];
+        }
+        if(isset($validated['feature'])){
+            $paid_method->description = $validated['description'];
+        }
+        $paid_method->save();
         
-        return to_route('');
+        return back();
     }
 
     public function destroyPaidMethods(PaidMethod $paid_method){
         $paid_method->update(['status'=>0]);
         
-        return to_route('');
+        return back();
     }
     
 }

@@ -1,15 +1,12 @@
 @include('components.settings.item')
     <div>
-        <label for="license-name">Username</label>
-        <input type="text" id="license-name" name="license-name" required>
+        <span>Name: {{ $PersonName }}</span>
     </div>
     <div>
-        <label for="license-description">Name</label>
-        <textarea id="license-description" name="license-description" required></textarea>
+        <span>Last name: {{ $LastName }}</span>
     </div>
-    <div>
-        <button class="est toggle-button">Activo</button>
-    </div>
-    <button type="submit" id="modi">Modificar</button>
-    <button type="submit" id="eli">Eliminar</button>
+    <form action="{{ route('company.user.destroy', $user) }}">
+        @csrf @method('DELETE')
+        <button type="submit" id="eli">Eliminar</button>
+    </form>
 @include('components.settings.item', ['close' => true])

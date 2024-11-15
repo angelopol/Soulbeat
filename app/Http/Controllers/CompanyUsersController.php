@@ -10,7 +10,7 @@ class CompanyUsersController extends Controller
 {
     public function __construct() 
     {  
-        $this->middleware(['auth']);
+        $this->middleware(['auth', 'company']);
     }
     
     public function viewUsers(){
@@ -72,7 +72,7 @@ class CompanyUsersController extends Controller
     public function destroyUser(User $user){
         $user->update(['status'=>0]);
 
-        return to_route('');
+        return back();
     }
 
     public function updatePermissions(Request $request,int $user){

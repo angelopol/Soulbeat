@@ -7,10 +7,11 @@
             </div>
             <span class="bi bi-caret-down-fill arrow"></span>
         </div>
-        <div class="content-tarjet">
-            <form id="license-form" class="miformula">
+        <div class="content-tarjet miformula">
+            <div id="license-form" class="miformula">
 @else
-            </form>
+            </div>
+            <br>
         </div>
     </div>
 @endif

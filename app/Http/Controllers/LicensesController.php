@@ -9,7 +9,7 @@ class LicensesController extends Controller
 {
     public function __construct() 
     {  
-        $this->middleware(['auth']);
+        $this->middleware(['auth', 'company']);
     }
     
     public function viewLicenses(){
@@ -29,13 +29,19 @@ class LicensesController extends Controller
 
     public function updateLicenses(Request $request,License $license){
         $validated = $request->validate([
-            'name'=>['required','string'],
-            'feature'=>['required','string'],
+            'name'=>['nullable','string'],
+            'feature'=>['nullable','string'],
         ]);
 
-        $license->update($validated);
+        if(isset($validated['name'])){
+            $license->name = $validated['name'];
+        }
+        if(isset($validated['feature'])){
+            $license->feature = $validated['feature'];
+        }
+        $license->save();
 
-        return to_route('');
+        return back();
     }
 
     public function updatePost(License $license,int $post){
@@ -47,6 +53,6 @@ class LicensesController extends Controller
     public function destroyLicenses(License $license){
         $license->update(['status'=>0]);
 
-        return to_route('');
+        return back();
     }
 }

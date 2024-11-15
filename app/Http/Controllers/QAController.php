@@ -9,7 +9,7 @@ class QAController extends Controller
 {
     public function __construct() 
     {  
-        $this->middleware(['auth']);
+        $this->middleware(['auth', 'company']);
     }
     
     public function viewQA(){

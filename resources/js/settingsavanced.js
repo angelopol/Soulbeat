@@ -29,18 +29,23 @@ const elements = [
     { button: guides, div: divguides },
     { button: qa, div: divqa },
 ];
+
+function ChangePage(elements, el) {
+    elements.forEach(e => {
+        if (e === el) {
+            e.div.style.display = 'flex';
+            container.style.height = 'fit-content'; // Ajusta al contenido
+            e.button.style.color = 'white';
+        } else {
+            e.div.style.display = 'none';
+            e.button.style.color = 'dimgray';
+        }
+    });
+}
+
 elements.forEach(el => {
     el.button.addEventListener('click', () => {
-        elements.forEach(e => {
-            if (e === el) {
-                e.div.style.display = 'flex';
-                container.style.height = 'fit-content'; // Ajusta al contenido
-                e.button.style.color = 'white';
-            } else {
-                e.div.style.display = 'none';
-                e.button.style.color = 'dimgray';
-            }
-        });
+        ChangePage(elements, el);
     });
 });
 
@@ -62,18 +67,4 @@ toggleButtons.forEach((toggleButton) => {
     });
 });
 
-document.querySelectorAll('form').forEach(form => {
-    form.addEventListener('submit', (event) => {
-        event.preventDefault();
-         
-        const formData = new FormData(event.target);
-        fetch(event.target.action, {
-            method: 'POST',                           //aqui hubo una clara mano de chat gpt ya que yo dezconozco eta vaina
-            body: formData
-        }).then(response => response.json()).then(data => {
-            console.log('Formulario enviado:', data);
-        }).catch(error => {
-            console.error('Error al enviar el formulario:', error);
-        });
-    });
-});
+ChangePage(elements, elements[0]);
