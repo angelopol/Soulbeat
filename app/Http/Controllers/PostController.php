@@ -13,6 +13,11 @@ use function Laravel\Prompts\error;
 
 class PostController extends Controller
 {
+    public function __construct() 
+    {  
+        $this->middleware(['auth']);
+    }
+    
     public function storePost(Request $request){
         $validated = $request->validate([
             'title' => ['string','required','max:255'],

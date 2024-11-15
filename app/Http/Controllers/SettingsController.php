@@ -9,11 +9,22 @@ use App\Models\QA;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Validation\Rule;
+use Illuminate\Database\Query\Builder;
+use Illuminate\Validation\Rules\Password;
+use Illuminate\Support\Facades\Hash;
 
 class SettingsController extends Controller
 {
+    public function __construct() 
+    {  
+        $this->middleware(['auth']);
+    }
+    
     public function viewSettings(){
-        return view('settings.user.settings');
+        $ads = Ad::join('posts', 'ads.post', '=', 'posts.id')->where('ads.status', 1)->select(['ads.*', 'posts.*'])->get();
+
+        return view('settings.user.settings', ['ads'=>$ads]);
     }
 
     public function viewGlobalParameters(){
@@ -46,20 +57,18 @@ class SettingsController extends Controller
         return view('',['user'=>$user]);
     }
 
-    public function storeSubscription(Request $request){
-        $id = Auth::id();
-        $user = User::findOrFail($id);
-        $user->update(['subscribed' => 1]); 
+    public function storeSubscription(){
+        Auth::user()->subscribed = 1;
+        Auth::user()->save(); 
 
-        return to_route('subscription.view');
+        return True;
     }
 
     public function destroySubscription(){
-        $id = Auth::id();
-        $user = User::findOrFail($id);
-        $user->update(['subscribed' => 0]); 
+        Auth::user()->subscribed = 0;
+        Auth::user()->save(); 
 
-        return to_route('subscription.view');
+        return False;
     }
 
     public function enableUser(){
@@ -79,10 +88,45 @@ class SettingsController extends Controller
     }
 
     public function destroyUser(){
-        $id = Auth::id();
-        $user = User::findOrFail($id);
-        $user->update(['status' => 0]); 
+        Auth::user()->status = 0;
+        Auth::user()->save();
+        Auth::guard('web')->logout();
 
-        return to_route('login');
+        return true;
+    }
+
+    public function CheckPassword(Request $request){
+        $request->validate([
+            'password' => ['required', 'string'],
+        ]);
+
+        if (Hash::check($request->password, Auth::user()->password)){
+            return response(status: 200);
+        } else {
+            return response(status: 401);
+        }
+    }
+
+    public function UpdateUser(Request $request){
+        $request->validate([
+            'username' => ['nullable', 'string', 'max:255', Rule::unique('users')->where(fn (Builder $query) => $query->where('status', '!=', 0))],
+            'email' => ['nullable', 'string', 'lowercase', 'email', 'max:255', Rule::unique('users')->where(fn (Builder $query) => $query->where('status', '!=', 0))],
+            'password' => ['nullable', 'confirmed', Password::defaults()],
+        ]);
+
+        if($request->username){
+            Auth::user()->username = $request->username;
+        }
+        if($request->email){
+            Auth::user()->email = $request->email;
+        }
+        if($request->password){
+            Auth::user()->password = Hash::make($request->password);
+        }
+
+        Auth::user()->save();
+        Auth::guard('web')->logout();
+
+        return redirect()->route('login');
     }
 }

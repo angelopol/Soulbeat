@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\DB;
 
 class FeedController extends Controller
 {
+    public function __construct() 
+    {  
+        $this->middleware(['auth']);
+    }
+    
     public function view(){
         $company = Post::join('users', 'posts.user', '=', 'users.id')
             ->where('users.type', 1)->where('posts.status', 1)

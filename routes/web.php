@@ -116,9 +116,11 @@ Route::controller(SettingsController::class)->group(function(){
     Route::get('/settings/subscription',"viewSubscription")->name('settings.subscription.view');
     Route::post('/settings/subscription',"storeSubscription")->name('settings.subscription.store');
     Route::post('/settings/subscription/destroy',"destroySubscription")->name('settings.subscription.destroy');
+    Route::post('/settings/user/password',"CheckPassword")->name('setting.user.password');
+    Route::post('/settings/user/update',"Updateuser")->name('setting.user.update');
     Route::post('/settings/user/enable',"enableUser")->name('setting.user.enable');
     Route::post('/settings/user/disable',"disableUser")->name('setting.user.disable');
-    Route::delete('/settings/user/destroy',"destroyUser")->name('setting.user.destroy');
+    Route::post('/settings/user/destroy',"destroyUser")->name('setting.user.destroy');
 });
 
 #CompanySettings routes

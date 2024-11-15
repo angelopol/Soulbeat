@@ -17,6 +17,6 @@ class VerifyCsrfToken extends Middleware
         '/posts/destroy/*',
         '/posts/reaction/*',
         '/user/followeds/update/*',
-        '/settings/subscription/*',
+        '/settings/*',
     ];
 }

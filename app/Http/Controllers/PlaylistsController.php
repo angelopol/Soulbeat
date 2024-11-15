@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class PlaylistsController extends Controller
 {
+    public function __construct() 
+    {  
+        $this->middleware(['auth']);
+    }
+    
     public function viewPlaylists(User $user){
         $playlists = Playlist::where('user', $user->id)->where('status', '=', 1)->get();
 

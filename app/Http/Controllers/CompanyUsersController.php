@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class CompanyUsersController extends Controller
 {
+    public function __construct() 
+    {  
+        $this->middleware(['auth']);
+    }
+    
     public function viewUsers(){
         $users = User::where('status',1)->get();
 
@@ -73,47 +78,47 @@ class CompanyUsersController extends Controller
     public function updatePermissions(Request $request,int $user){
         $permission = Permission::where('user',$user)->get();
 
-        if(isset($request->input('togglePost'))){
+        if(null !== $request->input('togglePost')){
             $permission->posts = 1;
         }else{
             $permission->posts = 0;
         }
-        if(isset($request->input('togglePlayList'))){
+        if(null !== $request->input('togglePlayList')){
             $permission->playlist = 1;
         }else{
             $permission->playlist = 0;
         }
-        if(isset($request->input('toggleChats'))){
+        if(null !== $request->input('toggleChats')){
             $permission->chats = 1;
         }else{
             $permission->chats = 0;
         }
-        if(isset($request->input('togglePayment'))){
+        if(null !== $request->input('togglePayment')){
             $permission->payment = 1;
         }else{
             $permission->payment = 0;
         }
-        if(isset($request->input('toggleUsers'))){
+        if(null !== $request->input('toggleUsers')){
             $permission->users = 1;
         }else{
             $permission->users = 0;
         }
-        if(isset($request->input('toggleLicenses'))){
+        if(null !== $request->input('toggleLicenses')){
             $permission->licenses = 1;
         }else{
             $permission->licenses = 0;
         }
-        if(isset($request->input('togglePaidMethods'))){
+        if(null !== $request->input('togglePaidMethods')){
             $permission->PaidMethods = 1;
         }else{
             $permission->PaidMethods = 0;
         }
-        if(isset($request->input('toggleGuides'))){
+        if(null !== $request->input('toggleGuides')){
             $permission->guides = 1;
         }else{
             $permission->guides = 0;
         }
-        if(isset($request->input('toggleQA'))){
+        if(null !== $request->input('toggleQA')){
             $permission->QA = 1;
         }else{
             $permission->QA = 0;

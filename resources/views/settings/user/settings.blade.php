@@ -3,7 +3,7 @@
 @section('title') Settings @php $css = "settings" @endphp @endsection
 
 @section('content')
-    @include('components.NavBar.aside')
+    @include('components.NavBar.aside', ['value' => '   Search...'])
     
     <div class="wrapper">
         @include('components.NavBar.settings')
@@ -35,15 +35,16 @@
             <div class="contenedores">
                 <div class="content-user">
                     <span class="u">User</span>
-                    <div class="user-settings">
+                    <form id="UserForm" action="{{ route('setting.user.update') }}" method="POST" class="user-settings" autocomplete="off">
                         <span  class="item" style="color:white; font: inherit;">Change whatever you want</span>
-                        <input class="item" type="text" id="username" placeholder="User" />
-                        <input class="item" type="email" id="email" placeholder="Email" />
+                        <input name="username" class="item" type="text" id="username" placeholder="User" />
+                        <input name="email" class="item" type="email" id="email" placeholder="Email" />
                         <div class="con item">
-                            <input type="password" id="password" placeholder="Password" />
+                            <input name="password" type="password" id="password" placeholder="Password" />
                             <button class="ie" id="toggle-password"><i class="bi bi-eye"></i></button>
                         </div>
-                    </div>
+                    </form>
+                    <button id="ApplyChanges"><i class="bi bi-check"></i></button>
                     <div id="modal1" class="modal">
                         <div class="modal-content">
                             <span class="cierra">&times;</span>
@@ -59,7 +60,7 @@
 
             <div class="contenedor-subs">
                 <nav>
-                    <span class="suscri">Suscripciones</span>
+                    <span class="suscri">Subscriptions</span>
                 </nav>
                 <nav>
                     @if(auth()->user()->subscribed == 1)
@@ -80,7 +81,7 @@
                                 <li class="pichi">confianza y seguridad para compradores</li>
                                 <li class="pichi">y acceso prioritario a nuevas herramientas.</li>
                             </ul>
-                            <button class="boton-card">Subscribirte</button>
+                            <button class="boton-card">Subscribe</button>
                         </div>
                     @endif
                 </nav>
@@ -95,21 +96,9 @@
                         <i class="bi bi-pencil"></i>
                     </nav>
                 </nav>
-                <div class="anuncio"> <!--componente de anuncio-->
-                    <nav>
-                        <div class="post">
-                            <img class="foto" src="../front/images/foto-tupac-landing.jpeg" alt="">
-                            <span class="nombredelbeat">nombre del post-beat</span>
-                        </div>
-                    </nav>
-                    <nav>
-                        <span class="price">9.00$</span>
-                    </nav>
-                    <nav>
-                        <span class="time">19/10/24<span>
-                    </nav>
-                    <button class="delete-btn" style="display: none;">&#x2212;</button>
-                </div>
+                @foreach ($ads as $ad)
+                    @include('components.posts.ad', ['photo' => $ad->photo, 'title' => $ad->title, 'cost' => $ad->cost, 'EndTime' => $ad->EndTime])
+                @endforeach
             </div>
 
             <div class="contenedores">
@@ -132,7 +121,7 @@
                 <div id="modal2" class="modal modale">
                     <div class="modal-content">
                         <span class="cierra">&times;</span>
-                        <p style="color: white;">¿estás seguro que quieres cerrar esta cuenta?</p>
+                        <p style="color: white;">¿Estás seguro que quieres cerrar esta cuenta?</p>
                         <div class="sepa">
                             <button id="confirm-password2">Confirmar</button>
                             <button id="cancel-button2">Cancelar</button>

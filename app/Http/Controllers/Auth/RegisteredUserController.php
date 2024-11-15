@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Illuminate\Validation\Rule;
+use Illuminate\Database\Query\Builder;
 use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
@@ -33,8 +35,8 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'LastName' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'string', 'max:255', 'unique:'.User::class],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'username' => ['required', 'string', 'max:255', Rule::unique('users')->where(fn (Builder $query) => $query->where('status', '!=', 0))],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique('users')->where(fn (Builder $query) => $query->where('status', '!=', 0))],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 

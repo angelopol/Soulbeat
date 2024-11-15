@@ -1,5 +1,5 @@
 <header class="header">
-    <Span class="title"><i class="bi bi-arrow-left"></i>Settings</Span>
+    <A href="{{ route('settings.view') }}" style="all: unset"><Span class="title"><i class="bi bi-arrow-left"></i>Settings</Span></A>
     <div class="clases">
         <span class="class" id="element0">Licences</span>
         <span class="barrita">|</span>

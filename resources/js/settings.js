@@ -23,6 +23,13 @@ const check = document.querySelector('.mora');
 const card = document.querySelector('.card')
 const li = document.querySelectorAll('.pichi')
 let estasuscrito = true;
+
+if (suscri.innerHTML === "Subscribe") {
+    estasuscrito = true;
+} else {
+    estasuscrito = false;
+}
+
 const tit = document.querySelector('.title');
 const divusuario = document.getElementById('user');
 
@@ -40,14 +47,14 @@ suscri.addEventListener('click', () => {
         li.forEach((ele) => {
             ele.style.color = 'rgb(161,0,161)';
         });
-        fetch("/settings/subscription/destroy", {
+        fetch("/settings/subscription", {
             method: "POST",
             headers: {
               "Content-type": "application/json; charset=UTF-8"
             }
         });
     } else {
-        suscri.innerHTML = "Suscribirse";
+        suscri.innerHTML = "Subscribe";
         suscri.style.fontSize = '';
         suscri.style.backgroundColor = '';
         suscri.style.color = '';
@@ -57,7 +64,7 @@ suscri.addEventListener('click', () => {
         li.forEach((ele) => {
             ele.style.color = '';
         });
-        fetch("/settings/subscription", {
+        fetch("/settings/subscription/destroy", {
             method: "POST",
             headers: {
               "Content-type": "application/json; charset=UTF-8"
@@ -74,7 +81,7 @@ let result = document.querySelector('.result');
 
 
 espa.addEventListener('click',() =>{
-    result.innerHTML = "idioma español";
+    result.innerHTML = "Idioma español";
 })
 
 ing.addEventListener('click',() =>{
@@ -121,7 +128,6 @@ document.querySelectorAll('.miformula').forEach((eje) => {
 
 document.addEventListener('DOMContentLoaded', () => {
     const botonCuenta = document.querySelector('.closer');
-    const inputs = document.querySelectorAll('.user-settings input');
 
     const modal1 = document.getElementById('modal1');
     const closeModal1 = modal1.querySelector('.cierra');
@@ -132,14 +138,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const confirmPasswordBtn2 = document.getElementById('confirm-password2');
     const cancelButton2 = document.getElementById('cancel-button2');
 
-    let currentInput;
+    const ApplyChanges = document.getElementById('ApplyChanges');
+    const UserForm = document.getElementById('UserForm');
 
-    inputs.forEach(input => {
-        input.addEventListener('click', (event) => {
-            event.stopPropagation();  // Prevenir burbujeo
-            currentInput = input;
-            modal1.style.display = 'flex';
-        });
+    ApplyChanges.addEventListener('click', (event) => {
+        event.stopPropagation();
+        modal1.style.display = 'flex';
     });
 
     botonCuenta.addEventListener('click', (event) => {
@@ -151,13 +155,19 @@ document.addEventListener('DOMContentLoaded', () => {
         modal1.style.display = 'none';
     });
 
-    confirmPasswordBtn1.addEventListener('click', () => {
+    confirmPasswordBtn1.addEventListener('click', async () => {
         const currentPassword = document.getElementById('current-password1').value;
-        if (currentPassword === "tuContraseñaActual") {
-            modal1.style.display = 'none';
-            currentInput.focus();
+        let check = await fetch("/settings/user/password", {
+            method: "POST",
+            headers: {
+              "Content-type": "application/json; charset=UTF-8"
+            },
+            body: JSON.stringify({ password: currentPassword })
+        });
+        if (check.status === 200) {
+            UserForm.submit();
         } else {
-            alert('Contraseña incorrecta');
+            alert('Wrong password.');
         }
     });
 
@@ -170,7 +180,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     confirmPasswordBtn2.addEventListener('click', () => {
-        
+        fetch("/settings/user/destroy", {
+            method: "POST",
+            headers: {
+              "Content-type": "application/json; charset=UTF-8"
+            }
+        });
         
         modal2.style.display = 'none';
     });

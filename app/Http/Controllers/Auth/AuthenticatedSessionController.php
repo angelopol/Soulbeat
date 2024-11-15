@@ -29,8 +29,9 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        if(Auth::user()->status != 1){
-            return redirect()->route('login');
+        if(Auth::user()->status == 0){
+            Auth::guard('web')->logout();
+            return redirect()->route('login')->withErrors(['email' => 'Your account is closed.']);
         }
 
         return redirect()->intended(RouteServiceProvider::HOME);
