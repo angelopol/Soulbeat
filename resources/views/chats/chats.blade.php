@@ -15,7 +15,7 @@
         </header>
         <section class="all-messages">
             <div class="wrapper">
-                <span class="name">Chat with tysarkis</span>
+                <span class="name">Chats</span>
                 <button class="new"><i class="bi bi-hourglass-bottom"></i>Extender chat</button>
                 <button class="new"><i class="bi bi-bag-x"></i>Cancelar venta</button>
                 <button class="new"><i class="bi bi-bag-check"></i>Aceptar venta</button>
@@ -37,12 +37,12 @@
                             'text' => 'hola', 'time' => '10:02 AM'
                         ])
                     </div>
-                    <div class="typear">
-                        <input type="text" placeholder="Message tysarkis">
+                    <form class="typear">
+                        <input id="message" name="message" type="text" placeholder="Message...">
                         <div>
-                            <button class="send"><i class="bi bi-send"></i></button>
+                            <button type="submit" class="send"><i class="bi bi-send"></i></button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
             
@@ -50,5 +50,15 @@
 
     </div>
     
+    <script src="{{ Vite::asset('resources/js/pusher.min.js') }}"></script>
+    <script src="{{ Vite::asset('resources/js/jquery.min.js') }}"></script>
+    <script>
+        const pusher  = new Pusher(
+            '{{config('broadcasting.connections.pusher.key')}}',
+            {cluster: '{{config('broadcasting.connections.pusher.cluster') ?? 'mt1'}}'}
+        );
+        const channel = pusher.subscribe('public');
+        const token  = '{{csrf_token()}}';
+    </script>
     <script src="{{ Vite::asset('resources/js/chats.js') }}"></script>
 @endsection

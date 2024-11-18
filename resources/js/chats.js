@@ -1,81 +1,55 @@
-const input = document.querySelector('.typear input');
-const messageContainer = document.querySelector('.messagesz');
-
-// Función para enviar el mensaje
-function sendMessage() {
-    const messageText = input.value;
-
-    if (messageText.trim() !== '') {
-        // Crear un nuevo div para el mensaje
-        const newMessage = document.createElement('div');
-        newMessage.className = 'message rightchat';
-        newMessage.innerHTML = `
-            <div class="content">
-                <div class="textrest">${messageText}</div>
-                <div class="time">${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>
-            </div>
-        `;
-        messageContainer.appendChild(newMessage);
-        input.value = '';
-
-        messageContainer.scrollTop = messageContainer.scrollHeight;
-    }
-}
-
-// Evento para el botón de enviar
-document.querySelector('.send').addEventListener('click', sendMessage);
-
-// Evento para la tecla "Enter"
-input.addEventListener('keypress', function(event) {
-    if (event.key === 'Enter') {
-        sendMessage();
-        event.preventDefault(); // Evita el salto de línea
-    }
-});
-
 const plus = document.querySelector('.m');
 const trans = document.querySelector('.trans');
 const mes = document.querySelector('.direct');
 const nameofstatus = document.querySelector('.nameofstatus');
 
-// Variable para rastrear el estado
-let isClicked = false;
-
 trans.addEventListener('click', () => {
-    isClicked = !isClicked; // Alterna el estado
-
-    if (isClicked) {
-        trans.style.color = 'white';
-        mes.style.color = 'dimgray';
-       
-        nameofstatus.innerHTML = 'Transactions';
-    }
+    trans.style.color = 'white';
+    mes.style.color = 'dimgray';
+    
+    nameofstatus.innerHTML = 'Transactions';
 });
 
 mes.addEventListener('click', () => {
-    isClicked = !isClicked; // Alterna el estado
-
-    if (isClicked) {
-        mes.style.color = 'white';
-        trans.style.color = 'dimgray';
-        
-        nameofstatus.innerHTML = 'Direct messages';
-    }
-});
-document.querySelector('.plus').addEventListener('click', function() {
-    document.querySelector('.dropdown-content').classList.toggle('show');
+    mes.style.color = 'white';
+    trans.style.color = 'dimgray';
+    
+    nameofstatus.innerHTML = 'Direct messages';
 });
 
-window.onclick = function(event) {
-    if (!event.target.matches('.plus')) {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        for (var i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('show')) {
-                openDropdown.classList.remove('show');
-            }
-        }
+Pusher.logToConsole = true;
+//Receive messages
+channel.bind('chat', function (data) {
+    if(pusher.connection.socket_id != data.socket_id){
+      $.post("/chats/1/receive", {
+      _token:  token,
+      message: data.message
+      })
+      .done(function (res) {
+        $(".messages > .message").last().after(res);
+        $(document).scrollTop($(document).height());
+      });
     }
-}
+});
 
+//Broadcast messages
+$("form").submit(function (event) {
+event.preventDefault();
 
+$.ajax({
+    url:     "/chats/1/broadcast",
+    method:  'POST',
+    headers: {
+    'X-Socket-Id': pusher.connection.socket_id
+    },
+    data:    {
+    _token:  token,
+    socket_id: pusher.connection.socket_id,
+    message: $("form #message").val(),
+    }
+}).done(function (res) {
+    $(".messagesz > .message").last().after(res);
+    $("form #message").val('');
+    $(document).scrollTop($(document).height());
+});
+});

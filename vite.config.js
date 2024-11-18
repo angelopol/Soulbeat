@@ -28,6 +28,8 @@ export default defineConfig({
                 'resources/js/settingsavanced.js',
                 'resources/js/showallplaylist.js',
                 'resources/js/CreatePost.js',
+                'resources/js/jquery.min.js',
+                'resources/js/pusher.min.js',
             ],
             refresh: true,
         }),

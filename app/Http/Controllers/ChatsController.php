@@ -6,6 +6,10 @@ use App\Models\Chat;
 use App\Models\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Pusher\Pusher;
 
 class ChatsController extends Controller
 {
@@ -110,5 +114,34 @@ class ChatsController extends Controller
         $message->update(['status'=>0]);
 
         return to_route('');
+    }
+
+    private function SendMessage($message)
+    {
+        $pusher = new Pusher(
+            config('broadcasting.connections.pusher.key'),
+            config('broadcasting.connections.pusher.secret'),
+            config('broadcasting.connections.pusher.app_id'),
+            array(
+                'cluster' => config('broadcasting.connections.pusher.options.cluster'),
+                'useTLS' => config('broadcasting.connections.pusher.options.useTLS')
+            )
+        );
+    
+        $pusher->trigger('public', 'chat', ['message' => $message, 'socket_id' => request()->get('socket_id')]);
+    }
+
+    public function broadcast(Request $request): Factory|View|Application
+    {
+        self::SendMessage($request->get('message'));
+
+        return view('components.chats.messages.my', [
+            'text' => $request->get('message'), 'time' => now()->format('H:i')
+        ]);
+    }
+
+    public function receive(Request $request): Factory|View|Application
+    {
+        return view('receive', ['message' => $request->get('message')]);
     }
 }

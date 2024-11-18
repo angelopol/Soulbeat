@@ -98,6 +98,8 @@ Route::controller(ChatsController::class)->group(function(){
     Route::get('/chats/transaction',"viewTransaction")->name('chat.transaction.view');
     Route::get('/chats/{chat}',"showChat")->name('chat.show');
     Route::post('/chats/{chat}',"storeChat")->name('chat.store');
+    Route::post('/chats/{chat}/broadcast',"broadcast")->name('chat.broadcast');
+    Route::post('/chats/{chat}/receive',"receive")->name('chat.receive');
     Route::delete('/chats/{chat}/destroy',"destroyChat")->name('chat.destroy');
     Route::patch('/chats/{chat}/time',"updateChatTime")->name('chat.time.update');
     Route::patch('/chats/{chat}/accept',"updateChatAccept")->name('chat.accept.update');
