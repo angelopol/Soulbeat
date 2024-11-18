@@ -715,6 +715,17 @@ min-width: 8rem;
     font: inherit;
 }
 
+.button-message{
+    position: relative;
+    background-color: rgb(161, 0, 161);
+    color: white;
+    margin-left: 1rem;
+    padding: 12px;
+    border-radius: 1em;
+    border: none;
+    font: inherit;
+}
+
 .button-unfollow{
     position: relative;
     background-color: black;

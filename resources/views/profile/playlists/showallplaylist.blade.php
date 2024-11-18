@@ -19,10 +19,14 @@
                 @endforeach
             </div>
         </nav>
-        @include('components.buttons.NewPost')
+        @if(auth()->user()->id == $user->id)
+            @include('components.buttons.NewPost')
+        @endif
     </div>
 
-    @include('components.posts.NewPlaylist')
+    @if(auth()->user()->id == $user->id)
+        @include('components.posts.NewPlaylist')
+    @endif
 
     <script src="{{ Vite::asset('resources/js/showallplaylist.js') }}"></script>
 

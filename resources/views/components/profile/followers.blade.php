@@ -10,9 +10,12 @@
             <div class="cartaentera">
                 @foreach ($followers as $follower)
                     <div class="seguidores">
-                        <img class="picture" src="{{Storage::url($follower->photo)}}" alt="">
+                        @if($follower->photo != NULL AND $follower->photo != '')
+                            <img class="picture" src="{{Storage::url($follower->photo)}}" alt="">
+                        @endif
                         <span class="namess">{{$follower->UserName}}</span>
-                        @if($follower->id != auth()->user()->id)
+                        @if($follower->id != auth()->user()->id AND $follower->follow == NULL)
+                        
                             @if(!isset($unfollow))
                                 <button class="button-follow" UserName="{{ $follower->UserName }}">Follow</button>
                             @else

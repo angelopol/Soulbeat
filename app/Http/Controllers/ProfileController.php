@@ -88,12 +88,17 @@ class ProfileController extends Controller
         $posts = self::GetPosts($user);
 
         $followers = User::where('followed', 'LIKE', '%~'.$user->id.'~%')->get();
+        foreach ($followers as $follower){
+            if(str_contains($follower->followed, '~'.$user->id.'~')){
+                $follower->follow = true;
+            }
+        }
 
         $followed = [];
         foreach (explode('~', $user->followed) as $follow) {
             if ($follow != '' AND $follow != '~') {
-                $user = User::where('id', preg_replace('/\D/', '', $follow))->where('status', 1)->first();
-                if ($user != null) $followed[] = $user;
+                $Follow = User::where('id', preg_replace('/\D/', '', $follow))->where('status', 1)->first();
+                if ($Follow != null) $followed[] = $Follow;
             }
         }
 
@@ -102,7 +107,7 @@ class ProfileController extends Controller
 
         $playlists = Playlist::where('user', $user->id)->where('status', 1)->get();
         
-        return view('profile.profile', ['posts'=>$posts, 'user'=>$user, 'followers'=>$followers, 'followed'=>$followed, 'reviews'=>$reviews, 'playlists'=>$playlists]);
+        return view('profile.profile', ['posts'=>$posts, 'CurrentUser'=>$user, 'followers'=>$followers, 'followed'=>$followed, 'reviews'=>$reviews, 'playlists'=>$playlists]);
     }
 
     public function viewReviews(User $user){

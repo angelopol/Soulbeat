@@ -29,15 +29,15 @@
         </div>
     </nav>
     <nav class="left-down">
-        <div class="content-perfil">
-        <div class="perfil">
-            <a href="{{ route('profile.post.view', auth()->user()) }}" style="all: unset">
-                @if(auth()->user()->photo)
-                    <img  class ="fotodeperfil" src="{{ Storage::url(auth()->user()->photo) }}" alt="">
-                @endif
-                <span class="text-perfil">Perfil</span>
-            </a>
-        </div>
-    </div>
+        <a href="{{ route('profile.post.view', auth()->user()) }}" style="all: unset">
+            <div class="content-perfil">
+                <div class="perfil">
+                    @if(auth()->user()->photo)
+                        <img  class ="fotodeperfil" src="{{ Storage::url(auth()->user()->photo) }}" alt="">
+                    @endif
+                    <span class="text-perfil">Perfil</span>
+                </div>
+            </div>
+        </a>
     </nav>
 </aside>
