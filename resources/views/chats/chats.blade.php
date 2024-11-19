@@ -1,6 +1,6 @@
 @extends('layouts.base')
 
-@section('title') Messages @php $css = "chats" @endphp @endsection
+@section('title') Chats @php $css = "chats" @endphp @endsection
 
 @section('content')
     @include('components.NavBar.aside')
@@ -16,38 +16,30 @@
         <section class="all-messages">
             <div class="wrapper">
                 <span class="name">Chats</span>
-                <button class="new"><i class="bi bi-hourglass-bottom"></i>Extender chat</button>
-                <button class="new"><i class="bi bi-bag-x"></i>Cancelar venta</button>
-                <button class="new"><i class="bi bi-bag-check"></i>Aceptar venta</button>
+                <button class="new TransactionsButton"><i class="bi bi-hourglass-bottom"></i> Extender chat</button>
+                <button class="new TransactionsButton"><i class="bi bi-bag-x"></i> Cancelar venta</button>
+                <button class="new TransactionsButton"><i class="bi bi-bag-check"></i> Aceptar venta</button>
             </div>
             <div class="chatsandpersons">
             <aside class="persons">
                 <span class="nameofstatus">Direct messages</span>
-                @include('components.chats.people', [
-                    'name' => 'Enrique Gonzalez', 'photo' => Vite::asset('resources/assets/images/perfil1.jpeg')
-                ])
+                <div id="PeopleChats">
+                </div>
             </aside>
             <div class="wrapperchat">
                 <div class="chat-container">
-                    <div class="messagesz"> <!-- Contenedor de mensajes -->
-                        @include('components.chats.messages.your', [
-                            'photo' => Vite::asset('resources/assets/images/perfil1.jpeg'), 'text' => 'hola', 'name' => 'Noah mussiala', 'time' => '10:00 AM'
-                        ])
-                        @include('components.chats.messages.my', [
-                            'text' => 'hola', 'time' => '10:02 AM'
-                        ])
+                    <div class="messagesz">
                     </div>
-                    <form class="typear">
+                    <form class="typear" style="display: none" id="SendForm">
                         <input id="message" name="message" type="text" placeholder="Message...">
+                        <input type="hidden" name="ChatId" id="ChatId" value="">
                         <div>
                             <button type="submit" class="send"><i class="bi bi-send"></i></button>
                         </div>
                     </form>
                 </div>
             </div>
-            
         </section>
-
     </div>
     
     <script src="{{ Vite::asset('resources/js/pusher.min.js') }}"></script>
@@ -61,4 +53,23 @@
         const token  = '{{csrf_token()}}';
     </script>
     <script src="{{ Vite::asset('resources/js/chats.js') }}"></script>
+    @php
+        $chat = App\Models\Chat::where('id', request()->get('CurrentChat'))->first();
+        $AcceptFrom = $chat ? $chat->AcceptFrom : '';
+        $CurrentChat = $chat ? $chat->id : '';
+    @endphp
+    <script>
+        const CurrentChat = '{{$CurrentChat}}';
+        const AcceptFrom = '{{$AcceptFrom}}';
+        if (CurrentChat){
+            if (!AcceptFrom){
+                LoadDirectMessages();
+            } else {
+                LoadTransactions();
+            }
+            LoadMessages(CurrentChat);
+        } else {
+            LoadDirectMessages();
+        }
+    </script>
 @endsection

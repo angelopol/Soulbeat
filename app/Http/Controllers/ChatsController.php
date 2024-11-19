@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Storage;
 use Pusher\Pusher;
 
 class ChatsController extends Controller
@@ -19,71 +20,114 @@ class ChatsController extends Controller
     }
 
     public function viewDirects(){
-        /*$user = Auth::user();
-
-        $id = $user->id;
-
-        $chats = Chat::where('from', $id) 
-             ->whereNull('AcceptFrom')
-             ->whereNull('AcceptTo')
-             ->get();
-
-        return view('',['chats'=>$chats]);*/
         return view('chats.chats');
     }
 
+    public function getDirects(){
+        $userId = Auth::user()->id;
+        $chats = Chat::when($userId, function ($query, $userId) {
+            return $query->join('users', function ($join) use ($userId) {
+                $join->on('chats.to', '=', 'users.id')
+                     ->where('chats.from', $userId)
+                     ->orWhere(function ($query) use ($userId) {
+                         $query->on('chats.from', '=', 'users.id')
+                               ->where('chats.to', $userId);
+                     });
+            });
+        })
+        ->whereNull('chats.AcceptFrom')
+        ->whereNull('chats.AcceptTo')
+        ->select(['chats.*', 'users.photo as photo', 'users.UserName as UserName'])
+        ->get();
+
+        $peoples = [];
+        foreach($chats as $chat){
+            $peoples[] = view('components.chats.people', [
+                'name' => $chat->UserName, 'photo' => $chat->photo, 'id' => $chat->id
+            ])->render();
+        }
+        return $peoples;
+    }
+
     public function viewTransactions(){
-        $user = Auth::user();
-
-        $id = $user->id;
-
-        $chats = Chat::where('from', $id) 
-             ->whereNotNull('AcceptFrom')
-             ->whereNotNull('AcceptTo')
-             ->get();
-
-        return view('',['chats'=>$chats]);
+        $userId = Auth::user()->id;
+        $chats = Chat::when($userId, function ($query, $userId) {
+            return $query->join('users', function ($join) use ($userId) {
+                $join->on('chats.to', '=', 'users.id')
+                     ->where('chats.from', $userId)
+                     ->orWhere(function ($query) use ($userId) {
+                         $query->on('chats.from', '=', 'users.id')
+                               ->where('chats.to', $userId);
+                     });
+            });
+        })
+        ->whereNotNull('AcceptFrom')
+        ->whereNotNull('AcceptTo')
+        ->select(['chats.*', 'users.photo as photo', 'users.UserName as UserName'])
+        ->get();
+        
+        $peoples = [];
+        foreach($chats as $chat){
+            $peoples[] = view('components.chats.people', [
+                'name' => $chat->UserName, 'photo' => $chat->photo, 'id' => $chat->id
+            ])->render();
+        }
+        return $peoples;
     }
 
     public function showChat(Chat $chat){
-        $messages = Message::where('chat',$chat->id)->get();
+        $messages = Message::join('users', 'messages.user', '=', 'users.id')->where('messages.chat', $chat->id)->
+            where('messages.status', '!=', 0)->select('messages.*', 'users.photo as photo', 'users.UserName as UserName')->get();
 
-        return view('',['chat'=>$chat,'messages'=>$messages]);
+        $views = [];
+        foreach($messages as $message){
+            $views[] = view('components.chats.messages.'.($message->user == auth()->user()->id ? 'my' : 'your'), [
+                'text' => $message->body, 'time' => $message->created_at->format('H:i'),
+                'photo' => Storage::url($message->photo), 'name' => $message->UserName
+            ])->render();
+        }
+        return $views;
     }
 
     public function storeChat(Request $request){
-        $user = Auth::user();
-        $id = $user->id;
-
         $validated = $request->validate([
             'to' => ['required','integer'],
         ]);
 
         $data = array_merge($validated, [
-            'from' => $id,
+            'from' => auth()->user()->id,
             'AcceptFrom' => $request->has('type') ? 0 : null,
             'AcceptTo' => $request->has('type') ? 0 : null,
         ]);
 
-        Chat::create($data);
+        $verify = Chat::where('from', $data['from'])->where('to', $data['to'])->first();
+        if($verify === null){
+            $CurrentChat = Chat::create($data);
+        } else {
+            $CurrentChat = $verify;
+        }
 
-        return to_route('');
+        return redirect()->route('chat.directs.view', ['CurrentChat' => $CurrentChat]);
     }
 
     public function destroyChat(Chat $chat){
         $chat->delete();
+        $messages = Message::where('chat', $chat->id)->get();
+        foreach($messages as $message){
+            $message->delete();
+        }
 
-        return to_route('');
+        return back();
     }
 
     public function updateChatTime(Chat $chat){
         $chat->time += 48;
         $chat->update();
 
-        return to_route('');
+        return back();
     }
 
-    public function updateChatAccept(Request $request,Chat $chat){
+    public function updateChatAccept(Request $request, Chat $chat){
         if($request->input('accept') != null){
             $chat->AcceptTo = 1;
         }else{
@@ -92,28 +136,31 @@ class ChatsController extends Controller
 
         $chat->update();
 
-        return to_route('');
+        return back();
     }
 
-    public function storeMessage(Request $request,Chat $chat){
-        $user = Auth::user();
-        $id = $user->id;
-
+    private function CreateMessage($request, $id){
         $validated = $request->validate([
-            'body' => ['required','string'],
+            'message' => ['required', 'string'],
         ]);
 
-        $data = array_merge(['chat'=>$chat->id,'user'=>$id],$validated);
+        Message::create([
+            'chat' => $id,
+            'user' => auth()->user()->id,
+            'body' => $validated['message']
+        ]);
+    }
 
-        Message::create($data);
+    public function storeMessage(Request $request, Chat $chat){
+        self::CreateMessage($request, $chat->id);
 
-        return to_route('');
+        return back();
     }
 
     public function destroyMessage(Message $message){
         $message->update(['status'=>0]);
 
-        return to_route('');
+        return back();
     }
 
     private function SendMessage($message)
@@ -134,6 +181,7 @@ class ChatsController extends Controller
     public function broadcast(Request $request): Factory|View|Application
     {
         self::SendMessage($request->get('message'));
+        self::CreateMessage($request, $request->get('chat'));
 
         return view('components.chats.messages.my', [
             'text' => $request->get('message'), 'time' => now()->format('H:i')
@@ -142,6 +190,22 @@ class ChatsController extends Controller
 
     public function receive(Request $request): Factory|View|Application
     {
-        return view('receive', ['message' => $request->get('message')]);
+        $userId = Auth::user()->id;
+        $chat = Chat::when($userId, function ($query, $userId) {
+            return $query->join('users', function ($join) use ($userId) {
+                $join->on('chats.to', '=', 'users.id')
+                    ->where('chats.from', $userId)
+                    ->orWhere(function ($query) use ($userId) {
+                        $query->on('chats.from', '=', 'users.id')
+                            ->where('chats.to', $userId);
+                    });
+            });
+        })
+        ->where('chats.id', $request->get('chat'))
+        ->select(['chats.*', 'users.photo as photo', 'users.UserName as UserName'])
+        ->first();
+        return view('components.chats.messages.your', [
+            'text' => $request->get('message'), 'time' => now()->format('H:i'), 'photo' => $chat->photo, 'name' => $chat->UserName
+        ]);
     }
 }

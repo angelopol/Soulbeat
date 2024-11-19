@@ -24,7 +24,9 @@
                     @else
                         <button class="button-unfollow padding-bottom" UserName="{{ $CurrentUser->UserName }}">Unfollow</button>
                     @endif
-                    <form action="">
+                    <form action="{{route('chat.store')}}" method="POST">
+                        @csrf
+                        <input type="text" name="to" value="{{$CurrentUser->id}}" hidden>
                         <button class="button-message padding-bottom">Send message</button>
                     </form>
                 </div>
@@ -89,11 +91,15 @@
                 </div>
             </div>
         </div>
-        @include('components.buttons.NewPost')
+        @if(auth()->user()->id == $CurrentUser->id)
+            @include('components.buttons.NewPost')
+        @endif
     </div>
 
     <div id="overlay"></div>
-    @include('components.posts.NewPost')
+    @if(auth()->user()->id == $CurrentUser->id)
+        @include('components.posts.NewPost')
+    @endif
     @include('components.profile.followers', ['followers' => $followers])
     @include('components.profile.followed', ['followed' => $followed])
 

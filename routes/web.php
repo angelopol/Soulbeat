@@ -95,9 +95,10 @@ Route::controller(PlaylistsController::class)->group(function(){
 #chats routes
 Route::controller(ChatsController::class)->group(function(){
     Route::get('/chats',"viewDirects")->name('chat.directs.view');
-    Route::get('/chats/transaction',"viewTransaction")->name('chat.transaction.view');
+    Route::get('/chats/directs',"getDirects")->name('chat.directs.get');
+    Route::get('/chats/transaction',"viewTransactions")->name('chat.transaction.view');
+    Route::post('/chats',"storeChat")->name('chat.store');
     Route::get('/chats/{chat}',"showChat")->name('chat.show');
-    Route::post('/chats/{chat}',"storeChat")->name('chat.store');
     Route::post('/chats/{chat}/broadcast',"broadcast")->name('chat.broadcast');
     Route::post('/chats/{chat}/receive',"receive")->name('chat.receive');
     Route::delete('/chats/{chat}/destroy',"destroyChat")->name('chat.destroy');
