@@ -16,9 +16,21 @@
         <section class="all-messages">
             <div class="wrapper">
                 <span class="name">Chats</span>
-                <button class="new TransactionsButton"><i class="bi bi-hourglass-bottom"></i> Extender chat</button>
-                <button class="new TransactionsButton"><i class="bi bi-bag-x"></i> Cancelar venta</button>
-                <button class="new TransactionsButton"><i class="bi bi-bag-check"></i> Aceptar venta</button>
+                <form action="{{route('chat.time.update')}}" method="POST">
+                    @csrf @method('PATCH')
+                    <input class="ChatId" type="hidden" name="ChatId" id="ChatId" value="">
+                    <button type="submit" class="new TransactionsButton"><i class="bi bi-hourglass-bottom"></i> Extender chat</button>
+                </form>
+                <form action="{{route('chat.destroy')}}" method="POST">
+                    @csrf @method('DELETE')
+                    <input class="ChatId" type="hidden" name="ChatId" id="ChatId" value="">
+                    <button type="submit" class="new TransactionsButton"><i class="bi bi-bag-x"></i> Cancelar venta</button>
+                </form>
+                <form action="{{route('chat.accept.update')}}" method="POST">
+                    @csrf @method('PATCH')
+                    <input class="ChatId" type="hidden" name="ChatId" id="ChatId" value="">
+                    <button type="submit" class="new TransactionsButton"><i class="bi bi-bag-check"></i> Aceptar venta</button>
+                </form>
             </div>
             <div class="chatsandpersons">
             <aside class="persons">
@@ -32,7 +44,7 @@
                     </div>
                     <form class="typear" style="display: none" id="SendForm">
                         <input id="message" name="message" type="text" placeholder="Message...">
-                        <input type="hidden" name="ChatId" id="ChatId" value="">
+                        <input class="ChatId" type="hidden" name="ChatId" id="ChatId" value="">
                         <div>
                             <button type="submit" class="send"><i class="bi bi-send"></i></button>
                         </div>

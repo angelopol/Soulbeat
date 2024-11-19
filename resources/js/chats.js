@@ -3,7 +3,6 @@ const trans = document.querySelector('.trans');
 const mes = document.querySelector('.direct');
 const nameofstatus = document.querySelector('.nameofstatus');
 const TransactionsButtons = document.querySelectorAll('.TransactionsButton');
-const ChatsPeople = document.querySelectorAll('.ChatsPeople');
 
 function ToggleButtons(){
     TransactionsButtons.forEach(button => {
@@ -28,11 +27,18 @@ function ReloadChat(){
     $(".messagesz").html('');
     $("#SendForm").css('display', 'none');
     $("#SendForm #ChatId").val('');
+    let ChatIds = document.querySelectorAll('.ChatId');
+    ChatIds.forEach(chat => {
+        chat.value = "";
+    });
 }
 
 function LoadMessages(ChatId){
     $("#SendForm").css('display', 'flex');
-    $("#SendForm #ChatId").val(ChatId);
+    let ChatIds = document.querySelectorAll('.ChatId');
+    ChatIds.forEach(chat => {
+        chat.value = ChatId;
+    });
 
     $.ajax({
         url:     "/chats/"+ChatId,
@@ -57,6 +63,7 @@ function LoadTransactions(){
     }).done(function (res) {
         $("#PeopleChats").html('');
         AppendMessages(res, "#PeopleChats", '.ChatsPeople');
+        AddChatFunction();
     });
 }
 
@@ -74,19 +81,24 @@ function LoadDirectMessages(){
     }).done(function (res) {
         $("#PeopleChats").html('');
         AppendMessages(res, "#PeopleChats", '.ChatsPeople');
+        AddChatFunction();
     });
+}
+
+function AddChatFunction(){
+    let ChatsPeople = document.querySelectorAll('.ChatsPeople');
+    ChatsPeople.forEach(people => {
+        people.addEventListener('click', async () => {
+            let ChatId = people.getAttribute('ChatId');
+            LoadMessages(ChatId);
+        });
+    });
+    
 }
 
 trans.addEventListener('click', LoadTransactions);
 
 mes.addEventListener('click', LoadDirectMessages);
-
-ChatsPeople.forEach(people => {
-    people.addEventListener('click', async () => {
-        let ChatId = people.getAttribute('ChatId');
-        LoadMessages(ChatId);
-    });
-});
 
 Pusher.logToConsole = true;
 //Receive messages

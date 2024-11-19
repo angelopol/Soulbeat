@@ -18,6 +18,7 @@ return new class extends Migration
             $table->tinyInteger('AcceptFrom')->nullable();
             $table->tinyInteger('AcceptTo')->nullable();
             $table->integer('time')->nullable();
+            $table->integer('status')->default(1);
             $table->timestamps();
         });
     }

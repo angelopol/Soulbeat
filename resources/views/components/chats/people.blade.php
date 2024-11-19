@@ -2,5 +2,5 @@
     @if($photo != null)
         <img src="{{ Storage::url($photo) }}" alt="" class="foto">
     @endif
-    <span class="nameofcard">{{ $name }}<i class="bi bi-patch-check-fill mora"></i></span>
+    <span class="nameofcard">{{ $name }}@if($verify)<i class="bi bi-patch-check-fill mora"></i>@endif</span>
 </div>

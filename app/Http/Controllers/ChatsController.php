@@ -35,15 +35,16 @@ class ChatsController extends Controller
                      });
             });
         })
+        ->where('chats.status', 1)
         ->whereNull('chats.AcceptFrom')
         ->whereNull('chats.AcceptTo')
-        ->select(['chats.*', 'users.photo as photo', 'users.UserName as UserName'])
+        ->select(['chats.*', 'users.photo as photo', 'users.UserName as UserName', 'users.subscribed as verify'])
         ->get();
-
+        
         $peoples = [];
         foreach($chats as $chat){
             $peoples[] = view('components.chats.people', [
-                'name' => $chat->UserName, 'photo' => $chat->photo, 'id' => $chat->id
+                'name' => $chat->UserName, 'photo' => $chat->photo, 'id' => $chat->id, 'verify' => $chat->verify
             ])->render();
         }
         return $peoples;
@@ -61,15 +62,16 @@ class ChatsController extends Controller
                      });
             });
         })
+        ->where('chats.status', 1)
         ->whereNotNull('AcceptFrom')
         ->whereNotNull('AcceptTo')
-        ->select(['chats.*', 'users.photo as photo', 'users.UserName as UserName'])
+        ->select(['chats.*', 'users.photo as photo', 'users.UserName as UserName', 'users.subscribed as verify'])
         ->get();
         
         $peoples = [];
         foreach($chats as $chat){
             $peoples[] = view('components.chats.people', [
-                'name' => $chat->UserName, 'photo' => $chat->photo, 'id' => $chat->id
+                'name' => $chat->UserName, 'photo' => $chat->photo, 'id' => $chat->id, 'verify' => $chat->verify
             ])->render();
         }
         return $peoples;
@@ -100,7 +102,7 @@ class ChatsController extends Controller
             'AcceptTo' => $request->has('type') ? 0 : null,
         ]);
 
-        $verify = Chat::where('from', $data['from'])->where('to', $data['to'])->first();
+        $verify = Chat::where('from', $data['from'])->where('to', $data['to'])->where('chats.status', 1)->first();
         if($verify === null){
             $CurrentChat = Chat::create($data);
         } else {
@@ -111,10 +113,11 @@ class ChatsController extends Controller
     }
 
     public function destroyChat(Chat $chat){
-        $chat->delete();
+        $chat->status = 0;
         $messages = Message::where('chat', $chat->id)->get();
         foreach($messages as $message){
-            $message->delete();
+            $message->status = 0;
+            $message->save();
         }
 
         return back();
@@ -201,6 +204,7 @@ class ChatsController extends Controller
                     });
             });
         })
+        ->where('chats.status', 1)
         ->where('chats.id', $request->get('chat'))
         ->select(['chats.*', 'users.photo as photo', 'users.UserName as UserName'])
         ->first();
