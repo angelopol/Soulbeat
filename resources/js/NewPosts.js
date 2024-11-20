@@ -13,10 +13,9 @@ window.addEventListener('scroll', async () => {
             // Check if the current path starts with /user/
             if (window.location.pathname.startsWith('/user/')) {
                 fetchUrl = window.location.pathname + '?ids=' + postsCount;
-                console.log('fetchUrl:', fetchUrl);
             }
 
-            const response = await fetch('/posts?ids=' + postsCount);
+            const response = await fetch(fetchUrl);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -32,6 +31,7 @@ window.addEventListener('scroll', async () => {
                     // Update PostsCount to include the new post ID
                     document.getElementById('PostsCount').innerText += `,${post.id}`;
                     initializeEventListeners();
+                    UpdateAllCurrencys();
                 }
             });
         } catch (error) {
@@ -48,16 +48,16 @@ function features(post) {
     modalElement.id = post.id;
     modalElement.innerHTML = `
         <div class="infomodal">
-            <span class="duration">Duracion completa: <br> ${post.duration}</span>
-            <span class="autor">${post.AuthorName}</span>
+            <span class="duration">Duracion completa: <br> 3:00</span>
+            <span class="autor">${post.PersonName} ${post.PersonFullName}</span>
             <button class="bi bi-x-lg cerrar"></button>
         </div>
         <div class="methods">
-            <div class="pays"><img class="PAYED" src="../../images/binance.png" alt=""></div>
-            <div class="pays"><img class="PAYED" src="../../images/paypal.png" alt=""></div>
-            <div class="pays"><img class="PAYED" src="../../images/zelle.png" alt=""></div>
-            <div class="pays"><img class="PAYED" src="../../images/pagomovil.png" alt=""></div>
-            <div class="pays"><img class="PAYED" src="../../images/bitcoin.png" alt=""></div>
+            <div class="pays"><img class="PAYED" alt=""></div>
+            <div class="pays"><img class="PAYED" alt=""></div>
+            <div class="pays"><img class="PAYED" alt=""></div>
+            <div class="pays"><img class="PAYED" alt=""></div>
+            <div class="pays"><img class="PAYED" alt=""></div>
         </div>
         <div class="bpms">
             <span class="rit">${post.bpm} BPM</span>
@@ -66,11 +66,12 @@ function features(post) {
         <div class="costs">
             <div class="change"><button class="dropbtn" id="drop">Change currency</button>
                 <div class="dropdown-content" id="content">
-                    <a href="#" class="item" data-symbol="$">Dólares</a>
-                    <a href="#" class="item" data-symbol="Bs">Bolívares</a>
+                    <a href="#" class="item" data-symbol="$" PriceId="${post.id}">Dólares</a>
+                    <a href="#" class="item" data-symbol="Bs" PriceId="${post.id}">Bolívares</a>
+                    <span id="${post.id}Current" style="display: none">$</span>
                 </div>
             </div>
-            <div id="inline"><span class="price">${post.cost}</span><span class="symbol price">$</span></div>
+            <div id="inline"><span class="price currency" id="${post.id}Price" SymbolId="${post.id}Symbol" CurrentId="${post.id}Current">${post.cost}</span><span class="symbol price" id="${post.id}Symbol">$</span></div>
         </div>
         <div class="licencias">
             <span class="lic">Licencias: </span>
@@ -146,7 +147,7 @@ async function PostElement(post) {
         </div>
         <figure class="card">
             <span class="name">${post.title}</span>
-            <img class="fotoritmo" src="${post.SongPhoto}" alt="">
+            <img class="fotoritmo" src="${PostData[1]}" alt="">
             <div class="content-bar">
                 <div class="inicio">0:00</div>
                 <input type="range" class="progress-bar" min="0" max="100" value="0">
@@ -154,9 +155,9 @@ async function PostElement(post) {
             </div>
             <div class="info">
                 <span class="bpm">${post.bpm} BPM</span>
-                <span class="bi bi-play-fill play" data-audio-src="${post.song}"></span>
+                <span class="bi bi-play-fill play" data-audio-src="${PostData[0]}"></span>
                 <div>
-                    <span class="precio">${post.cost}</span> <span class="symbol precio">$</span>
+                    <span class="precio currency" SymbolId="${post.id}SymbolA">${post.cost}</span> <span id="${post.id}SymbolA" class="symbol precio">$</span>
                 </div>
             </div>
             <div class="content-botons">
