@@ -35,7 +35,7 @@
                     @if(auth()->user()->photo)
                         <img  class ="fotodeperfil" src="{{ Storage::url(auth()->user()->photo) }}" alt="">
                     @endif
-                    <span class="text-perfil">Perfil</span>
+                    <span class="text-perfil">{{auth()->user()->UserName}}</span>
                 </div>
             </div>
         </a>

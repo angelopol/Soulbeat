@@ -228,7 +228,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-
-
-
-
+const CurrencySelector = document.getElementById('currency-select');
+let currency = getCookie('currency');
+if (currency === '') {
+    currency = '$';
+}
+CurrencySelector.value = currency;
+CurrencySelector.addEventListener('change', async () => {
+    const selection = CurrencySelector.value;
+    setCookie('currency', selection, 360);
+});

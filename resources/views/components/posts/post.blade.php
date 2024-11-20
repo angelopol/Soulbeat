@@ -51,7 +51,7 @@
             <span class="bpm">{{ $bpm }} BPM</span>
             <span class="bi bi-play-fill play" data-audio-src = "{{ $song }}"></span>
             <div>
-                <span class="precio">{{ $price }}</span> <span class="symbol precio">$</span>
+                <span class="precio currency" SymbolId="{{$id}}SymbolA">{{ $price }}</span> <span class="symbol precio" id="{{$id}}SymbolA">$</span>
             </div>
         </div>
         <div class="content-botons">

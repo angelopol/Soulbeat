@@ -25,8 +25,8 @@
                     <div class="currency-selector">
                         <label class="label" for="currency-select">Change Currency</label>
                         <select id="currency-select">
-                            <option value="usd" class="option">USD</option>
-                            <option value="bs" class="option">BS</option>
+                            <option value="$" class="option">USD</option>
+                            <option value="Bs" class="option">BS</option>
                         </select>
                     </div>
                 </nav>

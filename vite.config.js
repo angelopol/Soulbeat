@@ -30,6 +30,8 @@ export default defineConfig({
                 'resources/js/CreatePost.js',
                 'resources/js/jquery.min.js',
                 'resources/js/pusher.min.js',
+                'resources/js/currency.js',
+                'resources/js/general.js',
             ],
             refresh: true,
         }),

@@ -9,6 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
+    <script src="{{ Vite::asset('resources/js/currency.js') }}"></script>
     @yield('content')
+    <script src="{{ Vite::asset('resources/js/general.js') }}"></script>
 </body>
 </html>

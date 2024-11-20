@@ -16,7 +16,7 @@
         </div>
         <div class="encabezador">
             <input type="file" name="song" class="inputen">
-            <input type="number" name="cost" placeholder="Price" class="inputen">
+            <input type="number" name="cost" placeholder="Price in $" class="inputen">
         </div>
         <div class="encabezador">
             <input type="text" name="bpm" class="inputen" placeholder="BPM">

@@ -23,7 +23,7 @@
                 <span id="{{$id}}Current" style="display: none">$</span>
             </div>
         </div>
-        <div id="inline"><span class="price" id="{{$id}}Price">{{$price}}</span><span class="symbol price" id="{{$id}}Symbol">$</span></div>
+        <div id="inline"><span class="price currency" id="{{$id}}Price" SymbolId="{{$id}}Symbol" CurrentId="{{$id}}Current">{{$price}}</span><span class="symbol price" id="{{$id}}Symbol">$</span></div>
     </div>
 
     <div class="licencias">

@@ -6,7 +6,7 @@
         </div>
     </nav>
     <nav>
-        <span class="price">{{ $cost }}</span>
+        <span class="price currency" SymbolId="{{$ad->id}}SymbolAd">{{ $cost }}</span><span id="{{$ad->id}}SymbolAd">$</span>
     </nav>
     <nav>
         <span class="time">{{ $EndTime }}<span>
