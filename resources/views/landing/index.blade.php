@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-  <title>Logo SVG</title>
-</head>
-<body class="cambio">
+@extends('layouts.base')
+
+@section('title') Soulbeat @php $css = "landing" @endphp @endsection
+
+@section('content')
   <div class="wrapper cambio">
     <header class="header">
       <nav class="logo">
@@ -51,47 +45,47 @@
   <div class="grilla cambio">
     
     <figure class="item item2" >
-      <div class="centracion" ><img class="foto" src="./images/foto-tipo-landing.jpeg" alt=""></div>
+      <div class="centracion" ><img class="foto" src="{{ Vite::asset('resources/assets/images/foto-tipo-landing.jpeg') }}" alt=""></div>
       <span class="price">7.99$</span>
       <span class="autor">coteland</span>
       <div class="tclick">
         <span class="butonrepro bi bi-skip-start-fill"></span>
-        <span class="butonrepro bi bi-play-fill" data-audio-src="./audios/🍀instrumental reggae - uso libre - beat 2020🍀.mp3"></span>
+        <span class="butonrepro bi bi-play-fill" data-audio-src="{{ Vite::asset('resources/assets/audios/🍀instrumental reggae - uso libre - beat 2020🍀.mp3') }}"></span>
         <span class="butonrepro bi bi-skip-end-fill"></span>
       </div>
     </figure>
-    <figure class="item item3" ><div ><img class="foto" src="./images/foto-milo-landing.jpeg" alt=""></div>
+    <figure class="item item3" ><div ><img class="foto" src="{{ Vite::asset('resources/assets/images/foto-milo-landing.jpeg') }}" alt=""></div>
       <span class="price">3.99$</span>
       <span class="autor">Milo J</span>
       <div class="tclick">
         <span class="butonrepro bi bi-skip-start-fill"></span>
-        <span class="butonrepro bi bi-play-fill" data-audio-src="./audios/MILO J - M.A.I (KARAOKE - INSTRUMENTAL).mp3"></span></span>
+        <span class="butonrepro bi bi-play-fill" data-audio-src="{{ Vite::asset('resources/assets/audios/MILO J - M.A.I (KARAOKE - INSTRUMENTAL).mp3') }}"></span></span>
         <span class="butonrepro bi bi-skip-end-fill"></span>
       </div></figure>
-    <figure class="item item4" ><div ><img class="foto" src="./images/foto-thor-landing.jpeg" alt=""></div>
+    <figure class="item item4" ><div ><img class="foto" src="{{ Vite::asset('resources/assets/images/foto-thor-landing.jpeg') }}" alt=""></div>
       <span class="price">2.99$</span>
       <span class="autor">Yatafiu</span>
       <div class="tclick">
         <span class="butonrepro bi bi-skip-start-fill"></span>
-        <span class="butonrepro bi bi-play-fill" data-audio-src="./audios/[Free] Tech House x Techno Type Beat - GROOVE _ Club Banger Instrumental 2022 _ Electronic Rap Beat.mp3"></span></span>
+        <span class="butonrepro bi bi-play-fill" data-audio-src="{{ Vite::asset('resources/assets/audios/[Free] Tech House x Techno Type Beat - GROOVE _ Club Banger Instrumental 2022 _ Electronic Rap Beat.mp3') }}"></span></span>
         <span class="butonrepro bi bi-skip-end-fill"></span>
       </div></figure>
-    <figure class="item item5" ><div ><img class="foto" src="./images/foto-tupac-landing.jpeg" alt=""></div>
+    <figure class="item item5" ><div ><img class="foto" src="{{ Vite::asset('resources/assets/images/foto-tupac-landing.jpeg') }}" alt=""></div>
       <span class="price">3.99$</span>
       <span class="autor">Tupac</span>
       <div class="tclick">
         <span class="butonrepro bi bi-skip-start-fill"></span>
-        <span class="butonrepro bi bi-play-fill" data-audio-src="./audios/Shook Ones, Pt  II (Instrumental).mp3"></span></span>
+        <span class="butonrepro bi bi-play-fill" data-audio-src="{{ Vite::asset('resources/assets/audios/Shook Ones, Pt  II (Instrumental).mp3') }}"></span></span>
         <span class="butonrepro bi bi-skip-end-fill"></span>
       </div></figure>
     
     <figure class="item item7">
-      <div ><img class="foto" src="./images/foto-loriz-landing.jpeg" alt=""></div>
+      <div ><img class="foto" src="{{ Vite::asset('resources/assets/images/foto-loriz-landing.jpeg') }}" alt=""></div>
       <span class="price">5.99$</span>
       <span class="autor">Carpenter</span>
       <div class="tclick">
         <span class="butonrepro bi bi-skip-start-fill"></span>
-        <span class="butonrepro bi bi-play-fill" data-audio-src="./audios/Drake - Hold On We're Going Home (Instrumental).mp3"></span></span>
+        <span class="butonrepro bi bi-play-fill" data-audio-src="{{ Vite::asset('resources/assets/audios/Drake - Hold On Were Going Home (Instrumental).mp3') }}"></span></span>
         <span class="butonrepro bi bi-skip-end-fill"></span>
       </div>
     </figure>
@@ -103,17 +97,17 @@
   </div>
   <div class="terceraparte">
    <div class="cartas"  id = "carta">
-    <img src="./images/persona4.jpg" alt="">
+    <img src="{{ Vite::asset('resources/assets/images/persona4.jpg') }}" alt="">
     <h3  class="car">Ashley Stronghold</h3>
     <p >Oyente</p>
    </div>
    <div class="cartas" id = "carta2">
-    <img src="./images/persona 2.jpeg" alt="">
+    <img src="{{ Vite::asset('resources/assets/images/persona 2.jpeg') }}" alt="">
     <h3 class="car" >Jeremy Oswen</h3>
     <p  >Productor</p>
    </div>
    <div class="cartas" id = "carta3">
-    <img src="./images/persona3.jpeg" alt="">
+    <img src="{{ Vite::asset('resources/assets/images/persona3.jpeg') }}" alt="">
     <h3 class="car">Neolan Records</h3>
     <p>Empresa</p>
    </div>
@@ -139,6 +133,5 @@
   </div>  
 
 
-  <script src="window.js"></script>
-</body>
-</html>
+  <script src="{{ Vite::asset('resources/js/landing.js') }}"></script>
+@endsection

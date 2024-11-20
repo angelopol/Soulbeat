@@ -17,7 +17,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
-        return view('auth.login');
+        return view('login.login');
     }
 
     /**
@@ -28,6 +28,11 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+
+        if(Auth::user()->status == 0){
+            Auth::guard('web')->logout();
+            return redirect()->route('login')->withErrors(['email' => 'Your account is closed.']);
+        }
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }
@@ -43,6 +48,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/login');
     }
 }
