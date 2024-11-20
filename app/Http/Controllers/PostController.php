@@ -58,7 +58,7 @@ class PostController extends Controller
     }
 
     public function DownloadSong(Post $post){
-        if($post->cost != 0 OR $post->status != 1) return error(404);
+        if($post->status != 1) return error(404);
         return Storage::download($post->song, $post->title.'.'.pathinfo($post->song, PATHINFO_EXTENSION));
     }
 

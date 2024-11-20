@@ -10,6 +10,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\JsonResponse;
 use Pusher\Pusher;
 
 class ChatsController extends Controller
@@ -44,7 +45,8 @@ class ChatsController extends Controller
         $peoples = [];
         foreach($chats as $chat){
             $peoples[] = view('components.chats.people', [
-                'name' => $chat->UserName, 'photo' => $chat->photo, 'id' => $chat->id, 'verify' => $chat->verify
+                'name' => $chat->UserName, 'photo' => $chat->photo, 'id' => $chat->id, 'verify' => $chat->verify,
+                'FromId' => $chat->from, 'ToId' => $chat->to
             ])->render();
         }
         return $peoples;
@@ -71,7 +73,8 @@ class ChatsController extends Controller
         $peoples = [];
         foreach($chats as $chat){
             $peoples[] = view('components.chats.people', [
-                'name' => $chat->UserName, 'photo' => $chat->photo, 'id' => $chat->id, 'verify' => $chat->verify
+                'name' => $chat->UserName, 'photo' => $chat->photo, 'id' => $chat->id, 'verify' => $chat->verify,
+                'FromId' => $chat->from, 'ToId' => $chat->to
             ])->render();
         }
         return $peoples;
@@ -93,27 +96,56 @@ class ChatsController extends Controller
 
     public function storeChat(Request $request){
         $validated = $request->validate([
-            'to' => ['required','integer'],
+            'to' => ['required', 'integer'],
         ]);
-
+        
         $data = array_merge($validated, [
             'from' => auth()->user()->id,
             'AcceptFrom' => $request->has('type') ? 0 : null,
             'AcceptTo' => $request->has('type') ? 0 : null,
+            'time' => $request->has('type') ? 48 : null,
         ]);
-
-        $verify = Chat::where('from', $data['from'])->where('to', $data['to'])->where('chats.status', 1)->first();
-        if($verify === null){
+        
+        $verify = Chat::where(function($query) use ($data) {
+            $query->where('from', $data['from'])
+                  ->where('to', $data['to']);
+        })->orWhere(function($query) use ($data) {
+            $query->where('from', $data['to'])
+                  ->where('to', $data['from']);
+        })->where('chats.status', 1)->get();
+        
+        if ($verify->isEmpty() || $verify->count() === 1) {
             $CurrentChat = Chat::create($data);
         } else {
-            $CurrentChat = $verify;
+            if ($verify->count() === 1) {
+                $CurrentChat = $verify->first();
+            } else {
+                if ($request->has('type')) {
+                    foreach ($verify as $chat) {
+                        if ($chat->AcceptTo !== null) {
+                            $CurrentChat = $chat;
+                            break;
+                        }
+                    }
+                } else {
+                    foreach ($verify as $chat) {
+                        if ($chat->AcceptTo === null) {
+                            $CurrentChat = $chat;
+                            break;
+                        }
+                    }
+                }
+            }
         }
 
         return redirect()->route('chat.directs.view', ['CurrentChat' => $CurrentChat]);
     }
 
-    public function destroyChat(Chat $chat){
+    public function destroyChat(Request $request){
+        $chat = Chat::find($request->input('ChatId'));
+        if($chat == null) return back();
         $chat->status = 0;
+        $chat->update();
         $messages = Message::where('chat', $chat->id)->get();
         foreach($messages as $message){
             $message->status = 0;
@@ -123,14 +155,18 @@ class ChatsController extends Controller
         return back();
     }
 
-    public function updateChatTime(Chat $chat){
-        $chat->time += 48;
+    public function updateChatTime(Request $request){
+        $chat = Chat::find($request->input('ChatId'));
+        if($chat == null) return back();
+        $chat->time = 48;
         $chat->update();
 
         return back();
     }
 
-    public function updateChatAccept(Request $request, Chat $chat){
+    public function updateChatAccept(Request $request){
+        $chat = Chat::find($request->input('ChatId'));
+        if($chat == null) return back();
         if($request->input('accept') != null){
             $chat->AcceptTo = 1;
         }else{
@@ -147,10 +183,11 @@ class ChatsController extends Controller
             'message' => ['required', 'string'],
         ]);
 
+        $messageBody = explode('~', $validated['message'])[0];
         Message::create([
             'chat' => $id,
             'user' => auth()->user()->id,
-            'body' => $validated['message']
+            'body' => $messageBody
         ]);
     }
 
@@ -166,7 +203,7 @@ class ChatsController extends Controller
         return back();
     }
 
-    private function SendMessage($message)
+    private function SendMessage($message, $channel)
     {
         $pusher = new Pusher(
             config('broadcasting.connections.pusher.key'),
@@ -178,16 +215,16 @@ class ChatsController extends Controller
             )
         );
     
-        $pusher->trigger('public', 'chat', ['message' => $message, 'socket_id' => request()->get('socket_id')]);
+        $pusher->trigger($channel.'chat', 'chat', ['message' => $message, 'socket_id' => request()->get('socket_id')]);
     }
 
     public function broadcast(Request $request): Factory|View|Application
     {
-        self::SendMessage($request->get('message'));
+        self::SendMessage($request->get('message'), $request->get('chat'));
         self::CreateMessage($request, $request->get('chat'));
 
         return view('components.chats.messages.my', [
-            'text' => $request->get('message'), 'time' => now()->format('H:i')
+            'text' => explode('~', $request->get('message'))[0], 'time' => now()->format('H:i')
         ]);
     }
 
@@ -208,6 +245,9 @@ class ChatsController extends Controller
         ->where('chats.id', $request->get('chat'))
         ->select(['chats.*', 'users.photo as photo', 'users.UserName as UserName'])
         ->first();
+        if ($chat->UserName == Auth::user()->UserName) {
+            return new JsonResponse('', 404);
+        }
         return view('components.chats.messages.your', [
             'text' => $request->get('message'), 'time' => now()->format('H:i'), 'photo' => $chat->photo, 'name' => $chat->UserName
         ]);

@@ -29,6 +29,7 @@
                 <form action="{{route('chat.accept.update')}}" method="POST">
                     @csrf @method('PATCH')
                     <input class="ChatId" type="hidden" name="ChatId" id="ChatId" value="">
+                    <input type="hidden" name="accept" id="accept" value="true">
                     <button type="submit" class="new TransactionsButton"><i class="bi bi-bag-check"></i> Aceptar venta</button>
                 </form>
             </div>
@@ -56,30 +57,31 @@
     
     <script src="{{ Vite::asset('resources/js/pusher.min.js') }}"></script>
     <script src="{{ Vite::asset('resources/js/jquery.min.js') }}"></script>
-    <script>
-        const pusher  = new Pusher(
-            '{{config('broadcasting.connections.pusher.key')}}',
-            {cluster: '{{config('broadcasting.connections.pusher.cluster') ?? 'mt1'}}'}
-        );
-        const channel = pusher.subscribe('public');
-        const token  = '{{csrf_token()}}';
-    </script>
-    <script src="{{ Vite::asset('resources/js/chats.js') }}"></script>
     @php
-        $chat = App\Models\Chat::where('id', request()->get('CurrentChat'))->first();
+        $chat = App\Models\Chat::where('id', request()->get('CurrentChat'))->where('status', 1)->first();
         $AcceptFrom = $chat ? $chat->AcceptFrom : '';
         $CurrentChat = $chat ? $chat->id : '';
+        $FromId = $chat ? $chat->from : '';
     @endphp
+    <script>
+        const key = '{{config('broadcasting.connections.pusher.key')}}';
+        const cluster = '{{config('broadcasting.connections.pusher.cluster') ?? 'mt1'}}';
+        const token  = '{{csrf_token()}}';
+        const UserId = '{{auth()->user()->id}}';
+    </script>
+    <script src="{{ Vite::asset('resources/js/chats.js') }}"></script>
     <script>
         const CurrentChat = '{{$CurrentChat}}';
         const AcceptFrom = '{{$AcceptFrom}}';
+        const FromId = '{{$FromId}}';
         if (CurrentChat){
             if (!AcceptFrom){
                 LoadDirectMessages();
             } else {
                 LoadTransactions();
+                ToggleButtons();
             }
-            LoadMessages(CurrentChat);
+            LoadMessages(CurrentChat, FromId);
         } else {
             LoadDirectMessages();
         }

@@ -1,4 +1,4 @@
-<div class="people ChatsPeople" ChatId="{{$id}}">
+<div class="people ChatsPeople" ChatId="{{$id}}" FromId="{{$FromId}}" ToId="{{$ToId}}">
     @if($photo != null)
         <img src="{{ Storage::url($photo) }}" alt="" class="foto">
     @endif

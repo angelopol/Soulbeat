@@ -30,7 +30,16 @@
         <span class="pre">Premiun</span>
     </div>
 
-    <div class="final">
-        <button class="press">Buy now</button>
-    </div>
+    @if($price == 0 || auth()->user()->id == $UserId)
+        <form class="final" action="{{ route('post.download', $post) }}" method="POST">
+            <button class="press"><strong>Download</strong></button>
+        </form>
+    @else
+        <form class="final" action="{{route('chat.store')}}" method="POST">
+            @csrf
+            <input type="text" name="to" value="{{$UserId}}" hidden>
+            <input type="text" name="type" value="true" hidden>
+            <button class="press" id="checkear"><strong>Buy</strong></button>
+        </form>
+    @endif
 </div>

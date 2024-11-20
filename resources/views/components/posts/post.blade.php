@@ -55,12 +55,17 @@
             </div>
         </div>
         <div class="content-botons">
-            @if($price == 0)
+            @if($price == 0 || auth()->user()->id == $UserId)
                 <form action="{{ route('post.download', $post) }}" method="POST">
                     <button class="boton-options"><strong>Download</strong></button>
                 </form>
             @else
-                <button class="boton-options" id="checkear"><strong>Buy</strong></button>
+                <form action="{{route('chat.store')}}" method="POST" style="all: unset">
+                    @csrf
+                    <input type="text" name="to" value="{{$UserId}}" hidden>
+                    <input type="text" name="type" value="true" hidden>
+                    <button class="boton-options" id="checkear"><strong>Buy</strong></button>
+                </form>
             @endif
             <button class="boton-options abrirmodal" id="modal" modal="{{$id}}"><strong>Features</strong></button>
         </div>
@@ -93,5 +98,6 @@
 </div>
 
 @include('components.posts.features', [
-    'duration' => $duration, 'AuthorName' => $AuthorName, 'bpm' => $bpm, 'scale' => $scale, 'price' => $price, 'id' => $id
+    'duration' => $duration, 'AuthorName' => $AuthorName, 'bpm' => $bpm, 'scale' => $scale, 'price' => $price, 'id' => $id,
+    'UserId' => $UserId
 ])
