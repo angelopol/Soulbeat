@@ -9,7 +9,7 @@
             <a href="{{ route('feed.view') }}" style="all: unset">
                 <div class="messages">
                     <i class="bi @if(request()->routeIs('feed.*')) bi-house-fill @else bi-house @endif"></i>
-                    <span class="tex-feed">Inicio</span>
+                    <span class="tex-feed">Home</span>
                 </div>
             </a>
 

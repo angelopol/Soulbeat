@@ -351,18 +351,29 @@ function initializeEventListeners() {
 
     dropdownItems.forEach(function(item) {
         if (!elementsWithListeners.has(item)) {
-            item.addEventListener('click', function(event) {
+            item.addEventListener('click', async function(event) {
                 event.preventDefault();
 
-                var symbol = event.target.getAttribute('data-symbol');
+                let DolarApi = await fetch('https://ve.dolarapi.com/v1/dolares/oficial').then(response => response.json());
+                if(DolarApi.promedio != undefined){
+                    var symbol = event.target.getAttribute('data-symbol');
+                    let PriceId = event.target.getAttribute('PriceId');
 
-                var symbols = document.querySelectorAll('.symbol');
+                    var symbols = document.getElementById(PriceId+"Symbol");
+                    symbols.textContent = symbol;
 
-                symbols.forEach(function(elem) {
-                    elem.textContent = symbol;
-                });
+                    var price = document.getElementById(PriceId+"Price");
+                    var current = document.getElementById(PriceId+"Current");
 
-                document.querySelector('.dropbtn').textContent = "Moneda: " + symbol;
+                    if(symbol == "Bs" && current.textContent == "$"){
+                        price.textContent = Math.round(DolarApi.promedio * price.textContent);
+                        current.textContent = "Bs";
+                    }
+                    if(symbol == "$" && current.textContent == "Bs"){
+                        price.textContent = Math.round(price.textContent / DolarApi.promedio);
+                        current.textContent = "$";
+                    }
+                }
             });
             elementsWithListeners.add(item);
         }

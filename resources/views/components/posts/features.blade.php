@@ -5,11 +5,11 @@
         <button class="bi bi-x-lg cerrar"></button>
     </div>
     <div class="methods">
-        <div class="pays"><img class="PAYED" src="../../images/binance.png" alt=""></div>
-        <div class="pays"><img class="PAYED" src="../../images/paypal.png" alt=""></div>
-        <div class="pays"><img class="PAYED" src="../../images/zelle.png" alt=""></div>
-        <div class="pays"><img class="PAYED" src="../../images/pagomovil.png" alt=""></div>
-        <div class="pays"><img class="PAYED" src="../../images/bitcoin.png" alt=""></div>
+        <div class="pays"><img class="PAYED" alt=""></div>
+        <div class="pays"><img class="PAYED" alt=""></div>
+        <div class="pays"><img class="PAYED" alt=""></div>
+        <div class="pays"><img class="PAYED" alt=""></div>
+        <div class="pays"><img class="PAYED" alt=""></div>
     </div>
     <div class="bpms">
         <span class="rit">{{$bpm}} BPM</span>
@@ -18,11 +18,12 @@
     <div class="costs">
         <div class="change"><button class="dropbtn" id="drop">Change currency</button>
             <div class="dropdown-content" id ='content'>
-                <a href="#" class="item" data-symbol="$" >Dólares</a>
-                <a href="#" class="item" data-symbol="Bs" >Bolívares</a>
+                <a href="#" class="item" data-symbol="$" PriceId="{{$id}}">Dólares</a>
+                <a href="#" class="item" data-symbol="Bs" PriceId="{{$id}}">Bolívares</a>
+                <span id="{{$id}}Current" style="display: none">$</span>
             </div>
         </div>
-        <div id="inline"><span class="price">{{$price}}</span><span class="symbol price">$</span></div>
+        <div id="inline"><span class="price" id="{{$id}}Price">{{$price}}</span><span class="symbol price" id="{{$id}}Symbol">$</span></div>
     </div>
 
     <div class="licencias">
