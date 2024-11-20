@@ -48,8 +48,8 @@ function features(post) {
     modalElement.id = post.id;
     modalElement.innerHTML = `
         <div class="infomodal">
-            <span class="duration">Duracion completa: <br> 3:00</span>
-            <span class="autor">${post.PersonName} ${post.PersonFullName}</span>
+            <span class="duration">Duracion completa: <br> ${post.duration}</span>
+            <span class="autor">${post.AuthorName}</span>
             <button class="bi bi-x-lg cerrar"></button>
         </div>
         <div class="methods">
@@ -76,9 +76,17 @@ function features(post) {
             <span class="lic">Licencias: </span>
             <span class="pre">Premiun</span>
         </div>
-        <div class="final">
-            <button class="press">Buy now</button>
-        </div>
+        ${post.cost == 0 || post.ThisUser == "True" ? `
+            <form class="final" action="/posts/download/${post.id}" method="POST">
+                <button class="press"><strong>Download</strong></button>
+            </form>
+        ` : `
+            <form class="final" action="/chat/store" method="POST">
+                <input type="text" name="to" value="${post.UserId}" hidden>
+                <input type="text" name="type" value="true" hidden>
+                <button class="press" id="checkear"><strong>Buy</strong></button>
+            </form>
+        `}
     `;
 
     return modalElement;
@@ -103,19 +111,42 @@ async function PostElement(post) {
     postElement.innerHTML = `
         <div class="content-row">
             <a href="/user/${post.UserName}" style="all: unset">
-                ${post.UserPhoto !== null ? `<img src="${post.UserPhoto}" alt="" class="fotobeat">` : ''}
+                ${post.UserPhoto !== "/storage/" ? `<img src="${post.UserPhoto}" alt="" class="fotobeat">` : ''}
                 <span class="text-box-post">${post.UserName}
-                    ${post.subscribed ? '<i class="bi bi-patch-check-fill check"></i>' : ''}
+                    ${post.verify ? '<i class="bi bi-patch-check-fill check"></i>' : ''}
                 </span>
             </a>
-            ${post.ThisUser == "True" ? '<div><span class="bi bi-three-dots"><ul class="dropdown"><li><form action="/posts/archive/'+post.id+'" method="POST"><button type="submit" style="all: unset">Archive</button></form></li><li><form action="/posts/destroy/'+post.id+'" method="POST"><button type="submit" style="all: unset">Delete</button></form></li><li>Add to playlist</li></ul></span></div>' : ''}
+            ${post.ThisUser == "True" ? `
+                <div>
+                    <span class="bi bi-three-dots">
+                        <ul class="dropdown">
+                            <li>
+                                <form action="/posts/archive/${post.id}" method="POST">
+                                    <button type="submit" style="all: unset">Archive</button>
+                                </form>
+                            </li>
+                            <li>
+                                <form action="/posts/destroy/${post.id}" method="POST">
+                                    <button type="submit" style="all: unset">Delete</button>
+                                </form>
+                            </li>
+                            <li>
+                                <form action="/posts/announce/${post.id}" method="POST">
+                                    <button type="submit" style="all: unset">Announce</button>
+                                </form>
+                            </li>
+                            <li>Add to playlist</li>
+                        </ul>
+                    </span>
+                </div>
+            ` : ''}
         </div>
         <div class="textofpost">
             <span class="text2">${post.body}</span>
         </div>
         <figure class="card">
             <span class="name">${post.title}</span>
-            <img class="fotoritmo" src="${PostData[1]}" alt="">
+            <img class="fotoritmo" src="${post.SongPhoto}" alt="">
             <div class="content-bar">
                 <div class="inicio">0:00</div>
                 <input type="range" class="progress-bar" min="0" max="100" value="0">
@@ -123,18 +154,22 @@ async function PostElement(post) {
             </div>
             <div class="info">
                 <span class="bpm">${post.bpm} BPM</span>
-                <span class="bi bi-play-fill play" data-audio-src="${PostData[0]}"></span>
+                <span class="bi bi-play-fill play" data-audio-src="${post.song}"></span>
                 <div>
                     <span class="precio">${post.cost}</span> <span class="symbol precio">$</span>
                 </div>
             </div>
             <div class="content-botons">
-                ${post.cost == 0 ? `
+                ${post.cost == 0 || post.ThisUser == "True" ? `
                     <form action="/posts/download/${post.id}" method="POST">
                         <button class="boton-options"><strong>Download</strong></button>
                     </form>
                 ` : `
-                    <button class="boton-options" id="checkear"><strong>Buy</strong></button>
+                    <form action="/chat/store" method="POST" style="all: unset">
+                        <input type="text" name="to" value="${post.UserId}" hidden>
+                        <input type="text" name="type" value="true" hidden>
+                        <button class="boton-options" id="checkear"><strong>Buy</strong></button>
+                    </form>
                 `}
                 <button class="boton-options abrirmodal" id="modal" modal="${post.id}"><strong>Features</strong></button>
             </div>
