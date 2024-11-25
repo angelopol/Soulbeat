@@ -22,7 +22,7 @@ class SettingsController extends Controller
     }
     
     public function viewSettings(){
-        $ads = Ad::join('posts', 'ads.post', '=', 'posts.id')->where('ads.status', 1)->select(['ads.*', 'posts.*'])->get();
+        $ads = Ad::join('posts', 'ads.post', '=', 'posts.id')->where('post.user', auth()->user()->id)->where('ads.status', 1)->select(['ads.*', 'posts.*'])->get();
 
         return view('settings.user.settings', ['ads'=>$ads]);
     }

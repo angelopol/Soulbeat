@@ -65,8 +65,10 @@ class ChatsController extends Controller
             });
         })
         ->where('chats.status', 1)
-        ->whereNotNull('AcceptFrom')
-        ->whereNotNull('AcceptTo')
+        ->where(function ($query) {
+            $query->whereNotNull('AcceptFrom')
+              ->orWhereNotNull('AcceptTo');
+        })
         ->select(['chats.*', 'users.photo as photo', 'users.UserName as UserName', 'users.subscribed as verify'])
         ->get();
         
