@@ -28,6 +28,6 @@
         @include('components.posts.NewPlaylist')
     @endif
 
-    <script src="{{ Vite::asset('resources/js/showallplaylist.js') }}"></script>
+    <script src="/resources/js/showallplaylist.js"></script>
 
 @endsection

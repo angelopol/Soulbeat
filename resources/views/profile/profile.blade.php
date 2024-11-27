@@ -103,9 +103,9 @@
     @include('components.profile.followers', ['followers' => $followers])
     @include('components.profile.followed', ['followed' => $followed])
 
-    <script src="{{ Vite::asset('resources/js/profilescript.js') }}" defer></script>
+    <script src="/resources/js/profilescript.js" defer></script>
     @if(auth()->user()->id == $CurrentUser->id)
-        <script src="{{ Vite::asset('resources/js/CreatePost.js') }}" defer></script>
+        <script src="/resources/js/CreatePost.js" defer></script>
     @endif
-    <script src="{{ Vite::asset('resources/js/NewPosts.js') }}"></script>
+    <script src="/resources/js/NewPosts.js"></script>
 @endsection

@@ -55,8 +55,8 @@
         </section>
     </div>
     
-    <script src="{{ Vite::asset('resources/js/pusher.min.js') }}"></script>
-    <script src="{{ Vite::asset('resources/js/jquery.min.js') }}"></script>
+    <script src="/resources/js/pusher.min.js"></script>
+    <script src="/resources/js/jquery.min.js"></script>
     @php
         $chat = App\Models\Chat::where('id', request()->get('CurrentChat'))->where('status', 1)->first();
         $AcceptFrom = $chat ? $chat->AcceptFrom : '';
@@ -69,7 +69,7 @@
         const token  = '{{csrf_token()}}';
         const UserId = '{{auth()->user()->id}}';
     </script>
-    <script src="{{ Vite::asset('resources/js/chats.js') }}"></script>
+    <script src="/resources/js/chats.js"></script>
     <script>
         const CurrentChat = '{{$CurrentChat}}';
         const AcceptFrom = '{{$AcceptFrom}}';

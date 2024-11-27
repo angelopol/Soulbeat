@@ -35,5 +35,5 @@
         </section>
     </div>
  
-    <script src="{{ Vite::asset('resources/js/playlist.js') }}"> </script>
+    <script src="/resources/js/playlist.js"> </script>
 @endsection

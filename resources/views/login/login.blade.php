@@ -86,5 +86,5 @@
         
     </div>
 
-    <script src="{{ Vite::asset('resources/js/login.js') }}"></script>
+    <script src="/resources/js/login.js"></script>
 @endsection

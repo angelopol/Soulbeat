@@ -132,5 +132,5 @@
         </div>
     </div>
 
-    <script src="{{ Vite::asset('resources/js/settings.js') }}"></script>
+    <script src="/resources/js/settings.js"></script>
 @endsection

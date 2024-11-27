@@ -45,5 +45,5 @@
             </div>
         </div>
     </div>
-    <script src="{{ Vite::asset('resources/js/settingsavanced.js') }}"></script>
+    <script src="/resources/js/settingsavanced.js"></script>
 @endsection

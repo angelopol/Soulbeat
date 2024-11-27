@@ -133,5 +133,5 @@
   </div>  
 
 
-  <script src="{{ Vite::asset('resources/js/landing.js') }}"></script>
+  <script src="/resources/js/landing.js"></script>
 @endsection
