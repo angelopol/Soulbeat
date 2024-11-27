@@ -10,7 +10,6 @@ console.log(saliente1, saliente2, menu)
 menu.addEventListener('click', () => {
     saliente1.classList.toggle('active');
     saliente2.classList.toggle('active');
-    saliente3.classList.toggle('active');
 })
 const todosnegro = document.querySelectorAll('.cambio');
 const logo = document.getElementById('logopapa');
@@ -18,43 +17,31 @@ const texto = document.getElementById('swiche');
 const cheki = document.getElementById('check');
 
 function verificado() {
-
-    if (cheki.checked) {
-        texto.innerHTML = 'Dark Mode';
-        todosnegro.forEach((element) => {
-            element.style.backgroundColor = 'black';
-            element.style.color = 'white';
-        })
-        invertColors();
-    } else {
-        productUsual();
-        texto.innerHTML = 'Light Mode';
-        todosnegro.forEach((element) => {
-            element.style.backgroundColor = 'white';
-            element.style.color = 'black';
+    todosnegro.forEach((element) => {
+        element.style.backgroundColor = 'black';
+        element.style.color = 'white';
     })
-    
-}
+    invertColors();
 
-change();
+    change();
 }
 
 function invertColors() {
     const svg = document.getElementById('logopapa');
     const footer = document.getElementById('logofooter');
-const svgpanel = document.getElementById('logoani');
-const elements = svg.querySelectorAll('*');
-const elements2 = footer.querySelectorAll('*');
-const cambiopanel = svgpanel.querySelectorAll('*');
+    const svgpanel = document.getElementById('logoani');
+    const elements = svg.querySelectorAll('*');
+    const elements2 = footer.querySelectorAll('*');
+    const cambiopanel = svgpanel.querySelectorAll('*');
 
-elements.forEach((element) => {
-    const fill = window.getComputedStyle(element).fill;
+    elements.forEach((element) => {
+        const fill = window.getComputedStyle(element).fill;
 
-    if (fill === 'rgb(255, 255, 255)') { // Blanco
-        element.setAttribute('fill', 'black');
-    } else if (fill === 'rgb(0, 0, 0)') { // Negro
-        element.setAttribute('fill', 'white');
-    }
+        if (fill === 'rgb(255, 255, 255)') { // Blanco
+            element.setAttribute('fill', 'black');
+        } else if (fill === 'rgb(0, 0, 0)') { // Negro
+            element.setAttribute('fill', 'white');
+        }
 });
 
 cambiopanel.forEach((element0) => {
@@ -134,26 +121,11 @@ function change() {
     const carta2 = document.getElementById('carta2');
     const carta3 = document.getElementById('carta3');
     const letrasdecarta = document.querySelectorAll('.car')
-    if (cheki.checked) {
-        change.style.backgroundColor = 'white';
-        change.style.color = 'white';
-        cartas.style.backgroundColor = 'white';
-        cartas.style.setProperty('--before-bg-color', '#303030');
-        carta2.style.backgroundColor = 'white';
-        carta2.style.setProperty('--before-bg-color', '#303030');
-        carta3.style.backgroundColor = 'white';
-        carta3.style.setProperty('--before-bg-color', '#303030');
-        letrasdecarta.forEach((element) => {
-            element.style.color = 'white'
-        })
-        
-    }
-    else{
-        change.style.backgroundColor = 'black';
-        change.style.color = 'white'
-        cartas.style.backgroundColor = 'white';
-        letrasdecarta.style.color = 'white';
-    }
+    change.style.backgroundColor = 'black';
+    change.style.color = 'white'
+    letrasdecarta.forEach((element) => {
+        element.style.color = 'white'
+    })
 }
 
 function changetext(){
@@ -198,3 +170,4 @@ document.querySelectorAll('.bi-play-fill, .bi-pause-fill').forEach(button => {
     });
 });
 
+verificado();

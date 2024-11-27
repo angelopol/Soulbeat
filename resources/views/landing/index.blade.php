@@ -13,14 +13,8 @@
       </nav>
       <nav class="">
         <ul class="botones">
-          
-          <li class="elemento sign" onclick="/signup">Sign Up</li>
-          <li class="elemento log" onclick="/login">Log In</li>
-          <li class="elemento inte"><div class="interruptor">
-            <input type="checkbox" id="check" onclick="verificado()"></input>
-            <label for="check" class="button"></label>
-            <span id="swiche" class="text cambio">Light mode</span>
-          </div></li>
+          <li class="elemento sign" onclick="window.location.href='/login'">Sign Up</li>
+          <li class="elemento log" onclick="window.location.href='/login'">Log In</li>
           <li class="bi bi-list menuhamburguesa"></li>
         </ul>
       </nav>
@@ -33,7 +27,7 @@
       <div class="pichu">
         <p class="parrafomain">Mas de 10.000 beats y un mundo de beatsmakers para explorar.</p>
         <div class="centro">
-        <button class="magic cambioespecial" id="cen" onclick="/login" >Unirse ahora</button>
+        <button class="magic cambioespecial" id="cen" onclick="window.location.href='/login'" >Unirse ahora</button>
       </div>
       </div>
   </div>
