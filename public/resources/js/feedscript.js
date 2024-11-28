@@ -2,7 +2,7 @@ const seguido = document.querySelectorAll('.botonseguir');
 
 seguido.forEach((element) => {
     element.addEventListener('click', () => {
-        let UserName = this.getAttribute('UserName');
+        let UserName = element.getAttribute('UserName');
         fetch("/user/followeds/update/"+UserName, {
             method: "POST",
             headers: {

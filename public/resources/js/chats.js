@@ -130,16 +130,17 @@ Pusher.logToConsole = true;
 //Broadcast messages
 $("#SendForm").submit(function (event) {
     event.preventDefault();
+    let value = $("#SendForm #message").val()+"~"+UserId;
+    $("#SendForm #message").val('');
     $.ajax({
         url:     "/chats/1/broadcast",
         method:  'POST',
         data:    {
             _token:  token,
             chat: $("#SendForm #ChatId").val(),
-            message: $("#SendForm #message").val()+"~"+UserId
+            message: value
         }
     }).done(function (res) {
         AppendMessages(res);
-        $("#SendForm #message").val('');
     });
 });

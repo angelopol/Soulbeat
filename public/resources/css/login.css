@@ -1,0 +1,349 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto';
+    width:100vw;
+    height: 100vh;
+    background-color: black;
+    color: white;
+    overflow: hidden; /*shhhh*/
+        position: relative;
+}
+
+.wrapper{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1; /* Asegúrate de que tenga un z-index superior */
+    position: relative;
+}
+
+.register{
+    padding: 32px;
+    min-width: 50vw;
+    max-height: 70vh;
+    border-radius: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4); 
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px); 
+    border: 1px solid rgba(255, 255, 255, 0.2); 
+    margin: 20px;
+    color: white;
+    z-index: 5;
+}
+
+.login{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+}
+
+.title{
+    font-size: x-large;
+    font: bolder;
+}
+
+.userarea, .passwordarea{
+    display: flex;
+    border: 2px solid rgb(161,0,161);
+    padding: 8px;
+    border-radius: 1em;
+    flex-direction: row;
+    gap: 5px;
+    width: 80%;
+}
+
+.barra{
+    outline: none;
+    color:white;
+    background: transparent;
+    border: none;
+}
+
+.circlevioleta {
+    width: 100vw; 
+    height: 100vh; 
+    background: linear-gradient(45deg, rgb(80, 0, 180), rgb(90, 0, 90) 60%);
+    clip-path: circle(150px at 75% 70%); 
+    position: absolute;
+    z-index: 2; 
+    animation: growCircle 5s infinite alternate; } 
+
+.circlemorado { 
+    width: 100vw; 
+    height: 100vh; 
+    background: linear-gradient(45deg, rgb(254, 0, 254), rgb(50, 0, 50) 60%);
+     clip-path: circle(150px at 20% 20%); 
+    position: absolute;
+     z-index: 2; 
+    animation: growCircles 5s infinite alternate;
+
+
+}
+
+
+@keyframes growCircle { 
+    0% { clip-path: circle(150px at 75% 70%); } 
+    50%{ clip-path: circle(175px at 47% 98%);
+    }
+    100% { clip-path: circle(200px at 20% 10%); } 
+}
+
+@keyframes growCircles { 
+    0% { clip-path: circle(150px at 20% 20%); } 
+    50%{clip-path: circle(167px at 47% 18%);}
+    
+    100% { clip-path: circle(200px at 75% 70%); } 
+}
+
+
+.log{
+    width: 82%;
+    padding: 8px;
+    color: white;
+    margin: 20px 0px 20px 0px;
+    background-color: black;
+    border: 2px solid #fff;
+    border-radius: 1em;
+    font-size: larger;
+    transition: 0.2s all ease-in-out;
+}
+.fle{
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.l{
+    display: inline-flex;
+}
+
+.ali{ display: flex; align-items: center; gap: 5px;
+}
+
+
+.gray{
+    color: dimgray;}
+
+    .cambio{
+        text-decoration: none;
+        color: rgb(161,0,161);
+        position: relative;
+        cursor: pointer;
+    }
+
+    .cambio::after{
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background-color: rgb(161,0,161);
+        left: 0;
+        bottom: -2px;
+    }
+
+   
+    
+
+
+    .nombre,.username,.password,.apellido,.email{
+        width: 100%;
+        padding: 8px;
+        border: 2px solid rgb(161,0,161);
+        border-radius: 1em;
+        color: white;
+
+    }
+
+    .nombre{
+        display: flex;
+        justify-content: center;
+        border: none;
+        width: 100%;
+        gap: 3em;
+        padding: 8px 0px 8px 0px;
+    }    
+
+    .signin{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        width: 80%;
+    }
+
+    .signin > div>input{
+        outline: none;
+        border: none;
+        color: white;
+        padding: 8px;
+        background: transparent;
+        width: 80%;
+    }
+
+    .sig{
+        width: 100%;
+        padding: 8px;
+        border-radius: 1em;
+        background-color: black;
+        color: white;
+        font-size: larger;
+        border: 2px solid #fff;
+        transition: 0.2s all ease-in-out;
+    }
+    .spe{
+        outline: none;
+        border: none;
+        color: white;
+        padding: 8px;
+        background: transparent;
+        border-radius: 1em;
+        
+        border: 2px solid rgb(161,0,161);
+    }
+
+    .log:hover,.sig:hover{
+        background-color: #303030;
+    }
+
+    .sig:focus ,.log:focus{
+        background-color: rgb(161,0,161);
+        color: white;
+    }
+
+    /* From Uiverse.io by bociKond */ 
+/* Hide the default checkbox */
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  .container {
+    display: inline-flex;
+    position: relative;
+    cursor: pointer;
+    font-size: 1.2rem;
+    user-select: none;
+  }
+  
+ 
+  .checkmark {
+    --clr: #0B6E4F;
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 1.3em;
+    width: 1.3em;
+    background-color: #ccc;
+    border-radius: 50%;
+    transition: 300ms;
+  }
+  
+
+  .container input:checked ~ .checkmark {
+    background-color: var(--clr);
+    border-radius: .5rem;
+    animation: pulso 500ms ease-in-out;
+  }
+  
+
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .container input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .container .checkmark:after {
+    left: 0.45em;
+    top: 0.25em;
+    width: 0.25em;
+    height: 0.5em;
+    border: solid #E0E0E2;
+    border-width: 0 0.15em 0.15em 0;
+    transform: rotate(45deg);
+  }
+  
+  @keyframes pulso {
+    0% {
+      box-shadow: 0 0 0 #0B6E4F90;
+      rotate: 20deg;
+    }
+  
+    50% {
+      rotate: -20deg;
+    }
+  
+    75% {
+      box-shadow: 0 0 0 10px #0B6E4F60;
+    }
+  
+    100% {
+      box-shadow: 0 0 0 13px #0B6E4F30;
+      rotate: 0;
+    }
+  }
+
+  .forg{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    width: 50vw;
+
+  }
+
+  .importa{
+    outline: none;
+    border: 2px solid rgb(161,0,161);
+    border-radius: 1em;
+    padding: 8px;
+    color: white;
+    background-color: transparent;
+    width: 50vw;
+  }
+
+  .es{
+    display: flex;
+    gap: 10px;
+    font-size: x-large;
+  }
+
+  .es:hover{
+    cursor: pointer;
+    background-color: rgb(161,0,161);
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+
+  .flechi:hover{
+    animation: girar 1s ;
+  }
+
+  @keyframes girar { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg);}};
+  .parra{
+
+    width: 50vw;
+
+  }
