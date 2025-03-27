@@ -223,6 +223,11 @@ function initializeEventListeners() {
                     }
                 });
 
+                const ReactionCount = reaction.querySelector('.reaction-count');
+                if (ReactionCount) {
+                    ReactionCount.textContent = parseInt(ReactionCount.textContent) + 1;
+                }
+
                 let reactionsContainers = document.querySelectorAll('.reactions');
                 // Hide all reactions containers by default
                 reactionsContainers.forEach((container) => {

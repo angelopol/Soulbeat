@@ -74,22 +74,27 @@
         <button class="boton-reactions">What's up?</button>
         <div class="reactions">
             <span class="reaction" reaction="1" post="{{ $post->id }}">
+                <div class="reaction-count">{{ $post->reaction1 }}</div>
                 <img src="{{ Vite::asset('resources/assets/images/Lapartio.png') }}" alt="">
                 <div class="texto-oculto">This is insane!</div>
             </span>
             <span class="reaction" reaction="2" post="{{ $post->id }}">
+                <div class="reaction-count">{{ $post->reaction2 }}</div>
                 <img src="{{ Vite::asset('resources/assets/images/QUEEEE.png') }}" alt="">
                 <div class="texto-oculto">Whattt!</div>
             </span>
             <span class="reaction" reaction="3" post="{{ $post->id }}">
+                <div class="reaction-count">{{ $post->reaction3 }}</div>
                 <img src="{{ Vite::asset('resources/assets/images/INCREIBLE!.png') }}" alt="">
                 <div class="texto-oculto">Amazinggg</div>
             </span>
             <span class="reaction" reaction="4" post="{{ $post->id }}">
+                <div class="reaction-count">{{ $post->reaction4 }}</div>
                 <img src="{{ Vite::asset('resources/assets/images/regular.png') }}" alt="">
                 <div class="texto-oculto">meh</div>
             </span>
             <span class="reaction" reaction="5" post="{{ $post->id }}">
+                <div class="reaction-count">{{ $post->reaction5 }}</div>
                 <img src="{{ Vite::asset('resources/assets/images/algomejor.png') }}" alt="">
                 <div class="texto-oculto">i hope for something better</div>
             </span>
